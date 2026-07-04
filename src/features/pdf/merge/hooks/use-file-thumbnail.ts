@@ -44,7 +44,7 @@ export function useFileThumbnail(file: File | null): ThumbnailState {
         const context = canvas.getContext("2d");
         if (!context) throw new Error("Canvas non supporté");
 
-        await page.render({ canvasContext: context, viewport }).promise;
+        await page.render({ canvasContext: context, canvas, viewport }).promise;
         await loadingTask.destroy();
 
         const blob = await new Promise<Blob | null>((resolve) =>
