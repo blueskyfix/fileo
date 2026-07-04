@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/core/utils/cn";
 import { formatFileSize } from "@/features/pdf/shared/utils/format-file-size";
+import { useFileThumbnail } from "@/features/pdf/merge/hooks/use-file-thumbnail";
 import type { PdfFileItem } from "@/features/pdf/shared/types/pdf-file-item";
 
 interface MergeFileItemProps {
@@ -16,6 +17,10 @@ interface MergeFileItemProps {
 export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: item.id, disabled: disabled || item.status !== "ready" });
+
+  const { thumbnailUrl } = useFileThumbnail(
+    item.status === "ready" ? item.file : null,
+  );
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -43,7 +48,18 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
         <GripVertical className="h-4 w-4" />
       </button>
 
-      <FileText className="h-4 w-4 shrink-0 text-foreground-muted" />
+      <div className="flex h-10 w-8 shrink-0 items-center justify-center overflow-hidden rounded border border-border bg-surface">
+        {thumbnailUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={thumbnailUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+        ) : (
+          <FileText className="h-4 w-4 text-foreground-muted" />
+        )}
+      </div>
 
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-foreground">{item.name}</p>
