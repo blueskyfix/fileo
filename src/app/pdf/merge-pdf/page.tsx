@@ -3,10 +3,7 @@ import { Container } from "@/components/layout/container";
 import { ToolPageHeader } from "@/features/pdf/shared/components/tool-page-header";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
-import { MergeDropzonePlaceholder } from "@/features/pdf/merge/components/merge-dropzone-placeholder";
-import { MergeFileListPlaceholder } from "@/features/pdf/merge/components/merge-file-list-placeholder";
-import { MergeActionBar } from "@/features/pdf/merge/components/merge-action-bar";
-
+import { MergeTool } from "@/features/pdf/merge";
 
 export const metadata: Metadata = {
   title: "Merge PDF — Fusionner des fichiers PDF en ligne",
@@ -57,11 +54,7 @@ export default function MergePdfPage() {
         description="Fusionnez plusieurs fichiers PDF en un seul document, dans l'ordre de votre choix."
       />
 
-      <div className="mx-auto flex max-w-2xl flex-col gap-4">
-        <MergeDropzonePlaceholder />
-        <MergeFileListPlaceholder />
-        <MergeActionBar />
-      </div>
+      <MergeTool />
 
       <HowItWorks steps={steps} />
       <ToolFaq items={faqItems} />
