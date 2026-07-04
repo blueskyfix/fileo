@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+@theme {
+  --color-surface: var(--fileo-surface);
+  --color-unelevated: var(--fileo-unelevated);
+  --color-elevated: var(--fileo-elevated);
+  --color-border: var(--fileo-border);
+  --color-primary: var(--fileo-primary);
+  --color-primary-foreground: var(--fileo-primary-foreground);
+  --color-accent: var(--fileo-accent);
+  --color-accent-foreground: var(--fileo-accent-foreground);
+  --color-foreground: var(--fileo-foreground);
+  --color-foreground-muted: var(--fileo-foreground-muted);
+
+  --radius-lg: 8px;
+
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Direction claire — variante v1, mêmes accents de marque que la version sombre */
+  --fileo-surface: #f7f7fa;
+  --fileo-unelevated: #eeeef4;
+  --fileo-elevated: #ffffff;
+  --fileo-border: #e2e3ec;
+
+  --fileo-primary: #a6a8f5;
+  --fileo-primary-foreground: #14151f;
+
+  --fileo-accent: #3fe0da;
+  --fileo-accent-foreground: #14151f;
+
+  --fileo-foreground: #14151f;
+  --fileo-foreground-muted: #5c5f70;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Direction sombre — Charte graphique v1, section 03. Réactivable plus tard. */
+  --fileo-surface: #0b0e14;
+  --fileo-unelevated: #12161c;
+  --fileo-elevated: #1c212c;
+  --fileo-border: #1c212c;
+
+  --fileo-primary: #a6a8f5;
+  --fileo-primary-foreground: #0b0e14;
+
+  --fileo-accent: #3fe0da;
+  --fileo-accent-foreground: #0b0e14;
+
+  --fileo-foreground: #f5f6fa;
+  --fileo-foreground-muted: #9a9dae;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@import "../styles/utilities.css";
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-surface text-foreground font-sans antialiased;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
 }
