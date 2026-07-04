@@ -7,6 +7,7 @@ import { MergeDropzonePlaceholder } from "@/features/pdf/merge/components/merge-
 import { MergeFileListPlaceholder } from "@/features/pdf/merge/components/merge-file-list-placeholder";
 import { MergeActionBar } from "@/features/pdf/merge/components/merge-action-bar";
 
+
 export const metadata: Metadata = {
   title: "Merge PDF — Fusionner des fichiers PDF en ligne",
   description:
