@@ -1,63 +1,76 @@
 import type { Metadata } from "next";
+import { Lock, Ban, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { ToolPageHeader } from "@/features/pdf/shared/components/tool-page-header";
+import { FeatureGrid } from "@/features/pdf/shared/components/feature-grid";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
+import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { MergeTool } from "@/features/pdf/merge";
+import { siteConfig } from "@/core/config/site";
+import {
+  mergePdfMeta,
+  mergePdfHero,
+  mergePdfTrustBlock,
+  mergePdfHowItWorks,
+  mergePdfBenefits,
+  mergePdfUseCases,
+  mergePdfFaq,
+  mergePdfSummary,
+} from "@/data/tools/merge-pdf";
 
 export const metadata: Metadata = {
-  title: "Merge PDF — Fusionner des fichiers PDF en ligne",
-  description:
-    "Fusionnez plusieurs fichiers PDF en un seul document, directement dans votre navigateur. Aucun envoi de fichier sur un serveur.",
+  title: mergePdfMeta.metaTitle,
+  description: mergePdfMeta.metaDescription,
+  alternates: {
+    canonical: mergePdfMeta.canonicalSlug,
+  },
+  openGraph: {
+    title: mergePdfMeta.ogTitle,
+    description: mergePdfMeta.ogDescription,
+    url: `${siteConfig.url}${mergePdfMeta.canonicalSlug}`,
+  },
 };
 
-const steps = [
-  {
-    title: "Déposez vos fichiers",
-    description: "Glissez-déposez ou sélectionnez les PDF à fusionner.",
-  },
-  {
-    title: "Réorganisez l'ordre",
-    description:
-      "Classez les fichiers dans l'ordre souhaité pour le résultat final.",
-  },
-  {
-    title: "Téléchargez le résultat",
-    description:
-      "Le PDF fusionné est généré localement, prêt à télécharger.",
-  },
-];
-
-const faqItems = [
-  {
-    question: "Mes fichiers sont-ils envoyés sur un serveur ?",
-    answer:
-      "Non. La fusion est effectuée directement dans votre navigateur : vos fichiers ne quittent jamais votre appareil.",
-  },
-  {
-    question: "Y a-t-il une limite de taille ou de nombre de fichiers ?",
-    answer:
-      "Le traitement étant local, la limite dépend des ressources de votre appareil plutôt que d'un quota imposé par Fileo.",
-  },
-  {
-    question: "Le service est-il gratuit ?",
-    answer:
-      "Oui, Merge PDF est gratuit et ne nécessite pas de création de compte.",
-  },
-];
+const trustIcons = [Lock, Ban, X];
 
 export default function MergePdfPage() {
   return (
     <Container className="pb-20">
       <ToolPageHeader
-        title="Merge PDF"
-        description="Fusionnez plusieurs fichiers PDF en un seul document, dans l'ordre de votre choix."
+        eyebrow={mergePdfHero.eyebrow}
+        title={mergePdfHero.title}
+        description={mergePdfHero.subtitle}
       />
 
       <MergeTool />
 
-      <HowItWorks steps={steps} />
-      <ToolFaq items={faqItems} />
+      <FeatureGrid
+        title={mergePdfTrustBlock.title}
+        intro={mergePdfTrustBlock.intro}
+        items={mergePdfTrustBlock.points}
+        icons={trustIcons}
+        emphasized
+      />
+
+      <HowItWorks title={mergePdfHowItWorks.title} steps={mergePdfHowItWorks.steps} />
+
+      <FeatureGrid
+        title={mergePdfBenefits.title}
+        intro={mergePdfBenefits.intro}
+        items={mergePdfBenefits.items}
+      />
+
+      <FeatureGrid
+        title={mergePdfUseCases.title}
+        intro={mergePdfUseCases.intro}
+        items={mergePdfUseCases.cases}
+        columns={2}
+      />
+
+      <ToolFaq items={mergePdfFaq} />
+
+      <ContentSummary text={mergePdfSummary.text} />
     </Container>
   );
 }
