@@ -5,6 +5,10 @@ import { FeatureGrid } from "@/features/pdf/shared/components/feature-grid";
 import { pdfTools } from "@/data/tools/tools";
 import { pdfHubHero, pdfHubToolsIntro, pdfHubTrustBlock } from "@/data/categories/pdf";
 
+if (typeof window !== "undefined" && window.location.search.includes("test-sentry")) {
+  throw new Error("Test Sentry — à retirer après vérification");
+}
+
 export const metadata: Metadata = {
   title: pdfHubHero.title,
   description: pdfHubHero.subtitle,
