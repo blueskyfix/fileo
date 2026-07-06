@@ -1,15 +1,16 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
-  // Le traitement PDF passera par des Web Workers (feature Merge) :
-  // headers COOP/COEP nécessaires si on utilise SharedArrayBuffer plus tard.
-  // Pas activé maintenant pour ne pas bloquer des ressources externes
-  // (Plausible, etc.) sans raison — on l'ajoutera si pdf-lib/pdfjs l'exige.
   images: {
     formats: ["image/avif", "image/webp"],
   },
 };
 
-export default nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: "https://horatio-nguend.sentry.io/",
+  project: "fileo",
+  silent: !process.env.CI,
+});

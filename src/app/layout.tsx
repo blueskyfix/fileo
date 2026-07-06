@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/core/config/site";
+import { analyticsConfig } from "@/core/config/analytics";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
@@ -34,6 +36,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${jetbrainsMono.variable} flex min-h-screen flex-col`}
       >
+        {analyticsConfig.umamiWebsiteId && (
+          <Script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id={analyticsConfig.umamiWebsiteId}
+          />
+        )}
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

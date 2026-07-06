@@ -7,6 +7,7 @@ import { validatePdfFile } from "@/core/pdf/validate-pdf";
 import { readPdfMetadata } from "@/core/pdf/read-pdf-metadata";
 import { sanitizeFilename } from "@/features/pdf/shared/utils/sanitize-filename";
 import type { PdfFileItem } from "@/features/pdf/shared/types/pdf-file-item";
+import { trackEvent } from "@/core/config/analytics";
 
 export function useMergeFiles() {
   const files = useMergeStore((s) => s.files);
@@ -69,35 +70,36 @@ export function useMergeFiles() {
     [addFiles, updateFile],
   );
 
-  const runMerge = useCallback(
-    async (outputName: string) => {
-      const readyFiles = files.filter((f) => f.status === "ready");
+    const runMerge = useCallback(
+      async (outputName: string) => {
+        const readyFiles = files.filter((f) => f.status === "ready");
 
-      if (readyFiles.length === 0) {
-        setMergeError("Aucun fichier valide à fusionner.");
-        return;
-      }
+        if (readyFiles.length === 0) {
+          setMergeError("Aucun fichier valide à fusionner.");
+          return;
+        }
 
-      setMergeStatus("processing");
+        setMergeStatus("processing");
 
-      try {
-        const blob = await mergePdfFiles(
-          readyFiles.map((f) => ({ id: f.id, name: f.name, file: f.file })),
-          {
-            onFileError: (id, message) => {
-              updateFile(id, { status: "error", errorMessage: message });
+        try {
+          const blob = await mergePdfFiles(
+            readyFiles.map((f) => ({ id: f.id, name: f.name, file: f.file })),
+            {
+              onFileError: (id, message) => {
+                updateFile(id, { status: "error", errorMessage: message });
+              },
             },
-          },
-        );
+          );
 
-        setResult(blob);
-        void outputName; // consommé par le composant de téléchargement, pas ici
-      } catch (err) {
-        setMergeError((err as Error).message);
-      }
-    },
-    [files, setMergeStatus, setResult, setMergeError, updateFile],
-  );
+          setResult(blob);
+          trackEvent("merge_completed", { fileCount: String(readyFiles.length) });
+          void outputName; // consommé par le composant de téléchargement, pas ici
+        } catch (err) {
+          setMergeError((err as Error).message);
+        }
+      },
+      [files, setMergeStatus, setResult, setMergeError, updateFile],
+    );
 
   const readyCount = files.filter((f) => f.status === "ready").length;
   const canMerge = readyCount >= 2 && !isProcessing;
