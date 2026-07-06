@@ -7,49 +7,28 @@
   --color-border: var(--fileo-border);
   --color-primary: var(--fileo-primary);
   --color-primary-foreground: var(--fileo-primary-foreground);
-  --color-accent: var(--fileo-accent);
-  --color-accent-foreground: var(--fileo-accent-foreground);
+  --color-accent: var(--fileo-primary);
+  --color-accent-foreground: var(--fileo-primary-foreground);
   --color-foreground: var(--fileo-foreground);
   --color-foreground-muted: var(--fileo-foreground-muted);
 
-  --radius-lg: 8px;
+  --radius-lg: 12px;
 
-  --font-sans: var(--font-geist-sans), sans-serif;
-  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-sans: var(--font-inter), sans-serif;
 }
 
 :root {
-  /* Direction claire — variante v1, mêmes accents de marque que la version sombre */
-  --fileo-surface: #f7f7fa;
-  --fileo-unelevated: #eeeef4;
+  /* Nouvelle identité Fileo v2 — palette slate + bleu de marque */
+  --fileo-surface: #f8fafc;
+  --fileo-unelevated: #f1f5f9;
   --fileo-elevated: #ffffff;
-  --fileo-border: #e2e3ec;
+  --fileo-border: #e2e8f0;
 
-  --fileo-primary: #a6a8f5;
-  --fileo-primary-foreground: #14151f;
+  --fileo-primary: #2666eb;
+  --fileo-primary-foreground: #ffffff;
 
-  --fileo-accent: #3fe0da;
-  --fileo-accent-foreground: #14151f;
-
-  --fileo-foreground: #14151f;
-  --fileo-foreground-muted: #5c5f70;
-}
-
-.dark {
-  /* Direction sombre — Charte graphique v1, section 03. Réactivable plus tard. */
-  --fileo-surface: #0b0e14;
-  --fileo-unelevated: #12161c;
-  --fileo-elevated: #1c212c;
-  --fileo-border: #1c212c;
-
-  --fileo-primary: #a6a8f5;
-  --fileo-primary-foreground: #0b0e14;
-
-  --fileo-accent: #3fe0da;
-  --fileo-accent-foreground: #0b0e14;
-
-  --fileo-foreground: #f5f6fa;
-  --fileo-foreground-muted: #9a9dae;
+  --fileo-foreground: #0f172a;
+  --fileo-foreground-muted: #64748b;
 }
 
 @import "../styles/utilities.css";
@@ -59,6 +38,6 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-accent-foreground);
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
