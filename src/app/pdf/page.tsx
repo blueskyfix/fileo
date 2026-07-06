@@ -5,9 +5,6 @@ import { FeatureGrid } from "@/features/pdf/shared/components/feature-grid";
 import { pdfTools } from "@/data/tools/tools";
 import { pdfHubHero, pdfHubToolsIntro, pdfHubTrustBlock } from "@/data/categories/pdf";
 
-import { DebugSentryTest } from "@/features/pdf/shared/components/_debug-sentry-test";
-
-
 export const metadata: Metadata = {
   title: pdfHubHero.title,
   description: pdfHubHero.subtitle,
@@ -16,7 +13,6 @@ export const metadata: Metadata = {
 export default function PdfHubPage() {
   return (
     <Container className="py-16">
-      <DebugSentryTest />
       <div className="max-w-2xl">
         <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           {pdfHubHero.title}
