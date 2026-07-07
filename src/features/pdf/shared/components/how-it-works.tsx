@@ -15,19 +15,21 @@ export function HowItWorks({
         {title}
       </h2>
 
-      <ol className="mt-8 grid gap-6 sm:grid-cols-3">
+      <div className="relative mt-10 grid gap-8 sm:grid-cols-3">
+        <div className="absolute left-0 right-0 top-5 hidden h-px bg-border sm:block" />
+
         {steps.map((step, index) => (
-          <li key={step.title} className="flex flex-col gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-sm font-medium text-primary">
+          <div key={step.title} className="relative flex flex-col gap-2">
+            <div className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
               {index + 1}
-            </span>
-            <h3 className="font-medium text-foreground">{step.title}</h3>
+            </div>
+            <h3 className="font-semibold text-foreground">{step.title}</h3>
             <p className="text-sm text-foreground-muted">
               {step.description}
             </p>
-          </li>
+          </div>
         ))}
-      </ol>
+      </div>
     </section>
   );
 }

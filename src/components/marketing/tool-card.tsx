@@ -16,8 +16,10 @@ export function ToolCard({ tool }: { tool: Tool }) {
   const content = (
     <div
       className={cn(
-        "group flex h-full flex-col gap-4 rounded-lg border border-border bg-elevated p-6 transition-colors",
-        isAvailable ? "hover:border-accent" : "opacity-60",
+        "group flex h-full flex-col gap-4 rounded-xl border bg-elevated p-6 transition-colors",
+        isAvailable
+          ? "border-border hover:border-primary"
+          : "border-border opacity-60",
       )}
     >
       <div className="flex items-center justify-between">
@@ -32,12 +34,12 @@ export function ToolCard({ tool }: { tool: Tool }) {
       </div>
 
       <div className="flex-1">
-        <h3 className="font-medium text-foreground">{tool.name}</h3>
+        <h3 className="font-semibold text-foreground">{tool.name}</h3>
         <p className="mt-1 text-sm text-foreground-muted">{tool.description}</p>
       </div>
 
       {isAvailable && (
-        <span className="flex items-center gap-1 text-sm font-medium text-accent">
+        <span className="flex items-center gap-1 text-sm font-medium text-primary">
           Ouvrir l&apos;outil
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </span>

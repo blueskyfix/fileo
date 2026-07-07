@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Lock, Ban, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { ToolPageHeader } from "@/features/pdf/shared/components/tool-page-header";
-import { FeatureGrid } from "@/features/pdf/shared/components/feature-grid";
+import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
+import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-and-use-cases";
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { MergeTool } from "@/features/pdf/merge";
@@ -11,7 +10,6 @@ import { siteConfig } from "@/core/config/site";
 import {
   mergePdfMeta,
   mergePdfHero,
-  mergePdfTrustBlock,
   mergePdfHowItWorks,
   mergePdfBenefits,
   mergePdfUseCases,
@@ -32,40 +30,32 @@ export const metadata: Metadata = {
   },
 };
 
-const trustIcons = [Lock, Ban, X];
+const heroHighlights = [
+  "Traitement 100% local : le calcul se fait directement sur votre appareil.",
+  "Aucun fichier stocké ni mis en file d'attente sur nos serveurs.",
+  "Rien ne persiste une fois l'onglet fermé ou la page rechargée.",
+];
 
 export default function MergePdfPage() {
   return (
     <Container className="pb-20">
-      <ToolPageHeader
-        eyebrow={mergePdfHero.eyebrow}
+      <ToolHeroSplit
         title={mergePdfHero.title}
         description={mergePdfHero.subtitle}
-      />
-
-      <MergeTool />
-
-      <FeatureGrid
-        title={mergePdfTrustBlock.title}
-        intro={mergePdfTrustBlock.intro}
-        items={mergePdfTrustBlock.points}
-        icons={trustIcons}
-        emphasized
-      />
+        highlights={heroHighlights}
+      >
+        <MergeTool />
+      </ToolHeroSplit>
 
       <HowItWorks title={mergePdfHowItWorks.title} steps={mergePdfHowItWorks.steps} />
 
-      <FeatureGrid
-        title={mergePdfBenefits.title}
-        intro={mergePdfBenefits.intro}
-        items={mergePdfBenefits.items}
-      />
-
-      <FeatureGrid
-        title={mergePdfUseCases.title}
-        intro={mergePdfUseCases.intro}
-        items={mergePdfUseCases.cases}
-        columns={2}
+      <BenefitsAndUseCases
+        benefitsTitle={mergePdfBenefits.title}
+        benefitsIntro={mergePdfBenefits.intro}
+        benefits={mergePdfBenefits.items}
+        useCasesTitle={mergePdfUseCases.title}
+        useCasesIntro={mergePdfUseCases.intro}
+        useCases={mergePdfUseCases.cases}
       />
 
       <ToolFaq items={mergePdfFaq} />
