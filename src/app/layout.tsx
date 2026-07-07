@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
+  verification: {
+    google: "OtnEGwzlcolXwD16WNyAh5CjaVZm0VfJtPKQcfO9z7U",
+  },
 };
 
 export default function RootLayout({
