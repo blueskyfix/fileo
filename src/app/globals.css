@@ -6,6 +6,7 @@
   --color-elevated: var(--fileo-elevated);
   --color-border: var(--fileo-border);
   --color-primary: var(--fileo-primary);
+  --color-primary-hover: var(--fileo-primary-hover);
   --color-primary-foreground: var(--fileo-primary-foreground);
   --color-accent: var(--fileo-primary);
   --color-accent-foreground: var(--fileo-primary-foreground);
@@ -18,13 +19,13 @@
 }
 
 :root {
-  /* Nouvelle identité Fileo v2 — palette slate + bleu de marque */
   --fileo-surface: #f8fafc;
   --fileo-unelevated: #f1f5f9;
   --fileo-elevated: #ffffff;
   --fileo-border: #e2e8f0;
 
   --fileo-primary: #2666eb;
+  --fileo-primary-hover: #1d54c7;
   --fileo-primary-foreground: #ffffff;
 
   --fileo-foreground: #0f172a;

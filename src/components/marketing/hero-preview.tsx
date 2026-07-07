@@ -47,7 +47,7 @@ export function HeroPreview() {
         </div>
       </Link>
 
-      <div className="absolute -bottom-4 -right-4 hidden items-center gap-2 rounded-lg border border-border bg-elevated px-4 py-3 shadow-md sm:flex">
+      <div className="absolute -bottom-9 -right-4 hidden items-center gap-2 rounded-lg border border-border bg-elevated px-4 py-3 shadow-md sm:flex">
         <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
         <div>
           <p className="text-sm font-medium text-foreground">
