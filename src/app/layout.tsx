@@ -23,6 +23,28 @@ export const metadata: Metadata = {
   verification: {
     google: "OtnEGwzlcolXwD16WNyAh5CjaVZm0VfJtPKQcfO9z7U",
   },
+  openGraph: {
+    title: 'Fileo',
+    description: 'Traitez vos documents et images sensibles. Sans les envoyer nulle part.',
+    url: 'https://fileo-green.vercel.app',
+    siteName: 'Fileo',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Fileo — Traitez vos documents et images sensibles, sans les envoyer nulle part',
+      },
+    ],
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fileo',
+    description: 'Traitez vos documents et images sensibles. Sans les envoyer nulle part.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({
