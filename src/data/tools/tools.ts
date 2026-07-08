@@ -1,5 +1,10 @@
 export type ToolStatus = "available" | "coming-soon";
-export type ToolIcon = "merge" | "split" | "remove-pages";
+export type ToolIcon =
+  | "merge"
+  | "split"
+  | "remove-pages"
+  | "jpg-to-pdf"
+  | "pdf-to-jpg";
 
 export interface Tool {
   slug: string;
@@ -19,6 +24,24 @@ export const pdfTools: Tool[] = [
     href: "/pdf/merge-pdf",
     status: "available",
     icon: "merge",
+  },
+  {
+    slug: "jpg-to-pdf",
+    name: "JPG to PDF",
+    description:
+      "Convertissez vos images JPG ou PNG en un seul fichier PDF.",
+    href: "/pdf/jpg-to-pdf",
+    status: "coming-soon",
+    icon: "jpg-to-pdf",
+  },
+  {
+    slug: "pdf-to-jpg",
+    name: "PDF to JPG",
+    description:
+      "Convertissez les pages d'un PDF en images JPG, individuellement ou en une seule fois.",
+    href: "/pdf/pdf-to-jpg",
+    status: "coming-soon",
+    icon: "pdf-to-jpg",
   },
   {
     slug: "split-pdf",
