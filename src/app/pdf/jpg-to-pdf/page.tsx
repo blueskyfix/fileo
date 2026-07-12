@@ -6,42 +6,42 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
-import { MergeTool } from "@/features/pdf/merge";
+import { JpgToPdfWidget } from "@/features/pdf/jpg-to-pdf";
 import { siteConfig } from "@/core/config/site";
 import {
-  mergePdfMeta,
-  mergePdfHero,
-  mergePdfHowItWorks,
-  mergePdfBenefits,
-  mergePdfUseCases,
-  mergePdfFaq,
-  mergePdfSummary,
-} from "@/data/tools/merge-pdf";
+  jpgToPdfMeta,
+  jpgToPdfHero,
+  jpgToPdfHowItWorks,
+  jpgToPdfBenefits,
+  jpgToPdfUseCases,
+  jpgToPdfFaq,
+  jpgToPdfSummary,
+} from "@/data/tools/jpg-to-pdf";
 
 export const metadata: Metadata = {
-  title: mergePdfMeta.metaTitle,
-  description: mergePdfMeta.metaDescription,
+  title: jpgToPdfMeta.metaTitle,
+  description: jpgToPdfMeta.metaDescription,
   alternates: {
-    canonical: mergePdfMeta.canonicalSlug,
+    canonical: jpgToPdfMeta.canonicalSlug,
   },
   openGraph: {
-    title: mergePdfMeta.ogTitle,
-    description: mergePdfMeta.ogDescription,
-    url: `${siteConfig.url}${mergePdfMeta.canonicalSlug}`,
+    title: jpgToPdfMeta.ogTitle,
+    description: jpgToPdfMeta.ogDescription,
+    url: `${siteConfig.url}${jpgToPdfMeta.canonicalSlug}`,
   },
 };
 
 const heroHighlights = [
   "Traitement 100% local : le calcul se fait directement sur votre appareil.",
-  "Aucun fichier stocké ni mis en file d'attente sur nos serveurs.",
+  "Aucune image stockée ni mise en file d'attente sur nos serveurs.",
   "Rien ne persiste une fois l'onglet fermé ou la page rechargée.",
 ];
 
 const relatedTools = [
   {
-    name: "JPG to PDF",
-    description: "Convertir des images en PDF",
-    href: "/pdf/jpg-to-pdf",
+    name: "Merge PDF",
+    description: "Fusionner plusieurs PDF en un seul",
+    href: "/pdf/merge-pdf",
   },
   {
     name: "PDF to JPG",
@@ -50,31 +50,31 @@ const relatedTools = [
   },
 ];
 
-export default function MergePdfPage() {
+export default function JpgToPdfPage() {
   return (
     <Container className="pb-20">
       <ToolHeroSplit
-        title={mergePdfHero.title}
-        description={mergePdfHero.subtitle}
+        title={jpgToPdfHero.title}
+        description={jpgToPdfHero.subtitle}
         highlights={heroHighlights}
       >
-        <MergeTool />
+        <JpgToPdfWidget />
       </ToolHeroSplit>
 
-      <HowItWorks title={mergePdfHowItWorks.title} steps={mergePdfHowItWorks.steps} />
+      <HowItWorks title={jpgToPdfHowItWorks.title} steps={jpgToPdfHowItWorks.steps} />
 
       <BenefitsAndUseCases
-        benefitsTitle={mergePdfBenefits.title}
-        benefitsIntro={mergePdfBenefits.intro}
-        benefits={mergePdfBenefits.items}
-        useCasesTitle={mergePdfUseCases.title}
-        useCasesIntro={mergePdfUseCases.intro}
-        useCases={mergePdfUseCases.cases}
+        benefitsTitle={jpgToPdfBenefits.title}
+        benefitsIntro={jpgToPdfBenefits.intro}
+        benefits={jpgToPdfBenefits.items}
+        useCasesTitle={jpgToPdfUseCases.title}
+        useCasesIntro={jpgToPdfUseCases.intro}
+        useCases={jpgToPdfUseCases.cases}
       />
 
-      <ToolFaq items={mergePdfFaq} />
+      <ToolFaq items={jpgToPdfFaq} />
 
-      <ContentSummary text={mergePdfSummary.text} />
+      <ContentSummary text={jpgToPdfSummary.text} />
 
       <RelatedTools tools={relatedTools} />
     </Container>
