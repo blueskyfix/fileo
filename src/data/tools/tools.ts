@@ -48,7 +48,7 @@ export const pdfTools: Tool[] = [
     name: "Split PDF",
     description: "Extrayez des pages ou divisez un PDF en plusieurs fichiers.",
     href: "/pdf/split-pdf",
-    status: "coming-soon",
+    status: "available",
     icon: "split",
   },
   {
