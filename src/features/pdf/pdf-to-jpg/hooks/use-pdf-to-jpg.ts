@@ -4,6 +4,7 @@ import { useCallback, useEffect, useReducer, useRef } from "react";
 import { initialPdfToJpgState, pdfToJpgReducer } from "../store";
 import { loadPdfPages } from "../lib/load-pdf-pages";
 import { exportSelectedPages } from "../lib/export-pages";
+import { trackEvent } from "@/core/config/analytics";
 
 export function usePdfToJpg() {
   const [state, dispatch] = useReducer(pdfToJpgReducer, initialPdfToJpgState);
@@ -72,6 +73,10 @@ export function usePdfToJpg() {
       const { blob, filename } = await exportSelectedPages(state.file, selectedPageNumbers);
       const resultUrl = URL.createObjectURL(blob);
       dispatch({ type: "CONVERTING_SUCCESS", resultUrl, resultFilename: filename });
+      trackEvent("pdf_to_jpg_completed", {
+        pageCount: String(selectedPageNumbers.length),
+        exportType: selectedPageNumbers.length === 1 ? "single" : "zip",
+      });
     } catch (error) {
       dispatch({
         type: "CONVERTING_ERROR",

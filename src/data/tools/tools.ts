@@ -31,7 +31,7 @@ export const pdfTools: Tool[] = [
     description:
       "Convertissez vos images JPG ou PNG en un seul fichier PDF.",
     href: "/pdf/jpg-to-pdf",
-    status: "coming-soon",
+    status: "available",
     icon: "jpg-to-pdf",
   },
   {
@@ -40,7 +40,7 @@ export const pdfTools: Tool[] = [
     description:
       "Convertissez les pages d'un PDF en images JPG, individuellement ou en une seule fois.",
     href: "/pdf/pdf-to-jpg",
-    status: "coming-soon",
+    status: "available",
     icon: "pdf-to-jpg",
   },
   {

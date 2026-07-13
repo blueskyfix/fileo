@@ -4,6 +4,7 @@ import { useCallback, useReducer } from "react";
 import { initialJpgToPdfState, jpgToPdfReducer } from "../store";
 import { resizeImageIfNeeded } from "../lib/resize-image";
 import { convertImagesToPdf } from "../lib/jpg-to-pdf-client";
+import { trackEvent } from "@/core/config/analytics";
 import type { JpgToPdfImage } from "../lib/types";
 
 function createImageId() {
@@ -51,6 +52,7 @@ export function useJpgToPdf() {
       const blob = new Blob([pdfBuffer], { type: "application/pdf" });
       const resultUrl = URL.createObjectURL(blob);
       dispatch({ type: "CONVERTING_SUCCESS", resultUrl });
+      trackEvent("jpg_to_pdf_completed", { imageCount: String(state.images.length) });
     } catch (error) {
       dispatch({
         type: "CONVERTING_ERROR",
