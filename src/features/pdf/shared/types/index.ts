@@ -9,3 +9,9 @@ export interface FaqItem {
   question: string;
   answer: string;
 }
+
+export interface PdfPageInfo {
+  pageNumber: number;
+  thumbnailUrl: string;
+  selected: boolean;
+}

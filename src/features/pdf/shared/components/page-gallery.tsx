@@ -1,6 +1,6 @@
 "use client";
 
-import type { PdfPageInfo } from "../lib/types";
+import type { PdfPageInfo } from "@/features/pdf/shared/types";
 import { PageThumbnailItem } from "./page-thumbnail-item";
 
 interface PageGalleryProps {

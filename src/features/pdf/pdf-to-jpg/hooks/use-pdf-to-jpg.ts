@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useReducer, useRef } from "react";
 import { initialPdfToJpgState, pdfToJpgReducer } from "../store";
-import { loadPdfPages } from "../lib/load-pdf-pages";
+import { loadPdfPages } from "@/features/pdf/shared/lib/load-pdf-pages";
 import { exportSelectedPages } from "../lib/export-pages";
 import { trackEvent } from "@/core/config/analytics";
 

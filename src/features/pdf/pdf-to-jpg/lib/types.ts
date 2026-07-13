@@ -1,8 +1,4 @@
-export interface PdfPageInfo {
-  pageNumber: number;
-  thumbnailUrl: string;
-  selected: boolean;
-}
+export type { PdfPageInfo } from "@/features/pdf/shared/types";
 
 export type PdfToJpgStatus =
   | "idle"

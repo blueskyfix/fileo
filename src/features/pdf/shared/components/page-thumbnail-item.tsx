@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 import { cn } from "@/core/utils/cn";
-import type { PdfPageInfo } from "../lib/types";
+import type { PdfPageInfo } from "@/features/pdf/shared/types";
 
 interface PageThumbnailItemProps {
   page: PdfPageInfo;

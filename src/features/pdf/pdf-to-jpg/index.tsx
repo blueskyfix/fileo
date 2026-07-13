@@ -1,7 +1,7 @@
 "use client";
 
 import { PdfDropzone } from "./components/pdf-dropzone";
-import { PageGallery } from "./components/page-gallery";
+import { PageGallery } from "@/features/pdf/shared/components/page-gallery";
 import { PdfActionBar } from "./components/pdf-action-bar";
 import { usePdfToJpg } from "./hooks/use-pdf-to-jpg";
 

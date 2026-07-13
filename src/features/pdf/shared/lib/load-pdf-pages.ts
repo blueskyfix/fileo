@@ -1,4 +1,4 @@
-import type { PdfPageInfo } from "./types";
+import type { PdfPageInfo } from "@/features/pdf/shared/types";
 
 export async function loadPdfPages(file: File): Promise<PdfPageInfo[]> {
   const { GlobalWorkerOptions, getDocument } = await import("pdfjs-dist");
@@ -35,7 +35,7 @@ export async function loadPdfPages(file: File): Promise<PdfPageInfo[]> {
     pages.push({
       pageNumber,
       thumbnailUrl: URL.createObjectURL(blob),
-      selected: true, // toutes les pages pré-cochées par défaut
+      selected: true,
     });
   }
 
