@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const mergeTool = pdfTools.find((tool) => tool.slug === "merge-pdf")!;
+  const availableTools = pdfTools.filter((tool) => tool.status === "available");
 
   return (
     <>
@@ -20,21 +20,23 @@ export default function HomePage() {
         <Hero />
       </Container>
 
-    <Container className="pb-20">
-      <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-foreground">
-        Outils déjà disponibles
-      </h2>
+      <Container className="pb-20">
+        <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+          Outils populaires
+        </h2>
 
-      <div className="mx-auto max-w-sm">
-        <ToolCard tool={mergeTool} />
-      </div>
+        <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {availableTools.map((tool) => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
+        </div>
 
-      <p className="mt-6 text-center text-sm text-foreground-muted">
-        <Link href="/pdf" className="font-medium text-primary hover:underline">
-          Voir tous les outils PDF
-        </Link>
-      </p>
-    </Container>
+        <p className="mt-8 text-center text-sm text-foreground-muted">
+          <Link href="/pdf" className="font-medium text-primary hover:underline">
+            Voir tous les outils PDF
+          </Link>
+        </p>
+      </Container>
     </>
   );
 }
