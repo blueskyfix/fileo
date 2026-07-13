@@ -6,6 +6,7 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
+import { FileStack, Scissors } from "lucide-react";
 import { PdfToJpgWidget } from "@/features/pdf/pdf-to-jpg";
 import { siteConfig } from "@/core/config/site";
 import {
@@ -42,11 +43,13 @@ const relatedTools = [
     name: "Merge PDF",
     description: "Fusionner plusieurs PDF en un seul",
     href: "/pdf/merge-pdf",
+    icon: FileStack,
   },
   {
-    name: "JPG to PDF",
-    description: "Convertir des images en PDF",
-    href: "/pdf/jpg-to-pdf",
+    name: "Split PDF",
+    description: "Extraire ou diviser les pages d'un PDF",
+    href: "/pdf/split-pdf",
+    icon: Scissors,
   },
 ];
 
