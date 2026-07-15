@@ -13,13 +13,11 @@ export function Hero() {
     <section className="grid gap-12 py-16 md:grid-cols-2 md:items-center md:py-24">
       <div className="flex flex-col gap-6">
         <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
-          Fusionnez, découpez et gérez vos PDF.{" "}
-          <span className="text-primary">Simplement. Localement.</span>
+          Traitez vos PDFs, <span className="text-primary">simplement</span>.
         </h1>
 
         <p className="max-w-xl text-lg text-foreground-muted">
-          Tous les outils PDF dont vous avez besoin, directement dans votre
-          navigateur. Sans inscription. Sans compromis sur la confidentialité.
+          Fusionnez, découpez et convertissez vos PDF dans votre navigateur en toute confidentialite et sans inscription.
         </p>
 
         <div className="flex flex-wrap gap-3">
@@ -39,7 +37,7 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+        <div className="hidden flex-wrap gap-x-6 gap-y-2 pt-1 md:flex">
           {reassurance.map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2">
               <Icon className="h-4 w-4 shrink-0 text-primary" />
@@ -49,7 +47,9 @@ export function Hero() {
         </div>
       </div>
 
-      <HeroPreview />
+      <div className="hidden md:block">
+        <HeroPreview />
+      </div>
     </section>
   );
 }

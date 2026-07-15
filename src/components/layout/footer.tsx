@@ -11,6 +11,8 @@ const footerLinks = [
 ];
 
 export function Footer() {
+  const availableTools = pdfTools.filter((tool) => tool.status === "available");
+
   return (
     <footer className="border-t border-border">
       <Container className="py-12">
@@ -23,41 +25,32 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold text-foreground">
+            <p className="mb-3 text-base font-bold text-foreground">
               Outils PDF
             </p>
             <ul className="flex flex-col gap-2.5">
-              {pdfTools.map((tool) => (
+              {availableTools.map((tool) => (
                 <li key={tool.slug}>
-                  {tool.status === "available" ? (
-                    <Link
-                      href={`/pdf/${tool.slug}`}
-                      className="text-sm text-foreground-muted transition-colors hover:text-foreground"
-                    >
-                      {tool.name}
-                    </Link>
-                  ) : (
-                    <span className="flex items-center gap-2 text-sm text-foreground-muted/60">
-                      {tool.name}
-                      <span className="rounded-full border border-border px-2 py-0.5 text-xs">
-                        Bientôt
-                      </span>
-                    </span>
-                  )}
+                  <Link
+                    href={`/pdf/${tool.slug}`}
+                    className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
+                  >
+                    {tool.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold text-foreground">
+            <p className="mb-3 text-base font-bold text-foreground">
               Fileo
             </p>
             <ul className="flex flex-col gap-2.5">
               <li>
                 <Link
                   href="/pdf"
-                  className="text-sm text-foreground-muted transition-colors hover:text-foreground"
+                  className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
                 >
                   Tous les outils PDF
                 </Link>
@@ -66,7 +59,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-foreground-muted transition-colors hover:text-foreground"
+                    className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </Link>

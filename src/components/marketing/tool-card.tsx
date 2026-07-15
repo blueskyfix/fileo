@@ -36,12 +36,12 @@ export function ToolCard({ tool }: { tool: Tool }) {
       </div>
 
       <div className="flex-1">
-        <h3 className="font-semibold text-foreground">{tool.name}</h3>
-        <p className="mt-1 text-sm text-foreground-muted">{tool.description}</p>
+        <h3 className="text-lg font-semibold text-foreground sm:text-base">{tool.name}</h3>
+        <p className="mt-1 text-base text-foreground-muted sm:text-sm">{tool.description}</p>
       </div>
 
       {isAvailable && (
-        <span className="flex items-center gap-1 text-sm font-medium text-primary">
+        <span className="flex items-center gap-1 text-base font-medium text-primary sm:text-sm">
           Ouvrir l&apos;outil
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </span>

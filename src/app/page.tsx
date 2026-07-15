@@ -40,7 +40,7 @@ export default function HomePage() {
       </Container>
 
       <Container className="pb-20">
-        <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Outils populaires
         </h2>
 
@@ -50,26 +50,26 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-foreground-muted">
-          <Link href="/pdf" className="font-medium text-primary hover:underline">
+        <p className="mt-8 text-center">
+          <Link href="/pdf" className="inline-flex items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated">
             Voir tous les outils PDF
           </Link>
         </p>
       </Container>
 
-      <Container className="pb-20">
-        <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-          Pourquoi FileoPDF
+      <Container className="px-6 pb-20 sm:px-6">
+        <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-foreground md:text-3xl">
+          Pourquoi utiliser FileoPDF ?
         </h2>
 
-        <div className="mx-auto grid max-w-4xl gap-10 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-4xl gap-12 sm:grid-cols-3 sm:gap-10">
           {whyPoints.map(({ icon: Icon, title, description }) => (
             <div key={title} className="flex flex-col gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Icon className="h-5 w-5 text-primary" />
               </div>
-              <p className="font-semibold text-foreground">{title}</p>
-              <p className="text-sm text-foreground-muted">{description}</p>
+              <p className="text-lg font-semibold text-foreground sm:text-base">{title}</p>
+              <p className="text-base leading-relaxed text-foreground-muted sm:text-sm">{description}</p>
             </div>
           ))}
         </div>
