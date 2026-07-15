@@ -20,12 +20,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
-  verification: {
-    // TODO: remplacer par la balise de la NOUVELLE propriété Search Console
-    // (fileopdf.com), à créer manuellement par Nathan. Celle-ci est encore
-    // celle de l'ancienne propriété fileo-green.vercel.app.
-    google: "OtnEGwzlcolXwD16WNyAh5CjaVZm0VfJtPKQcfO9z7U",
-  },
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
