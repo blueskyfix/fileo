@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 
 export const metadata: Metadata = {
   title: "Conditions d'utilisation",
-  description: "Les règles d'utilisation des outils Fileo.",
+  description: "Les règles d'utilisation des outils FileoPDF.",
 };
 
 export default function TermsPage() {
@@ -23,7 +23,7 @@ export default function TermsPage() {
               Description du service
             </h2>
             <p className="mt-2">
-              Fileo propose des outils gratuits de traitement de fichiers
+              FileoPDF propose des outils gratuits de traitement de fichiers
               PDF, exécutés directement dans votre navigateur. Aucun compte
               n&apos;est requis pour les utiliser.
             </p>
@@ -34,7 +34,7 @@ export default function TermsPage() {
               Utilisation acceptable
             </h2>
             <p className="mt-2">
-              Vous vous engagez à utiliser Fileo dans le respect des lois en
+              Vous vous engagez à utiliser FileoPDF dans le respect des lois en
               vigueur. Vous restez seul responsable du contenu des fichiers
               que vous traitez avec les outils du site.
             </p>
@@ -46,7 +46,7 @@ export default function TermsPage() {
             </h2>
             <p className="mt-2">
               Vos fichiers PDF et leur contenu restent votre propriété
-              exclusive. Fileo n&apos;acquiert aucun droit sur eux, ne les
+              exclusive. FileoPDF n&apos;acquiert aucun droit sur eux, ne les
               stocke pas, et n&apos;y a techniquement pas accès puisque le
               traitement se fait localement sur votre appareil.
             </p>
@@ -57,7 +57,7 @@ export default function TermsPage() {
               Absence de garantie
             </h2>
             <p className="mt-2">
-              Fileo est fourni « en l&apos;état », sans garantie d&apos;aucune
+              FileoPDF est fourni « en l&apos;état », sans garantie d&apos;aucune
               sorte quant à la disponibilité continue du service ou
               l&apos;absence totale d&apos;erreur. Nous vous recommandons de
               vérifier le résultat de tout traitement avant un usage
@@ -70,7 +70,7 @@ export default function TermsPage() {
               Évolution du service
             </h2>
             <p className="mt-2">
-              Fileo est un projet en développement actif. Les fonctionnalités,
+              FileoPDF est un projet en développement actif. Les fonctionnalités,
               outils disponibles et présentes conditions peuvent évoluer dans
               le temps.
             </p>

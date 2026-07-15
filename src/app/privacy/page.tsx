@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
-  description: "Comment Fileo traite vos données et vos fichiers.",
+  description: "Comment FileoPDF traite vos données et vos fichiers.",
 };
 
 export default function PrivacyPage() {
@@ -23,9 +23,9 @@ export default function PrivacyPage() {
               Vos fichiers PDF
             </h2>
             <p className="mt-2">
-              Les outils Fileo traitent vos fichiers PDF directement dans
+              Les outils FileoPDF traitent vos fichiers PDF directement dans
               votre navigateur, sur votre appareil. Vos fichiers ne sont
-              jamais envoyés vers un serveur, jamais stockés, et Fileo n&apos;y
+              jamais envoyés vers un serveur, jamais stockés, et FileoPDF n&apos;y
               a jamais accès. Fermer l&apos;onglet ou recharger la page efface
               immédiatement tout ce qui a été chargé.
             </p>
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
               Données que nous collectons
             </h2>
             <p className="mt-2">
-              Fileo utilise deux services pour faire fonctionner et améliorer
+              FileoPDF utilise deux services pour faire fonctionner et améliorer
               le site :
             </p>
             <ul className="mt-2 flex flex-col gap-2">
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-foreground">Cookies</h2>
             <p className="mt-2">
-              Fileo n&apos;utilise aucun cookie de suivi publicitaire ni de
+              FileoPDF n&apos;utilise aucun cookie de suivi publicitaire ni de
               profilage. Aucun bandeau de consentement n&apos;est nécessaire,
               faute de cookie non essentiel.
             </p>
@@ -82,15 +82,15 @@ export default function PrivacyPage() {
             <p className="mt-2">
               Conformément au RGPD, vous disposez d&apos;un droit
               d&apos;accès, de rectification et d&apos;effacement des données
-              vous concernant. Étant donné que Fileo ne collecte aucune
+              vous concernant. Étant donné que FileoPDF ne collecte aucune
               donnée personnelle identifiable dans le cadre normal
               d&apos;utilisation, ce droit s&apos;exerce principalement pour
               toute question ou signalement : contactez-nous à{" "}
               
-              <a href="mailto:contact@fileo.app"
+              <a href="mailto:contact@fileopdf.app"
                 className="text-primary hover:underline"
               >
-                contact@fileo.app
+                contact@fileoPDF.app
               </a>
               .
             </p>

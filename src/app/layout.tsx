@@ -21,29 +21,32 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
   verification: {
+    // TODO: remplacer par la balise de la NOUVELLE propriété Search Console
+    // (fileopdf.com), à créer manuellement par Nathan. Celle-ci est encore
+    // celle de l'ancienne propriété fileo-green.vercel.app.
     google: "OtnEGwzlcolXwD16WNyAh5CjaVZm0VfJtPKQcfO9z7U",
   },
   openGraph: {
-    title: 'Fileo',
-    description: 'Traitez vos documents et images sensibles. Sans les envoyer nulle part.',
-    url: 'https://fileo-green.vercel.app',
-    siteName: 'Fileo',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     images: [
       {
-        url: '/og-image.png',
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: 'Fileo — Traitez vos documents et images sensibles, sans les envoyer nulle part',
+        alt: `${siteConfig.name} — Traitez vos documents et images sensibles, sans les envoyer nulle part`,
       },
     ],
-    locale: 'fr_FR',
-    type: 'website',
+    locale: "fr_FR",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Fileo',
-    description: 'Traitez vos documents et images sensibles. Sans les envoyer nulle part.',
-    images: ['/og-image.png'],
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ["/og-image.png"],
   },
 };
 

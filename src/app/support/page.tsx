@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/container";
 
 export const metadata: Metadata = {
   title: "Support",
-  description: "Besoin d'aide avec Fileo ? Contactez-nous.",
+  description: "Besoin d'aide avec FileoPDF ? Contactez-nous.",
 };
 
 export default function SupportPage() {
@@ -21,13 +21,13 @@ export default function SupportPage() {
 
         <div className="mt-8 flex flex-col gap-4">
           
-           <a href="mailto:contact@fileo.app"
+           <a href="mailto:contact@fileopdf.app"
             className="flex items-center gap-3 rounded-lg border border-border bg-elevated p-5 transition-colors hover:border-primary"
             >
             <Mail className="h-5 w-5 text-primary" />
             <div>
               <p className="font-medium text-foreground">
-                contact@fileo.app
+                contact@fileopdf.app
               </p>
               <p className="text-sm text-foreground-muted">
                 Réponse généralement sous 48h

@@ -1,7 +1,7 @@
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const mergePdfMeta = {
-  metaTitle: "Fusionner un PDF en ligne, gratuit et sans inscription | Fileo",
+  metaTitle: "Fusionner un PDF en ligne, gratuit et sans inscription | FileoPDF",
   metaDescription:
     "Fusionnez plusieurs PDF en un seul fichier, directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
   ogTitle: "Fusionner des PDF en ligne — traitement local, sans envoi de fichiers",
@@ -30,7 +30,7 @@ export const mergePdfTrustBlock: { title: string; intro: string; points: Content
     {
       title: "Aucun stockage de vos PDF",
       description:
-        "Fileo ne conserve pas de copie de vos fichiers : rien n'est mis en file d'attente ni archivé côté serveur.",
+        "FileoPDF ne conserve pas de copie de vos fichiers : rien n'est mis en file d'attente ni archivé côté serveur.",
     },
     {
       title: "Fermez l'onglet, tout disparaît",
@@ -41,7 +41,7 @@ export const mergePdfTrustBlock: { title: string; intro: string; points: Content
 };
 
 export const mergePdfHowItWorks: { title: string; intro: string; steps: ContentItem[] } = {
-  title: "Comment fusionner des PDF avec Fileo",
+  title: "Comment fusionner des PDF avec FileoPDF",
   intro:
     "Trois étapes suffisent pour assembler plusieurs fichiers PDF en un seul document, sans logiciel à installer.",
   steps: [
@@ -64,7 +64,7 @@ export const mergePdfHowItWorks: { title: string; intro: string; steps: ContentI
 };
 
 export const mergePdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi utiliser l'outil Merge PDF de Fileo",
+  title: "Pourquoi utiliser l'outil Merge PDF de FileoPDF",
   intro: "Fusionner des PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
   items: [
     {
@@ -127,7 +127,7 @@ export const mergePdfFaq: FaqItem[] = [
     answer: "Non. La fusion s'exécute directement dans votre navigateur : vos fichiers PDF ne sont pas envoyés sur un serveur pour être assemblés. Le document final est généré localement, sur votre appareil.",
   },
   {
-    question: "L'outil Merge PDF de Fileo est-il vraiment gratuit ?",
+    question: "L'outil Merge PDF de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La fusion de PDF est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
   {
@@ -157,5 +157,5 @@ export const mergePdfFaq: FaqItem[] = [
 ];
 
 export const mergePdfSummary = {
-  text: "Fusionner des PDF avec Fileo ne demande ni compte ni installation. Vos fichiers sont assemblés directement dans votre navigateur, dans l'ordre que vous choisissez, et le résultat est prêt à télécharger en quelques secondes.",
+  text: "Fusionner des PDF avec FileoPDF ne demande ni compte ni installation. Vos fichiers sont assemblés directement dans votre navigateur, dans l'ordre que vous choisissez, et le résultat est prêt à télécharger en quelques secondes.",
 };

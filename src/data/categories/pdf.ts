@@ -4,7 +4,7 @@ export const pdfHubHero = {
   title: "Outils PDF gratuits en ligne",
   subtitle: "Fusionnez, découpez et modifiez vos PDF directement dans votre navigateur.",
   paragraphs: [
-    "Fileo propose une suite d'outils PDF gratuits pensés pour un usage rapide, sans installation et sans inscription. Chaque outil traite vos fichiers PDF localement, dans votre navigateur, plutôt que de les envoyer vers un serveur distant pour les transformer.",
+    "FileoPDF propose une suite d'outils PDF gratuits pensés pour un usage rapide, sans installation et sans inscription. Chaque outil traite vos fichiers PDF localement, dans votre navigateur, plutôt que de les envoyer vers un serveur distant pour les transformer.",
     "Cette approche limite l'exposition de vos documents, en particulier pour les fichiers sensibles : justificatifs, contrats, factures ou dossiers administratifs. Vous gardez le contrôle sur vos fichiers du début à la fin du traitement.",
   ],
 };
@@ -14,7 +14,7 @@ export const pdfHubToolsIntro = {
 };
 
 export const pdfHubTrustBlock: { title: string; items: ContentItem[] } = {
-  title: "La philosophie des outils PDF Fileo",
+  title: "La philosophie des outils PDF FileoPDF",
   items: [
     {
       title: "Simplicité",
