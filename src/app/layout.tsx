@@ -15,8 +15,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    default: `${siteConfig.name} | Outils PDF rapides et sécurisés`,
+    template: "%s",
   },
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),

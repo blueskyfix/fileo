@@ -1,7 +1,7 @@
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const jpgToPdfMeta = {
-  metaTitle: "Convertir JPG en PDF en ligne, gratuit et sans inscription | FileoPDF",
+  metaTitle: "Convertir JPG en PDF en ligne, gratuit et sans inscription ",
   metaDescription:
     "Convertissez vos images JPG ou PNG en PDF, directement dans votre navigateur. Vos images ne sont pas envoyées sur un serveur. Gratuit, rapide, sans inscription.",
   ogTitle: "Convertir des images JPG en PDF — traitement local, sans envoi de fichiers",

@@ -1,7 +1,7 @@
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const splitPdfMeta = {
-  metaTitle: "Diviser un PDF en ligne, gratuit et sans inscription | FileoPDF",
+  metaTitle: "Diviser un PDF en ligne, gratuit et sans inscription",
   metaDescription:
     "Extrayez des pages ou divisez un PDF en plusieurs fichiers, directement dans votre navigateur. Vos fichiers ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
   ogTitle: "Diviser un PDF — traitement local, sans envoi de fichiers",

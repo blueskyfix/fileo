@@ -1,7 +1,7 @@
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const mergePdfMeta = {
-  metaTitle: "Fusionner un PDF en ligne, gratuit et sans inscription | FileoPDF",
+  metaTitle: "Fusionner un PDF en ligne, gratuit et sans inscription",
   metaDescription:
     "Fusionnez plusieurs PDF en un seul fichier, directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
   ogTitle: "Fusionner des PDF en ligne — traitement local, sans envoi de fichiers",

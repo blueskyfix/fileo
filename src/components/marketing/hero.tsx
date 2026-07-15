@@ -1,6 +1,12 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Lock, UserX } from "lucide-react";
 import { HeroPreview } from "@/components/marketing/hero-preview";
+
+const reassurance = [
+  { icon: Zap, label: "Simple et direct" },
+  { icon: Lock, label: "100% traitement local" },
+  { icon: UserX, label: "Sans inscription" },
+];
 
 export function Hero() {
   return (
@@ -31,6 +37,15 @@ export function Hero() {
           >
             Voir tous les outils
           </Link>
+        </div>
+
+        <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1">
+          {reassurance.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2">
+              <Icon className="h-4 w-4 shrink-0 text-primary" />
+              <span className="text-sm text-foreground-muted">{label}</span>
+            </div>
+          ))}
         </div>
       </div>
 
