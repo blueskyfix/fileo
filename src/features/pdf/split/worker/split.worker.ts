@@ -51,7 +51,6 @@ self.onmessage = async (event: MessageEvent<SplitWorkerInput>) => {
         mode: "extract",
         pdfBuffer,
       };
-      // @ts-expect-error self est un DedicatedWorkerGlobalScope à l'exécution
       self.postMessage(response, [pdfBuffer]);
       return;
     }
@@ -79,7 +78,6 @@ self.onmessage = async (event: MessageEvent<SplitWorkerInput>) => {
       mode: "divide",
       pdfBuffers,
     };
-    // @ts-expect-error self est un DedicatedWorkerGlobalScope à l'exécution
     self.postMessage(response, transferList);
   } catch (error) {
     const response: SplitWorkerError = {
