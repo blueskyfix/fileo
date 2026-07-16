@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileStack, Scissors, FileMinus, ImagePlus, FileImage, ArrowRight } from "lucide-react";
+import { FileStack, Scissors, FileMinus, ImagePlus, FileImage, FileType, ArrowRight } from "lucide-react";
 import { cn } from "@/core/utils/cn";
 import type { Tool } from "@/data/tools/tools";
 
@@ -9,6 +9,7 @@ const icons = {
   "remove-pages": FileMinus,
   "jpg-to-pdf": FileImage,
   "pdf-to-jpg": ImagePlus,
+  "pdf-to-word": FileType,
 } as const;
 
 export function ToolCard({ tool }: { tool: Tool }) {

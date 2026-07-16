@@ -4,7 +4,8 @@ export type ToolIcon =
   | "split"
   | "remove-pages"
   | "jpg-to-pdf"
-  | "pdf-to-jpg";
+  | "pdf-to-jpg"
+  | "pdf-to-word";
 
 export interface Tool {
   slug: string;
@@ -50,6 +51,15 @@ export const pdfTools: Tool[] = [
     href: "/pdf/split-pdf",
     status: "available",
     icon: "split",
+  },
+  {
+    slug: "pdf-to-word",
+    name: "PDF to Word",
+    description:
+      "Convertissez votre PDF en document Word éditable.",
+    href: "/pdf/pdf-to-word",
+    status: "coming-soon",
+    icon: "pdf-to-word",
   },
   {
     slug: "remove-pages",
