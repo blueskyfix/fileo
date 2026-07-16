@@ -67,7 +67,7 @@ export const pdfTools: Tool[] = [
     description:
       "Supprimez des pages spécifiques d'un PDF sans le retraiter entièrement.",
     href: "/pdf/remove-pages",
-    status: "coming-soon",
+    status: "available",
     icon: "remove-pages",
   },
 ];

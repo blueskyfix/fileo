@@ -48,7 +48,6 @@ self.onmessage = async (event: MessageEvent<JpgToPdfWorkerInput>) => {
     ) as ArrayBuffer;
 
     const response: JpgToPdfWorkerSuccess = { type: "success", pdfBuffer };
-    // @ts-expect-error self est un DedicatedWorkerGlobalScope à l'exécution
     self.postMessage(response, [pdfBuffer]);
   } catch (error) {
     const response: JpgToPdfWorkerError = {
