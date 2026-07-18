@@ -75,7 +75,7 @@ export function Navbar() {
 
               {isDropdownOpen && (
                 <div className="absolute left-1/2 top-full mt-2 w-56 -translate-x-1/2 rounded-xl border border-border bg-elevated p-2 shadow-md">
-                  {pdfTools.map((tool) => (
+                  {availableTools.map((tool) => (
                     <Link
                       key={tool.slug}
                       href={tool.status === "available" ? `/pdf/${tool.slug}` : "/pdf"}

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function PdfHubPage() {
+  const availableTools = pdfTools.filter((tool) => tool.status === "available");
   return (
     <Container className="py-16">
       <div className="max-w-2xl">
@@ -37,7 +38,7 @@ export default function PdfHubPage() {
       </div>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {pdfTools.map((tool) => (
+        {availableTools.map((tool) => (
           <ToolCard key={tool.slug} tool={tool} />
         ))}
       </div>
