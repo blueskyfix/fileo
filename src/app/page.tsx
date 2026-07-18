@@ -39,7 +39,7 @@ export default function HomePage() {
         <Hero />
       </Container>
 
-      <Container className="pb-20">
+      <Container className="hidden pb-20 md:block">
         <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Outils populaires
         </h2>

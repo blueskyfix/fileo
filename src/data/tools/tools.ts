@@ -19,7 +19,7 @@ export interface Tool {
 export const pdfTools: Tool[] = [
   {
     slug: "merge-pdf",
-    name: "Merge PDF",
+    name: "Fusionner des PDF",
     description:
       "Fusionnez plusieurs fichiers PDF en un seul, dans l'ordre de votre choix.",
     href: "/pdf/merge-pdf",
@@ -28,7 +28,7 @@ export const pdfTools: Tool[] = [
   },
   {
     slug: "jpg-to-pdf",
-    name: "JPG to PDF",
+    name: "JPG vers PDF",
     description:
       "Convertissez vos images JPG ou PNG en un seul fichier PDF.",
     href: "/pdf/jpg-to-pdf",
@@ -37,7 +37,7 @@ export const pdfTools: Tool[] = [
   },
   {
     slug: "pdf-to-jpg",
-    name: "PDF to JPG",
+    name: "PDF vers JPG",
     description:
       "Convertissez les pages d'un PDF en images JPG, individuellement ou en une seule fois.",
     href: "/pdf/pdf-to-jpg",
@@ -46,7 +46,7 @@ export const pdfTools: Tool[] = [
   },
   {
     slug: "split-pdf",
-    name: "Split PDF",
+    name: "Diviser un PDF",
     description: "Extrayez des pages ou divisez un PDF en plusieurs fichiers.",
     href: "/pdf/split-pdf",
     status: "available",
@@ -54,16 +54,15 @@ export const pdfTools: Tool[] = [
   },
   {
     slug: "pdf-to-word",
-    name: "PDF to Word",
-    description:
-      "Convertissez votre PDF en document Word éditable.",
+    name: "PDF vers Word",
+    description: "Convertissez votre PDF en document Word éditable.",
     href: "/pdf/pdf-to-word",
     status: "coming-soon",
     icon: "pdf-to-word",
   },
   {
     slug: "remove-pages",
-    name: "Remove Pages",
+    name: "Supprimer des pages PDF",
     description:
       "Supprimez des pages spécifiques d'un PDF sans le retraiter entièrement.",
     href: "/pdf/remove-pages",

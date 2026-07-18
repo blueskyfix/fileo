@@ -10,7 +10,7 @@ const reassurance = [
 
 export function Hero() {
   return (
-    <section className="grid gap-12 py-16 md:grid-cols-2 md:items-center md:py-24">
+    <section className="grid gap-8 py-16 md:grid-cols-2 md:items-center md:gap-12 md:py-24">
       <div className="flex flex-col gap-6">
         <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
           Traitez vos PDFs, <span className="text-primary">simplement</span>.
@@ -47,9 +47,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="hidden md:block">
-        <HeroPreview />
-      </div>
+      <HeroPreview />
     </section>
   );
 }
