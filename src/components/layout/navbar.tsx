@@ -96,7 +96,7 @@ export function Navbar() {
           </div>
 
           <Link
-            href="/pdf/merge-pdf"
+            href="/pdf"
             className="hidden shrink-0 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground hover:shadow-md md:inline-block"
           >
             Essayer gratuitement
