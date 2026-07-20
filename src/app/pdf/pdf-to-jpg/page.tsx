@@ -6,7 +6,7 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
-import { FileStack, Scissors } from "lucide-react";
+import { getRelatedTools } from "@/data/tools/tools";
 import { PdfToJpgWidget } from "@/features/pdf/pdf-to-jpg";
 import { siteConfig } from "@/core/config/site";
 import {
@@ -38,21 +38,6 @@ const heroHighlights = [
   "Rien ne persiste une fois l'onglet fermé ou la page rechargée.",
 ];
 
-const relatedTools = [
-  {
-    name: "Merge PDF",
-    description: "Fusionner plusieurs PDF en un seul",
-    href: "/pdf/merge-pdf",
-    icon: FileStack,
-  },
-  {
-    name: "Split PDF",
-    description: "Extraire ou diviser les pages d'un PDF",
-    href: "/pdf/split-pdf",
-    icon: Scissors,
-  },
-];
-
 export default function PdfToJpgPage() {
   return (
     <Container className="pb-20">
@@ -79,7 +64,7 @@ export default function PdfToJpgPage() {
 
       <ContentSummary text={pdfToJpgSummary.text} />
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools tools={getRelatedTools("pdf-to-jpg")} />
     </Container>
   );
 }

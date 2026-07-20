@@ -6,7 +6,7 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
-import { ImagePlus, Scissors } from "lucide-react";
+import { getRelatedTools } from "@/data/tools/tools";
 import { MergeTool } from "@/features/pdf/merge";
 import { siteConfig } from "@/core/config/site";
 import {
@@ -38,21 +38,6 @@ const heroHighlights = [
   "Rien ne persiste une fois l'onglet fermé ou la page rechargée.",
 ];
 
-const relatedTools = [
-  {
-    name: "JPG to PDF",
-    description: "Convertir des images en PDF",
-    href: "/pdf/jpg-to-pdf",
-    icon: ImagePlus,
-  },
-  {
-    name: "Split PDF",
-    description: "Extraire ou diviser les pages d'un PDF",
-    href: "/pdf/split-pdf",
-    icon: Scissors,
-  },
-];
-
 export default function MergePdfPage() {
   return (
     <Container className="pb-20">
@@ -79,7 +64,7 @@ export default function MergePdfPage() {
 
       <ContentSummary text={mergePdfSummary.text} />
 
-      <RelatedTools tools={relatedTools} />
+      <RelatedTools tools={getRelatedTools("merge-pdf")} />
     </Container>
   );
 }

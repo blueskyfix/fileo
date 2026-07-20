@@ -6,6 +6,7 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
+import { getRelatedTools } from "@/data/tools/tools";
 import { RotatePdfTool } from "@/features/pdf/rotate-pdf";
 import { siteConfig } from "@/core/config/site";
 import {
@@ -48,11 +49,7 @@ export default function RotatePdfPage() {
       />
       <ToolFaq items={rotatePdfFaq} />
       <ContentSummary text={rotatePdfSummary.text} />
-      <RelatedTools
-        tools={[
-          // à compléter avec merge/split/remove-pages
-        ]}
-      />
+      <RelatedTools tools={getRelatedTools("rotate-pdf")} />
     </Container>
   );
 }
