@@ -1,12 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Merge,
-  Split,
-  FileMinus2,
+  FileStack,
+  Scissors,
+  FileMinus,
   FileImage,
-  ImagePlus,
+  Image as ImageIcon,
+  FileType,
   RotateCw,
-  FileType2,
   File as FileFallbackIcon,
 } from "lucide-react";
 
@@ -106,13 +106,13 @@ export const pdfTools: Tool[] = [
  * Remplace tout iconMap local (ex: ancien workaround dans hero-preview.tsx).
  */
 const iconMap: Record<ToolIcon, LucideIcon> = {
-  merge: Merge,
-  split: Split,
-  "remove-pages": FileMinus2,
-  "jpg-to-pdf": ImagePlus,
-  "pdf-to-jpg": FileImage,
+  merge: FileStack,
+  split: Scissors,
+  "remove-pages": FileMinus,
+  "jpg-to-pdf": FileImage,
+  "pdf-to-jpg": ImageIcon,
+  "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
-  "pdf-to-word": FileType2,
 };
 
 /**

@@ -1,34 +1,25 @@
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import {
-  ArrowUpRight,
-  FileStack,
-  Scissors,
-  FileMinus,
-  FileImage,
-  Image as ImageIcon,
-  FileType,
-  RotateCw,
-} from "lucide-react";
-import { pdfTools, type ToolIcon } from "@/data/tools/tools";
+import { ArrowUpRight } from "lucide-react";
+import { pdfTools, getToolIcon } from "@/data/tools/tools";
 
-const iconMap: Record<ToolIcon, LucideIcon> = {
-  merge: FileStack,
-  split: Scissors,
-  "remove-pages": FileMinus,
-  "jpg-to-pdf": FileImage,
-  "pdf-to-jpg": ImageIcon,
-  "pdf-to-word": FileType,
-  "rotate-pdf": RotateCw,
-};
 
 export function HeroPreview() {
+    const heroSlugs = [
+      "merge-pdf",
+      "jpg-to-pdf",
+      "pdf-to-jpg",
+      "split-pdf",
+      "remove-pages",
+      "pdf-to-word",
+    ];
     const availableTools = pdfTools.filter((tool) => tool.status === "available");
   return (
     <div className="rounded-xl border border-border bg-elevated p-4 shadow-sm md:p-5">
       <div className="grid grid-cols-2 gap-3">
-        {pdfTools.map((tool) => {
-          const Icon = iconMap[tool.icon];
+        {pdfTools
+          .filter((tool) => heroSlugs.includes(tool.slug))
+          .map((tool) => {
+          const Icon = getToolIcon(tool.icon);
           const isAvailable = tool.status === "available";
 
           const content = (
