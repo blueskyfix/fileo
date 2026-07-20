@@ -27,7 +27,7 @@ export function HeroPreview() {
   return (
     <div className="rounded-xl border border-border bg-elevated p-4 shadow-sm md:p-5">
       <div className="grid grid-cols-2 gap-3">
-        {availableTools.map((tool) => {
+        {pdfTools.map((tool) => {
           const Icon = iconMap[tool.icon];
           const isAvailable = tool.status === "available";
 
