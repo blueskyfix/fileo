@@ -8,6 +8,7 @@ import {
   FileImage,
   Image as ImageIcon,
   FileType,
+  RotateCw,
 } from "lucide-react";
 import { pdfTools, type ToolIcon } from "@/data/tools/tools";
 
@@ -18,13 +19,15 @@ const iconMap: Record<ToolIcon, LucideIcon> = {
   "jpg-to-pdf": FileImage,
   "pdf-to-jpg": ImageIcon,
   "pdf-to-word": FileType,
+  "rotate-pdf": RotateCw,
 };
 
 export function HeroPreview() {
+    const availableTools = pdfTools.filter((tool) => tool.status === "available");
   return (
     <div className="rounded-xl border border-border bg-elevated p-4 shadow-sm md:p-5">
       <div className="grid grid-cols-2 gap-3">
-        {pdfTools.map((tool) => {
+        {availableTools.map((tool) => {
           const Icon = iconMap[tool.icon];
           const isAvailable = tool.status === "available";
 

@@ -5,6 +5,7 @@ export type ToolIcon =
   | "remove-pages"
   | "jpg-to-pdf"
   | "pdf-to-jpg"
+  | "rotate-pdf"
   | "pdf-to-word";
 
 export interface Tool {
@@ -68,5 +69,13 @@ export const pdfTools: Tool[] = [
     href: "/pdf/remove-pages",
     status: "available",
     icon: "remove-pages",
+  },
+  {
+    slug: "rotate-pdf",
+    name: "Rotate PDF",
+    description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
+    href: "/pdf/rotate-pdf",
+    status: "coming-soon", 
+    icon: "rotate-pdf",
   },
 ];
