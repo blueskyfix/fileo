@@ -5,6 +5,7 @@ import { rotatePdf } from "../lib/rotate-client";
 import {
   initialRotateState,
   rotateReducer,
+  type RotateMode,
 } from "../store/rotate-store";
 
 export function useRotatePdf() {
@@ -51,16 +52,32 @@ export function useRotatePdf() {
     dispatch({ type: "ROTATE_PAGE", pageNumber });
   }
 
-  function rotateAllLeft() {
-    dispatch({ type: "ROTATE_ALL", delta: -90 });
+  function rotateTargetLeft() {
+    dispatch({ type: "ROTATE_TARGET", delta: -90 });
   }
 
-  function rotateAllRight() {
-    dispatch({ type: "ROTATE_ALL", delta: 90 });
+  function rotateTargetRight() {
+    dispatch({ type: "ROTATE_TARGET", delta: 90 });
   }
 
   function resetRotations() {
     dispatch({ type: "RESET_ROTATIONS" });
+  }
+
+  function setMode(mode: RotateMode) {
+    dispatch({ type: "SET_MODE", mode });
+  }
+
+  function togglePageSelection(pageNumber: number) {
+    dispatch({ type: "TOGGLE_PAGE_SELECTION", pageNumber });
+  }
+
+  function selectAll() {
+    dispatch({ type: "SELECT_ALL" });
+  }
+
+  function deselectAll() {
+    dispatch({ type: "DESELECT_ALL" });
   }
 
   async function applyRotation() {
@@ -77,6 +94,7 @@ export function useRotatePdf() {
         pages_rotated: String(
           Object.values(state.rotations).filter((v) => v !== 0).length
         ),
+        mode: state.mode,
       });
     } catch (error) {
       dispatch({
@@ -105,9 +123,13 @@ export function useRotatePdf() {
     state,
     setFile,
     rotatePage,
-    rotateAllLeft,
-    rotateAllRight,
+    rotateTargetLeft,
+    rotateTargetRight,
     resetRotations,
+    setMode,
+    togglePageSelection,
+    selectAll,
+    deselectAll,
     applyRotation,
     downloadResult,
     reset,

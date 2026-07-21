@@ -10,15 +10,20 @@ export function RotatePdfTool() {
     state,
     setFile,
     rotatePage,
-    rotateAllLeft,
-    rotateAllRight,
+    rotateTargetLeft,
+    rotateTargetRight,
     resetRotations,
+    setMode,
+    togglePageSelection,
+    selectAll,
+    deselectAll,
     applyRotation,
     downloadResult,
     reset,
   } = useRotatePdf();
 
   const hasChanges = Object.values(state.rotations).some((v) => v !== 0);
+  const selectedCount = Object.values(state.selectedPages).filter(Boolean).length;
 
   if (state.status === "idle") {
     return <PdfDropzone onFileAdded={setFile} />;
@@ -26,7 +31,7 @@ export function RotatePdfTool() {
 
   if (state.status === "loading") {
     return (
-      <div className="rounded-xl border border-[--color-border] bg-white p-8 text-center text-[--color-foreground-muted]">
+      <div className="rounded-xl border border-(--color-border) bg-white p-8 text-center text-(--color-foreground-muted)">
         Chargement du PDF…
       </div>
     );
@@ -34,12 +39,12 @@ export function RotatePdfTool() {
 
   if (state.status === "error") {
     return (
-      <div className="rounded-xl border border-[--color-border] bg-white p-8 text-center">
-        <p className="mb-4 text-[--color-foreground]">{state.error}</p>
+      <div className="rounded-xl border border-(--color-border) bg-white p-8 text-center">
+        <p className="mb-4 text-(--color-foreground)">{state.error}</p>
         <button
           type="button"
           onClick={reset}
-          className="rounded-xl border border-[--color-border] px-4 py-2 text-sm font-medium hover:bg-[--color-unelevated]"
+          className="rounded-xl border border-(--color-border) px-4 py-2 text-sm font-medium hover:bg-(--color-unelevated)"
         >
           Réessayer
         </button>
@@ -52,13 +57,21 @@ export function RotatePdfTool() {
       <RotatePageGallery
         pages={state.pages}
         rotations={state.rotations}
+        selectionMode={state.mode === "selection"}
+        selectedPages={state.selectedPages}
         onRotate={rotatePage}
+        onToggleSelect={togglePageSelection}
       />
       <RotatePdfActionBar
         status={state.status}
+        mode={state.mode}
         hasChanges={hasChanges}
-        onRotateAllLeft={rotateAllLeft}
-        onRotateAllRight={rotateAllRight}
+        selectedCount={selectedCount}
+        onSetMode={setMode}
+        onSelectAll={selectAll}
+        onDeselectAll={deselectAll}
+        onRotateTargetLeft={rotateTargetLeft}
+        onRotateTargetRight={rotateTargetRight}
         onResetRotations={resetRotations}
         onApply={applyRotation}
         onDownload={downloadResult}
