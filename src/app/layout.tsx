@@ -47,12 +47,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const isProd = process.env.NODE_ENV === "production";
+
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
         className={`${inter.variable}  flex min-h-screen flex-col`}
       >
-        {analyticsConfig.umamiWebsiteId && (
+        {isProd && analyticsConfig.umamiWebsiteId && (
           <Script
             defer
             src="https://cloud.umami.is/script.js"
