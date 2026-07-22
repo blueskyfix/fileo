@@ -20,6 +20,18 @@ export type ToolIcon =
   | "rotate-pdf"
   | "pdf-to-word";
 
+/**
+ * Catégorie fonctionnelle d'un outil, utilisée pour organiser navbar/footer.
+ * "main" = outils principaux, toujours visibles directement (pas en dropdown).
+ */
+export type ToolCategory = "main" | "convert" | "organize";
+
+export const toolCategoryLabels: Record<ToolCategory, string> = {
+  main: "Principaux",
+  convert: "Convertir",
+  organize: "Organiser",
+};
+
 export interface Tool {
   slug: string;
   name: string;
@@ -27,6 +39,7 @@ export interface Tool {
   href: string;
   status: ToolStatus;
   icon: ToolIcon;
+  category: ToolCategory;
   /** Slugs suggérés en "Voir aussi", dans l'ordre de préférence. */
   relatedSlugs?: string[];
 }
@@ -40,7 +53,18 @@ export const pdfTools: Tool[] = [
     href: "/pdf/merge-pdf",
     status: "available",
     icon: "merge",
+    category: "main",
     relatedSlugs: ["split-pdf", "remove-pages"],
+  },
+  {
+    slug: "split-pdf",
+    name: "Diviser un PDF",
+    description: "Extrayez des pages ou divisez un PDF en plusieurs fichiers.",
+    href: "/pdf/split-pdf",
+    status: "available",
+    icon: "split",
+    category: "main",
+    relatedSlugs: ["remove-pages", "merge-pdf"],
   },
   {
     slug: "jpg-to-pdf",
@@ -50,6 +74,7 @@ export const pdfTools: Tool[] = [
     href: "/pdf/jpg-to-pdf",
     status: "available",
     icon: "jpg-to-pdf",
+    category: "convert",
     relatedSlugs: ["pdf-to-jpg", "merge-pdf"],
   },
   {
@@ -60,16 +85,8 @@ export const pdfTools: Tool[] = [
     href: "/pdf/pdf-to-jpg",
     status: "available",
     icon: "pdf-to-jpg",
+    category: "convert",
     relatedSlugs: ["jpg-to-pdf", "split-pdf"],
-  },
-  {
-    slug: "split-pdf",
-    name: "Diviser un PDF",
-    description: "Extrayez des pages ou divisez un PDF en plusieurs fichiers.",
-    href: "/pdf/split-pdf",
-    status: "available",
-    icon: "split",
-    relatedSlugs: ["remove-pages", "merge-pdf"],
   },
   {
     slug: "pdf-to-word",
@@ -78,6 +95,7 @@ export const pdfTools: Tool[] = [
     href: "/pdf/pdf-to-word",
     status: "coming-soon",
     icon: "pdf-to-word",
+    category: "convert",
     relatedSlugs: ["merge-pdf", "pdf-to-jpg"],
   },
   {
@@ -88,6 +106,7 @@ export const pdfTools: Tool[] = [
     href: "/pdf/remove-pages",
     status: "available",
     icon: "remove-pages",
+    category: "organize",
     relatedSlugs: ["split-pdf", "merge-pdf"],
   },
   {
@@ -95,8 +114,9 @@ export const pdfTools: Tool[] = [
     name: "Rotate PDF",
     description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
     href: "/pdf/rotate-pdf",
-    status: "coming-soon",
+    status: "available",
     icon: "rotate-pdf",
+    category: "organize",
     relatedSlugs: ["merge-pdf", "split-pdf"],
   },
 ];
@@ -128,6 +148,15 @@ export function getToolIcon(icon: ToolIcon): LucideIcon {
     return FileFallbackIcon;
   }
   return resolved;
+}
+
+/**
+ * Retourne les outils "available" d'une catégorie donnée, dans l'ordre du tableau.
+ */
+export function getToolsByCategory(category: ToolCategory, onlyAvailable = true): Tool[] {
+  return pdfTools.filter(
+    (tool) => tool.category === category && (!onlyAvailable || tool.status === "available")
+  );
 }
 
 /**

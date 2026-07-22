@@ -2,21 +2,24 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
-import { pdfTools } from "@/data/tools/tools";
+import { getToolsByCategory, toolCategoryLabels } from "@/data/tools/tools";
 
-const footerLinks = [
+const legalLinks = [
+  { label: "Tous les outils PDF", href: "/pdf" },
   { label: "Confidentialité", href: "/privacy" },
   { label: "Conditions d'utilisation", href: "/terms" },
   { label: "Support", href: "/support" },
 ];
 
 export function Footer() {
-  const availableTools = pdfTools.filter((tool) => tool.status === "available");
+  const mainTools = getToolsByCategory("main");
+  const convertTools = getToolsByCategory("convert");
+  const organizeTools = getToolsByCategory("organize");
 
   return (
     <footer className="border-t border-border">
       <Container className="py-12">
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">
           <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1">
             <Logo />
             <p className="max-w-xs text-sm text-foreground-muted">
@@ -24,38 +27,14 @@ export function Footer() {
             </p>
           </div>
 
-          <div>
-            <p className="mb-3 text-base font-bold text-foreground">
-              Outils PDF
-            </p>
-            <ul className="flex flex-col gap-2.5">
-              {availableTools.map((tool) => (
-                <li key={tool.slug}>
-                  <Link
-                    href={`/pdf/${tool.slug}`}
-                    className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
-                  >
-                    {tool.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <FooterColumn title={toolCategoryLabels.main} tools={mainTools} />
+          <FooterColumn title={toolCategoryLabels.convert} tools={convertTools} />
+          <FooterColumn title={toolCategoryLabels.organize} tools={organizeTools} />
 
           <div>
-            <p className="mb-3 text-base font-bold text-foreground">
-              Fileo
-            </p>
+            <p className="mb-3 text-base font-bold text-foreground">Fileo</p>
             <ul className="flex flex-col gap-2.5">
-              <li>
-                <Link
-                  href="/pdf"
-                  className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
-                >
-                  Tous les outils PDF
-                </Link>
-              </li>
-              {footerLinks.map((link) => (
+              {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -74,5 +53,27 @@ export function Footer() {
         </div>
       </Container>
     </footer>
+  );
+}
+
+function FooterColumn({ title, tools }: { title: string; tools: ReturnType<typeof getToolsByCategory> }) {
+  if (tools.length === 0) return null;
+
+  return (
+    <div>
+      <p className="mb-3 text-base font-bold text-foreground">{title}</p>
+      <ul className="flex flex-col gap-2.5">
+        {tools.map((tool) => (
+          <li key={tool.slug}>
+            <Link
+              href={`/pdf/${tool.slug}`}
+              className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
+            >
+              {tool.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
