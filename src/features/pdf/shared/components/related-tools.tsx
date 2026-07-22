@@ -35,7 +35,9 @@ export function RelatedTools({ title = "Voir aussi", tools }: RelatedToolsProps)
 
               <div className="min-w-0 flex-1">
                 <p className="font-medium text-foreground">{tool.name}</p>
-                <p className="truncate text-sm text-foreground-muted">{tool.description}</p>
+                <p className="line-clamp-2 text-sm text-foreground-muted">
+                  {tool.description}
+                </p>
               </div>
 
               <ArrowRight className="h-4 w-4 shrink-0 text-foreground-muted transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
