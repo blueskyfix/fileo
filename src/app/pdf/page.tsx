@@ -15,7 +15,7 @@ export default function PdfHubPage() {
   const availableTools = pdfTools.filter((tool) => tool.status === "available");
   return (
     <Container className="py-16">
-      <div className="max-w-2xl">
+      <div className="mx-auto max-w-2xl text-center sm:text-left">
         <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           {pdfHubHero.title}
         </h1>
@@ -26,18 +26,19 @@ export default function PdfHubPage() {
             {paragraph}
           </p>
         ))}
-        <div className="mt-6">
-        <InlineTrustStrip
-          points={[
-            { label: "Simple et direct", icon: Zap },
-            { label: "100% traitement local", icon: Lock },
-            { label: "Sans inscription", icon: UserX },
-          ]}
-        />
-      </div>
+
+        <div className="mt-6 flex justify-center sm:justify-start">
+          <InlineTrustStrip
+            points={[
+              { label: "Simple et direct", icon: Zap },
+              { label: "100% traitement local", icon: Lock },
+              { label: "Sans inscription", icon: UserX },
+            ]}
+          />
+        </div>
       </div>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
         {availableTools.map((tool) => (
           <ToolCard key={tool.slug} tool={tool} />
         ))}

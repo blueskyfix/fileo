@@ -30,6 +30,12 @@ export const metadata: Metadata = {
   },
 };
 
+const heroHighlights = [
+  "Traitement 100% local",
+  "Aucun fichier stocké",
+  "Rien ne persiste après fermeture",
+];
+
 export default function RotatePdfPage() {
   return (
     <Container className="pb-20">

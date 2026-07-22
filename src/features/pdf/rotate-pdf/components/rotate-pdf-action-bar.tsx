@@ -68,29 +68,40 @@ export function RotatePdfActionBar({
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Sélecteur de mode */}
-      <div className="flex items-center gap-2 rounded-xl border border-(--color-border) p-1 w-fit">
+      {/* Sélecteur de mode + bouton principal, même rangée */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 rounded-xl border border-(--color-border) p-1 w-fit">
+          <button
+            type="button"
+            onClick={() => onSetMode("all")}
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+              mode === "all"
+                ? "bg-(--color-primary) text-white"
+                : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
+            }`}
+          >
+            Toutes les pages
+          </button>
+          <button
+            type="button"
+            onClick={() => onSetMode("selection")}
+            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+              mode === "selection"
+                ? "bg-(--color-primary) text-white"
+                : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
+            }`}
+          >
+            Sélectionner des pages
+          </button>
+        </div>
+
         <button
           type="button"
-          onClick={() => onSetMode("all")}
-          className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-            mode === "all"
-              ? "bg-(--color-primary) text-white"
-              : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
-          }`}
+          onClick={onApply}
+          disabled={!hasChanges || status === "rotating"}
+          className="rounded-xl bg-(--color-primary) px-5 py-3 font-medium text-white hover:bg-(--color-primary-hover) disabled:opacity-50"
         >
-          Toutes les pages
-        </button>
-        <button
-          type="button"
-          onClick={() => onSetMode("selection")}
-          className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-            mode === "selection"
-              ? "bg-(--color-primary) text-white"
-              : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
-          }`}
-        >
-          Sélectionner des pages
+          {status === "rotating" ? "Rotation en cours…" : "Appliquer la rotation"}
         </button>
       </div>
 
@@ -119,17 +130,7 @@ export function RotatePdfActionBar({
         </div>
       )}
 
-      {/* Bouton principal — position fixe, indépendante de la rangée secondaire */}
-      <button
-        type="button"
-        onClick={onApply}
-        disabled={!hasChanges || status === "rotating"}
-        className="w-fit rounded-xl bg-(--color-primary) px-5 py-3 font-medium text-white hover:bg-(--color-primary-hover) disabled:opacity-50"
-      >
-        {status === "rotating" ? "Rotation en cours…" : "Appliquer la rotation"}
-      </button>
-
-      {/* Rangée secondaire — sa largeur peut varier sans impacter le bouton principal */}
+      {/* Rangée gauche/droite/réinitialiser — indépendante du bouton principal */}
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"

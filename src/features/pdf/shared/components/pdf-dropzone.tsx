@@ -28,10 +28,10 @@ export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
     <div
       {...getRootProps()}
       className={cn(
-        "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-10 text-center transition-colors",
+        "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed bg-elevated p-8 text-center shadow-sm transition-colors sm:p-10",
         isDragActive
           ? "border-primary bg-primary/5"
-          : "border-border hover:border-primary/60",
+          : "border-border hover:border-primary/60 hover:shadow-md",
       )}
     >
       <input {...getInputProps()} />

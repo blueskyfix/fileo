@@ -33,9 +33,9 @@ export const metadata: Metadata = {
 };
 
 const heroHighlights = [
-  "Traitement 100% local : le calcul se fait directement sur votre appareil.",
-  "Aucun fichier stocké ni mis en file d'attente sur nos serveurs.",
-  "Rien ne persiste une fois l'onglet fermé ou la page rechargée.",
+  "Traitement 100% local",
+  "Aucun fichier stocké",
+  "Rien ne persiste après fermeture",
 ];
 
 export default function SplitPdfPage() {
