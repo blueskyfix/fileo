@@ -142,7 +142,7 @@ export const tools: Tool[] = [
     description:
       "Réduisez le poids de vos images JPEG, PNG et WebP sans perte de qualité visible.",
     href: "/image/compress-image",
-    status: "coming-soon",
+    status: "available",
     icon: "compress-image",
     category: "main",
     mediaType: "image",
