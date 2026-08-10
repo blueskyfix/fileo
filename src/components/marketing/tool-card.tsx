@@ -1,7 +1,16 @@
 import Link from "next/link";
-import { FileStack, Scissors, FileMinus, ImagePlus, FileImage, FileType, ArrowRight } from "lucide-react";
+import {
+  FileStack,
+  Scissors,
+  FileMinus,
+  ImagePlus,
+  FileImage,
+  FileType,
+  RotateCw,
+  Minimize2,
+  ArrowRight,
+} from "lucide-react";
 import { cn } from "@/core/utils/cn";
-import { RotateCw } from "lucide-react";
 import type { Tool } from "@/data/tools/tools";
 
 const icons = {
@@ -12,6 +21,7 @@ const icons = {
   "pdf-to-jpg": ImagePlus,
   "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
+  "compress-image": Minimize2,
 } as const;
 
 export function ToolCard({ tool }: { tool: Tool }) {

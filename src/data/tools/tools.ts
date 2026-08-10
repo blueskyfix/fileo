@@ -7,6 +7,7 @@ import {
   Image as ImageIcon,
   FileType,
   RotateCw,
+  Minimize2,
   File as FileFallbackIcon,
 } from "lucide-react";
 
@@ -18,7 +19,11 @@ export type ToolIcon =
   | "jpg-to-pdf"
   | "pdf-to-jpg"
   | "rotate-pdf"
-  | "pdf-to-word";
+  | "pdf-to-word"
+  | "compress-image";
+
+/** Format de fichier traité par l'outil — pilote le regroupement futur (hub /image, nav). */
+export type ToolMediaType = "pdf" | "image";
 
 /**
  * Catégorie fonctionnelle d'un outil, utilisée pour organiser navbar/footer.
@@ -40,11 +45,16 @@ export interface Tool {
   status: ToolStatus;
   icon: ToolIcon;
   category: ToolCategory;
+  mediaType: ToolMediaType;
   /** Slugs suggérés en "Voir aussi", dans l'ordre de préférence. */
   relatedSlugs?: string[];
 }
 
-export const pdfTools: Tool[] = [
+/**
+ * Source unique de vérité pour tous les outils, tous formats confondus.
+ * Utiliser `pdfTools` / `imageTools` pour les vues filtrées par format.
+ */
+export const tools: Tool[] = [
   {
     slug: "merge-pdf",
     name: "Fusionner des PDF",
@@ -54,6 +64,7 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "merge",
     category: "main",
+    mediaType: "pdf",
     relatedSlugs: ["split-pdf", "remove-pages"],
   },
   {
@@ -64,6 +75,7 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "split",
     category: "main",
+    mediaType: "pdf",
     relatedSlugs: ["remove-pages", "merge-pdf"],
   },
   {
@@ -75,6 +87,7 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "jpg-to-pdf",
     category: "convert",
+    mediaType: "pdf",
     relatedSlugs: ["pdf-to-jpg", "merge-pdf"],
   },
   {
@@ -86,6 +99,7 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "pdf-to-jpg",
     category: "convert",
+    mediaType: "pdf",
     relatedSlugs: ["jpg-to-pdf", "split-pdf"],
   },
   {
@@ -96,6 +110,7 @@ export const pdfTools: Tool[] = [
     status: "coming-soon",
     icon: "pdf-to-word",
     category: "convert",
+    mediaType: "pdf",
     relatedSlugs: ["merge-pdf", "pdf-to-jpg"],
   },
   {
@@ -107,6 +122,7 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "remove-pages",
     category: "organize",
+    mediaType: "pdf",
     relatedSlugs: ["split-pdf", "merge-pdf"],
   },
   {
@@ -117,9 +133,28 @@ export const pdfTools: Tool[] = [
     status: "available",
     icon: "rotate-pdf",
     category: "organize",
+    mediaType: "pdf",
     relatedSlugs: ["merge-pdf", "split-pdf"],
   },
+  {
+    slug: "compress-image",
+    name: "Compresser une image",
+    description:
+      "Réduisez le poids de vos images JPEG, PNG et WebP sans perte de qualité visible.",
+    href: "/image/compress-image",
+    status: "coming-soon",
+    icon: "compress-image",
+    category: "main",
+    mediaType: "image",
+    relatedSlugs: ["jpg-to-pdf", "pdf-to-jpg"],
+  },
 ];
+
+/** Vue filtrée : outils PDF uniquement (usage historique, ex. hub /pdf, hero-preview). */
+export const pdfTools: Tool[] = tools.filter((tool) => tool.mediaType === "pdf");
+
+/** Vue filtrée : outils image uniquement (usage futur, ex. hub /image). */
+export const imageTools: Tool[] = tools.filter((tool) => tool.mediaType === "image");
 
 /**
  * Source unique de vérité pour la résolution icône ToolIcon -> composant Lucide.
@@ -133,6 +168,7 @@ const iconMap: Record<ToolIcon, LucideIcon> = {
   "pdf-to-jpg": ImageIcon,
   "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
+  "compress-image": Minimize2,
 };
 
 /**
@@ -154,7 +190,7 @@ export function getToolIcon(icon: ToolIcon): LucideIcon {
  * Retourne les outils "available" d'une catégorie donnée, dans l'ordre du tableau.
  */
 export function getToolsByCategory(category: ToolCategory, onlyAvailable = true): Tool[] {
-  return pdfTools.filter(
+  return tools.filter(
     (tool) => tool.category === category && (!onlyAvailable || tool.status === "available")
   );
 }
@@ -165,8 +201,8 @@ export function getToolsByCategory(category: ToolCategory, onlyAvailable = true)
  * outils "available" (ordre du tableau), puis "coming-soon" si besoin.
  */
 export function getRelatedTools(currentSlug: string, count = 2) {
-  const current = pdfTools.find((tool) => tool.slug === currentSlug);
-  const others = pdfTools.filter((tool) => tool.slug !== currentSlug);
+  const current = tools.find((tool) => tool.slug === currentSlug);
+  const others = tools.filter((tool) => tool.slug !== currentSlug);
 
   const bySlug = new Map(others.map((tool) => [tool.slug, tool]));
   const preferred = (current?.relatedSlugs ?? [])
