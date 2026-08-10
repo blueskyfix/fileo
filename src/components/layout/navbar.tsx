@@ -7,7 +7,7 @@ import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
 import {
-  pdfTools,
+  tools,
   getToolsByCategory,
   toolCategoryLabels,
   type Tool,
@@ -67,7 +67,7 @@ export function Navbar() {
             {mainTools.map((tool) => (
               <Link
                 key={tool.slug}
-                href={`/pdf/${tool.slug}`}
+                href={tool.status === "available" ? tool.href : "/pdf"}
                 className="relative inline-block whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100 motion-reduce:after:transition-none"
               >
                 {tool.name}
@@ -107,10 +107,10 @@ export function Navbar() {
 
               {openDropdown === "all" && (
                 <div className="absolute left-1/2 top-full mt-2 w-64 -translate-x-1/2 rounded-xl border border-border bg-elevated p-2 shadow-md">
-                  {pdfTools.map((tool) => (
+                  {tools.map((tool) => (
                     <Link
                       key={tool.slug}
-                      href={tool.status === "available" ? `/pdf/${tool.slug}` : "/pdf"}
+                      href={tool.status === "available" ? tool.href : "/pdf"}
                       onClick={() => setOpenDropdown(null)}
                       className="flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
                     >
@@ -199,7 +199,7 @@ function NavDropdown({
           {tools.map((tool) => (
             <Link
               key={tool.slug}
-              href={`/pdf/${tool.slug}`}
+              href={tool.status === "available" ? tool.href : "/pdf"}
               onClick={onClose}
               className="flex items-center rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
             >
@@ -231,7 +231,7 @@ function MobileGroup({
       {tools.map((tool) => (
         <Link
           key={tool.slug}
-          href={`/pdf/${tool.slug}`}
+          href={tool.status === "available" ? tool.href : "/pdf"}
           onClick={onNavigate}
           className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
         >
