@@ -5,7 +5,7 @@ import { useMergeStore } from "@/features/pdf/merge/store/merge-store";
 import { mergePdfFiles } from "@/features/pdf/merge/lib/merge-client";
 import { validatePdfFile } from "@/core/pdf/validate-pdf";
 import { readPdfMetadata } from "@/core/pdf/read-pdf-metadata";
-import { sanitizeFilename } from "@/features/pdf/shared/utils/sanitize-filename";
+import { sanitizeFilename } from "@/core/utils/sanitize-filename";
 import type { PdfFileItem } from "@/features/pdf/shared/types/pdf-file-item";
 import { trackEvent } from "@/core/config/analytics";
 

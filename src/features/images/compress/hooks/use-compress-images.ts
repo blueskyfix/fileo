@@ -5,7 +5,7 @@ import JSZip from "jszip";
 import { compressReducer, initialCompressState } from "../store/compress-store";
 import { compressImage } from "../lib/compress-client";
 import { trackEvent } from "@/core/config/analytics";
-import { sanitizeFilename } from "@/features/pdf/shared/utils/sanitize-filename";
+import { sanitizeFilename } from "@/core/utils/sanitize-filename";
 import type { ImageFileInfo, SupportedImageMime } from "@/features/images/shared/types";
 
 let nextId = 0;

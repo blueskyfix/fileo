@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Download } from "lucide-react";
 import { useObjectUrl } from "@/features/pdf/shared/hooks/use-object-url";
-import { sanitizeFilename } from "@/features/pdf/shared/utils/sanitize-filename";
+import { sanitizeFilename } from "@/core/utils/sanitize-filename";
 
 interface MergeActionBarProps {
   canMerge: boolean;

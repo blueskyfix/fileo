@@ -8,6 +8,7 @@ import {
   FileType,
   RotateCw,
   Minimize2,
+  FileUp,
   File as FileFallbackIcon,
 } from "lucide-react";
 
@@ -20,10 +21,11 @@ export type ToolIcon =
   | "pdf-to-jpg"
   | "rotate-pdf"
   | "pdf-to-word"
-  | "compress-image";
+  | "compress-image"
+  | "word-to-pdf";
 
-/** Format de fichier traité par l'outil — pilote le regroupement futur (hub /image, nav). */
-export type ToolMediaType = "pdf" | "image";
+/** Format de fichier traité par l'outil — pilote le regroupement futur (hub /image, /word, nav). */
+export type ToolMediaType = "pdf" | "image" | "word";
 
 /**
  * Catégorie fonctionnelle d'un outil, utilisée pour organiser navbar/footer.
@@ -52,7 +54,7 @@ export interface Tool {
 
 /**
  * Source unique de vérité pour tous les outils, tous formats confondus.
- * Utiliser `pdfTools` / `imageTools` pour les vues filtrées par format.
+ * Utiliser `pdfTools` / `imageTools` / `wordTools` pour les vues filtrées par format.
  */
 export const tools: Tool[] = [
   {
@@ -148,13 +150,28 @@ export const tools: Tool[] = [
     mediaType: "image",
     relatedSlugs: ["jpg-to-pdf", "pdf-to-jpg"],
   },
+  {
+    slug: "word-to-pdf",
+    name: "Word vers PDF",
+    description:
+      "Convertissez votre document Word (.docx) en PDF, directement dans votre navigateur.",
+    href: "/word/word-to-pdf",
+    status: "coming-soon",
+    icon: "word-to-pdf",
+    category: "convert",
+    mediaType: "word",
+    relatedSlugs: ["pdf-to-word", "merge-pdf"],
+  },
 ];
 
 /** Vue filtrée : outils PDF uniquement (usage historique, ex. hub /pdf, hero-preview). */
 export const pdfTools: Tool[] = tools.filter((tool) => tool.mediaType === "pdf");
 
-/** Vue filtrée : outils image uniquement (usage futur, ex. hub /image). */
+/** Vue filtrée : outils image uniquement (ex. hub /image). */
 export const imageTools: Tool[] = tools.filter((tool) => tool.mediaType === "image");
+
+/** Vue filtrée : outils Word uniquement (ex. hub /word). */
+export const wordTools: Tool[] = tools.filter((tool) => tool.mediaType === "word");
 
 /**
  * Source unique de vérité pour la résolution icône ToolIcon -> composant Lucide.
@@ -169,6 +186,7 @@ const iconMap: Record<ToolIcon, LucideIcon> = {
   "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
   "compress-image": Minimize2,
+  "word-to-pdf": FileUp,
 };
 
 /**
