@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight } from "lucide-react";
+import { useLocale } from "next-intl";
 
 interface RelatedTool {
   name: string;
@@ -15,6 +16,8 @@ interface RelatedToolsProps {
 }
 
 export function RelatedTools({ title = "Voir aussi", tools }: RelatedToolsProps) {
+  const locale = useLocale();
+
   if (tools.length === 0) return null;
 
   return (
@@ -26,7 +29,7 @@ export function RelatedTools({ title = "Voir aussi", tools }: RelatedToolsProps)
           return (
             <Link
               key={tool.href}
-              href={tool.href}
+              href={`/${locale}${tool.href}`}
               className="group flex items-center gap-3 rounded-xl border border-border bg-elevated p-4 transition-colors hover:border-primary"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">

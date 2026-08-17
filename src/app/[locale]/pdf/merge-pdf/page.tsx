@@ -19,18 +19,37 @@ import {
   mergePdfSummary,
 } from "@/data/tools/merge-pdf";
 
-export const metadata: Metadata = {
-  title: mergePdfMeta.metaTitle,
-  description: mergePdfMeta.metaDescription,
-  alternates: {
-    canonical: mergePdfMeta.canonicalSlug,
-  },
-  openGraph: {
-    title: mergePdfMeta.ogTitle,
-    description: mergePdfMeta.ogDescription,
-    url: `${siteConfig.url}${mergePdfMeta.canonicalSlug}`,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = mergePdfMeta.canonicalSlug;
+
+  // TODO (étape 6 du chantier i18n) : title/description traduits pour /en.
+  // Pour l'instant seule la structure technique (canonical, hreflang)
+  // change selon la locale, le contenu textuel reste identique.
+  return {
+    title: mergePdfMeta.metaTitle,
+    description: mergePdfMeta.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        // x-default pointe vers /en (public international par défaut,
+        // décision du brief i18n).
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: mergePdfMeta.ogTitle,
+      description: mergePdfMeta.ogDescription,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 const heroHighlights = [
   "Traitement 100% local",

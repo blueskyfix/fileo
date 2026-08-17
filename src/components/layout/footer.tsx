@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
-import { getToolsByCategory, toolCategoryLabels } from "@/data/tools/tools";
+import { getToolsByCategory, toolCategoryLabels, type Tool } from "@/data/tools/tools";
 
 const legalLinks = [
   { label: "Tous les outils PDF", href: "/pdf" },
@@ -12,6 +13,7 @@ const legalLinks = [
 ];
 
 export function Footer() {
+  const locale = useLocale();
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
@@ -27,9 +29,9 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterColumn title={toolCategoryLabels.main} tools={mainTools} />
-          <FooterColumn title={toolCategoryLabels.convert} tools={convertTools} />
-          <FooterColumn title={toolCategoryLabels.organize} tools={organizeTools} />
+          <FooterColumn title={toolCategoryLabels.main} tools={mainTools} locale={locale} />
+          <FooterColumn title={toolCategoryLabels.convert} tools={convertTools} locale={locale} />
+          <FooterColumn title={toolCategoryLabels.organize} tools={organizeTools} locale={locale} />
 
           <div>
             <p className="mb-3 text-base font-bold text-foreground">Fileo</p>
@@ -37,7 +39,7 @@ export function Footer() {
               {legalLinks.map((link) => (
                 <li key={link.href}>
                   <Link
-                    href={link.href}
+                    href={`/${locale}${link.href}`}
                     className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
@@ -56,7 +58,15 @@ export function Footer() {
   );
 }
 
-function FooterColumn({ title, tools }: { title: string; tools: ReturnType<typeof getToolsByCategory> }) {
+function FooterColumn({
+  title,
+  tools,
+  locale,
+}: {
+  title: string;
+  tools: Tool[];
+  locale: string;
+}) {
   if (tools.length === 0) return null;
 
   return (
@@ -65,8 +75,10 @@ function FooterColumn({ title, tools }: { title: string; tools: ReturnType<typeo
       <ul className="flex flex-col gap-2.5">
         {tools.map((tool) => (
           <li key={tool.slug}>
+            {/* tool.href (pas de reconstruction en dur) : couvre pdf/image/word
+                sans supposer que tout outil vit sous /pdf/. */}
             <Link
-              href={`/pdf/${tool.slug}`}
+              href={`/${locale}${tool.href}`}
               className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
             >
               {tool.name}
