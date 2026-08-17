@@ -28,8 +28,8 @@ export async function generateMetadata({
   const path = rotatePdfMeta.canonicalSlug;
 
   return {
-    title: rotatePdfMeta.title,
-    description: rotatePdfMeta.description,
+    title: rotatePdfMeta.metaTitle,
+    description: rotatePdfMeta.metaDescription,
     alternates: {
       canonical: `${siteConfig.url}/${locale}${path}`,
       languages: {
@@ -39,8 +39,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: rotatePdfMeta.title,
-      description: rotatePdfMeta.description,
+      title: rotatePdfMeta.ogTitle,
+      description: rotatePdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
     },
   };

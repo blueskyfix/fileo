@@ -1,8 +1,11 @@
 import type { ContentItem, FaqItem, HowItWorksStep } from "@/features/pdf/shared/types";
 
 export const compressImageMeta = {
-  title: "Compresser une image (JPEG, PNG, WebP) — Gratuit et local",
-  description:
+  metaTitle: "Compresser une image (JPEG, PNG, WebP) — Gratuit et local",
+  metaDescription:
+    "Réduisez le poids de vos images JPEG, PNG et WebP directement dans votre navigateur. Aucun envoi sur un serveur, traitement par lot, téléchargement en ZIP.",
+  ogTitle: "Compresser une image (JPEG, PNG, WebP) — Gratuit et local",
+  ogDescription:
     "Réduisez le poids de vos images JPEG, PNG et WebP directement dans votre navigateur. Aucun envoi sur un serveur, traitement par lot, téléchargement en ZIP.",
   canonicalSlug: "/image/compress-image",
 };

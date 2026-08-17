@@ -1,8 +1,11 @@
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const rotatePdfMeta = {
-  title: "Rotate PDF gratuit — Pivoter les pages d'un PDF en ligne | FileoPDF",
-  description:
+  metaTitle: "Rotate PDF gratuit — Pivoter les pages d'un PDF en ligne | FileoPDF",
+  metaDescription:
+    "Faites pivoter les pages de votre PDF à 90°, 180° ou 270°, gratuitement et sans compte. Traitement 100% local dans votre navigateur.",
+  ogTitle: "Rotate PDF gratuit — Pivoter les pages d'un PDF en ligne | FileoPDF",
+  ogDescription:
     "Faites pivoter les pages de votre PDF à 90°, 180° ou 270°, gratuitement et sans compte. Traitement 100% local dans votre navigateur.",
   canonicalSlug: "/pdf/rotate-pdf",
 };

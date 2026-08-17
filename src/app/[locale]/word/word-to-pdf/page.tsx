@@ -28,8 +28,8 @@ export async function generateMetadata({
   const path = wordToPdfMeta.canonicalSlug;
 
   return {
-    title: wordToPdfMeta.title,
-    description: wordToPdfMeta.description,
+    title: wordToPdfMeta.metaTitle,
+    description: wordToPdfMeta.metaDescription,
     alternates: {
       canonical: `${siteConfig.url}/${locale}${path}`,
       languages: {
@@ -39,8 +39,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: wordToPdfMeta.title,
-      description: wordToPdfMeta.description,
+      title: wordToPdfMeta.ogTitle,
+      description: wordToPdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
     },
   };
@@ -68,7 +68,7 @@ export default function WordToPdfPage() {
 
       <ToolFaq items={wordToPdfFaq} />
 
-      <ContentSummary text={wordToPdfSummary} />
+      <ContentSummary text={wordToPdfSummary.text} />
 
       <RelatedTools tools={getRelatedTools("word-to-pdf")} />
     </Container>

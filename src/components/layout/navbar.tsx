@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
@@ -19,6 +19,7 @@ type DropdownKey = "convert" | "organize" | "all";
 
 export function Navbar() {
   const locale = useLocale();
+  const t = useTranslations("Nav");
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
@@ -54,7 +55,7 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             className="flex shrink-0 items-center justify-center rounded-lg p-2 text-foreground transition-colors hover:bg-unelevated md:hidden"
             aria-expanded={isMobileMenuOpen}
-            aria-label="Menu"
+            aria-label={t("menu")}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -78,7 +79,7 @@ export function Navbar() {
             ))}
 
             <NavDropdown
-              label="Convertir"
+              label={t("convert")}
               tools={convertTools}
               locale={locale}
               isOpen={openDropdown === "convert"}
@@ -87,7 +88,7 @@ export function Navbar() {
             />
 
             <NavDropdown
-              label="Organiser"
+              label={t("organize")}
               tools={organizeTools}
               locale={locale}
               isOpen={openDropdown === "organize"}
@@ -102,7 +103,7 @@ export function Navbar() {
                 className="flex items-center gap-1 whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
                 aria-expanded={openDropdown === "all"}
               >
-                Tous les outils
+                {t("allTools")}
                 <ChevronDown
                   className={`h-4 w-4 transition-transform duration-300 ${
                     openDropdown === "all" ? "rotate-180" : ""
@@ -122,7 +123,7 @@ export function Navbar() {
                       {tool.name}
                       {tool.status !== "available" && (
                         <span className="rounded-full border border-border px-2 py-0.5 text-xs">
-                          Bientôt
+                          {t("comingSoon")}
                         </span>
                       )}
                     </Link>
@@ -138,7 +139,7 @@ export function Navbar() {
               href={`/${locale}/pdf`}
               className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground hover:shadow-md"
             >
-              Essayer gratuitement
+              {t("tryFree")}
             </Link>
           </div>
 
@@ -158,7 +159,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-sm font-medium text-primary"
             >
-              Voir tous les outils →
+              {t("seeAllTools")}
             </Link>
 
             <LanguageSwitcher />
@@ -168,7 +169,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground"
             >
-              Essayer gratuitement
+              {t("tryFree")}
             </Link>
           </Container>
         </div>

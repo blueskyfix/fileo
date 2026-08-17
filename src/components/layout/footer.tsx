@@ -1,22 +1,23 @@
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
 import { getToolsByCategory, toolCategoryLabels, type Tool } from "@/data/tools/tools";
 
-const legalLinks = [
-  { label: "Tous les outils PDF", href: "/pdf" },
-  { label: "Confidentialité", href: "/privacy" },
-  { label: "Conditions d'utilisation", href: "/terms" },
-  { label: "Support", href: "/support" },
-];
-
 export function Footer() {
   const locale = useLocale();
+  const t = useTranslations("Footer");
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
+
+  const legalLinks = [
+    { label: t("allPdfTools"), href: "/pdf" },
+    { label: t("privacy"), href: "/privacy" },
+    { label: t("terms"), href: "/terms" },
+    { label: t("support"), href: "/support" },
+  ];
 
   return (
     <footer className="border-t border-border">
@@ -75,8 +76,6 @@ function FooterColumn({
       <ul className="flex flex-col gap-2.5">
         {tools.map((tool) => (
           <li key={tool.slug}>
-            {/* tool.href (pas de reconstruction en dur) : couvre pdf/image/word
-                sans supposer que tout outil vit sous /pdf/. */}
             <Link
               href={`/${locale}${tool.href}`}
               className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"

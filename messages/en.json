@@ -1,1 +1,17 @@
-{}
+{
+  "Nav": {
+    "menu": "Menu",
+    "allTools": "All tools",
+    "convert": "Convert",
+    "organize": "Organize",
+    "comingSoon": "Coming soon",
+    "tryFree": "Try for free",
+    "seeAllTools": "See all tools →"
+  },
+  "Footer": {
+    "allPdfTools": "All PDF tools",
+    "privacy": "Privacy",
+    "terms": "Terms of use",
+    "support": "Support"
+  }
+}

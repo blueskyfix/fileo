@@ -1,1 +1,17 @@
-{}
+{
+  "Nav": {
+    "menu": "Menu",
+    "allTools": "Tous les outils",
+    "convert": "Convertir",
+    "organize": "Organiser",
+    "comingSoon": "Bientôt",
+    "tryFree": "Essayer gratuitement",
+    "seeAllTools": "Voir tous les outils →"
+  },
+  "Footer": {
+    "allPdfTools": "Tous les outils PDF",
+    "privacy": "Confidentialité",
+    "terms": "Conditions d'utilisation",
+    "support": "Support"
+  }
+}

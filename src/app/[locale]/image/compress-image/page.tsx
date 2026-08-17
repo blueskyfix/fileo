@@ -28,8 +28,8 @@ export async function generateMetadata({
   const path = meta.canonicalSlug;
 
   return {
-    title: meta.title,
-    description: meta.description,
+    title: meta.metaTitle,
+    description: meta.metaDescription,
     alternates: {
       canonical: `${siteConfig.url}/${locale}${path}`,
       languages: {
@@ -39,8 +39,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: meta.title,
-      description: meta.description,
+      title: meta.ogTitle,
+      description: meta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
     },
   };

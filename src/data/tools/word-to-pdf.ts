@@ -1,9 +1,11 @@
-import { siteConfig } from "@/core/config/site";
 import type { FaqItem, HowItWorksStep, ContentItem } from "@/features/pdf/shared/types";
 
 export const wordToPdfMeta = {
-  title: "Convertir Word en PDF gratuitement | FileoPDF",
-  description:
+  metaTitle: "Convertir Word en PDF gratuitement | FileoPDF",
+  metaDescription:
+    "Convertissez vos documents Word (.docx) en PDF directement dans votre navigateur. Gratuit, sans compte, sans upload — 100% local.",
+  ogTitle: "Convertir Word en PDF gratuitement | FileoPDF",
+  ogDescription:
     "Convertissez vos documents Word (.docx) en PDF directement dans votre navigateur. Gratuit, sans compte, sans upload — 100% local.",
   canonicalSlug: "/word/word-to-pdf",
 };
@@ -77,5 +79,8 @@ export const wordToPdfFaq: FaqItem[] = [
   },
 ];
 
-export const wordToPdfSummary =
-  "Cet outil convertit vos documents Word (.docx) en PDF directement dans votre navigateur, sans envoi de fichier sur un serveur.";
+// Bug corrigé : était une string brute, désormais un objet { text } comme
+// tous les autres {tool}Summary (attendu par ContentSummary).
+export const wordToPdfSummary = {
+  text: "Cet outil convertit vos documents Word (.docx) en PDF directement dans votre navigateur, sans envoi de fichier sur un serveur.",
+};
