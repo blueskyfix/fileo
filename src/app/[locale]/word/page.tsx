@@ -5,11 +5,30 @@ import { Zap, Lock, UserX } from "lucide-react";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { wordTools } from "@/data/tools/tools";
 import { wordHubHero } from "@/data/categories/word";
+import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: wordHubHero.title,
-  description: wordHubHero.subtitle,
-};
+const HUB_PATH = "/word";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: wordHubHero.title,
+    description: wordHubHero.subtitle,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${HUB_PATH}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${HUB_PATH}`,
+        en: `${siteConfig.url}/en${HUB_PATH}`,
+        "x-default": `${siteConfig.url}/en${HUB_PATH}`,
+      },
+    },
+  };
+}
 
 export default function WordHubPage() {
   const availableTools = wordTools.filter((tool) => tool.status === "available");

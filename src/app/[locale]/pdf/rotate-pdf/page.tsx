@@ -19,16 +19,32 @@ import {
   rotatePdfSummary,
 } from "@/data/tools/rotate-pdf";
 
-export const metadata: Metadata = {
-  title: rotatePdfMeta.title,
-  description: rotatePdfMeta.description,
-  alternates: { canonical: rotatePdfMeta.canonicalSlug },
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = rotatePdfMeta.canonicalSlug;
+
+  return {
     title: rotatePdfMeta.title,
     description: rotatePdfMeta.description,
-    url: `${siteConfig.url}${rotatePdfMeta.canonicalSlug}`,
-  },
-};
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: rotatePdfMeta.title,
+      description: rotatePdfMeta.description,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 const heroHighlights = [
   "Traitement 100% local",

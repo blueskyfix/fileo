@@ -5,11 +5,30 @@ import { Zap, Lock, UserX } from "lucide-react";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { pdfTools } from "@/data/tools/tools";
 import { pdfHubHero, pdfHubToolsIntro, pdfHubTrustBlock } from "@/data/categories/pdf";
+import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: pdfHubHero.title,
-  description: pdfHubHero.subtitle,
-};
+const HUB_PATH = "/pdf";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: pdfHubHero.title,
+    description: pdfHubHero.subtitle,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${HUB_PATH}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${HUB_PATH}`,
+        en: `${siteConfig.url}/en${HUB_PATH}`,
+        "x-default": `${siteConfig.url}/en${HUB_PATH}`,
+      },
+    },
+  };
+}
 
 export default function PdfHubPage() {
   const availableTools = pdfTools.filter((tool) => tool.status === "available");

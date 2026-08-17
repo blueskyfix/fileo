@@ -19,16 +19,32 @@ import {
   compressImageSummary as summary,
 } from "@/data/tools/compress-image";
 
-export const metadata: Metadata = {
-  title: meta.title,
-  description: meta.description,
-  alternates: { canonical: meta.canonicalSlug },
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = meta.canonicalSlug;
+
+  return {
     title: meta.title,
     description: meta.description,
-    url: `${siteConfig.url}${meta.canonicalSlug}`,
-  },
-};
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 export default function CompressImagePage() {
   return (

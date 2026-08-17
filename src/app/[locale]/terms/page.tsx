@@ -1,10 +1,29 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: "Conditions d'utilisation",
-  description: "Les règles d'utilisation des outils FileoPDF.",
-};
+const PATH = "/terms";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Conditions d'utilisation",
+    description: "Les règles d'utilisation des outils FileoPDF.",
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${PATH}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${PATH}`,
+        en: `${siteConfig.url}/en${PATH}`,
+        "x-default": `${siteConfig.url}/en${PATH}`,
+      },
+    },
+  };
+}
 
 export default function TermsPage() {
   return (

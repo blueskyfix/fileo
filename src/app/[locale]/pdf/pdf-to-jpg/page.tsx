@@ -19,18 +19,32 @@ import {
   pdfToJpgSummary,
 } from "@/data/tools/pdf-to-jpg";
 
-export const metadata: Metadata = {
-  title: pdfToJpgMeta.metaTitle,
-  description: pdfToJpgMeta.metaDescription,
-  alternates: {
-    canonical: pdfToJpgMeta.canonicalSlug,
-  },
-  openGraph: {
-    title: pdfToJpgMeta.ogTitle,
-    description: pdfToJpgMeta.ogDescription,
-    url: `${siteConfig.url}${pdfToJpgMeta.canonicalSlug}`,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = pdfToJpgMeta.canonicalSlug;
+
+  return {
+    title: pdfToJpgMeta.metaTitle,
+    description: pdfToJpgMeta.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: pdfToJpgMeta.ogTitle,
+      description: pdfToJpgMeta.ogDescription,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 const heroHighlights = [
   "Traitement 100% local",

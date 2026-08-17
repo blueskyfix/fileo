@@ -19,16 +19,32 @@ import {
   wordToPdfSummary,
 } from "@/data/tools/word-to-pdf";
 
-export const metadata: Metadata = {
-  title: wordToPdfMeta.title,
-  description: wordToPdfMeta.description,
-  alternates: { canonical: wordToPdfMeta.canonicalSlug },
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = wordToPdfMeta.canonicalSlug;
+
+  return {
     title: wordToPdfMeta.title,
     description: wordToPdfMeta.description,
-    url: `${siteConfig.url}${wordToPdfMeta.canonicalSlug}`,
-  },
-};
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: wordToPdfMeta.title,
+      description: wordToPdfMeta.description,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 export default function WordToPdfPage() {
   return (

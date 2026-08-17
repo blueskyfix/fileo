@@ -19,18 +19,32 @@ import {
   removePagesSummary,
 } from "@/data/tools/remove-pages";
 
-export const metadata: Metadata = {
-  title: removePagesMeta.metaTitle,
-  description: removePagesMeta.metaDescription,
-  alternates: {
-    canonical: removePagesMeta.canonicalSlug,
-  },
-  openGraph: {
-    title: removePagesMeta.ogTitle,
-    description: removePagesMeta.ogDescription,
-    url: `${siteConfig.url}${removePagesMeta.canonicalSlug}`,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const path = removePagesMeta.canonicalSlug;
+
+  return {
+    title: removePagesMeta.metaTitle,
+    description: removePagesMeta.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: removePagesMeta.ogTitle,
+      description: removePagesMeta.ogDescription,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
 
 const heroHighlights = [
   "Traitement 100% local",

@@ -2,13 +2,38 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: "Support",
-  description: "Besoin d'aide avec FileoPDF ? Contactez-nous.",
-};
+const PATH = "/support";
 
-export default function SupportPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Support",
+    description: "Besoin d'aide avec FileoPDF ? Contactez-nous.",
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${PATH}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${PATH}`,
+        en: `${siteConfig.url}/en${PATH}`,
+        "x-default": `${siteConfig.url}/en${PATH}`,
+      },
+    },
+  };
+}
+
+export default async function SupportPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   return (
     <Container className="py-16">
       <div className="mx-auto max-w-2xl">
@@ -39,7 +64,7 @@ export default function SupportPage() {
             Pour les questions les plus courantes sur Merge PDF, consultez
             aussi la{" "}
             <Link
-              href="/pdf/merge-pdf#faq"
+              href={`/${locale}/pdf/merge-pdf#faq`}
               className="text-primary hover:underline"
             >
               FAQ de l&apos;outil

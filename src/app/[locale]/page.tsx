@@ -7,10 +7,26 @@ import { ToolCard } from "@/components/marketing/tool-card";
 import { pdfTools } from "@/data/tools/tools";
 import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: "FileoPDF | Outils PDF rapides et sécurisés",
-  description: siteConfig.description,
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "FileoPDF | Outils PDF rapides et sécurisés",
+    description: siteConfig.description,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}`,
+      languages: {
+        fr: `${siteConfig.url}/fr`,
+        en: `${siteConfig.url}/en`,
+        "x-default": `${siteConfig.url}/en`,
+      },
+    },
+  };
+}
 
 const whyPoints = [
   {
@@ -30,7 +46,12 @@ const whyPoints = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const availableTools = pdfTools.filter((tool) => tool.status === "available");
 
   return (
@@ -51,7 +72,7 @@ export default function HomePage() {
         </div>
 
         <p className="mt-8 text-center">
-          <Link href="/pdf" className="inline-flex items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated">
+          <Link href={`/${locale}/pdf`} className="inline-flex items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated">
             Voir tous les outils PDF
           </Link>
         </p>

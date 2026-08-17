@@ -1,10 +1,29 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { siteConfig } from "@/core/config/site";
 
-export const metadata: Metadata = {
-  title: "Politique de confidentialité",
-  description: "Comment FileoPDF traite vos données et vos fichiers.",
-};
+const PATH = "/privacy";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Politique de confidentialité",
+    description: "Comment FileoPDF traite vos données et vos fichiers.",
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${PATH}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${PATH}`,
+        en: `${siteConfig.url}/en${PATH}`,
+        "x-default": `${siteConfig.url}/en${PATH}`,
+      },
+    },
+  };
+}
 
 export default function PrivacyPage() {
   return (
