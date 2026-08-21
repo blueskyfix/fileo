@@ -9,15 +9,19 @@ import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { MergeTool } from "@/features/pdf/merge";
 import { siteConfig } from "@/core/config/site";
-import {
-  mergePdfMeta,
-  mergePdfHero,
-  mergePdfHowItWorks,
-  mergePdfBenefits,
-  mergePdfUseCases,
-  mergePdfFaq,
-  mergePdfSummary,
-} from "@/data/tools/merge-pdf";
+import type { AppLocale } from "@/i18n/routing";
+
+// Chargement du contenu SEO par locale (Option A : fichiers séparés
+// fr/merge-pdf.ts et en/merge-pdf.ts). if/else explicite plutôt qu'un
+// import dynamique par template string, pour garder le typage complet
+// de chaque module (un import dynamique `import(`.../${locale}/...`)`
+// ferait perdre l'inférence de type sur les exports).
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/tools/en/merge-pdf");
+  }
+  return import("@/data/tools/fr/merge-pdf");
+}
 
 export async function generateMetadata({
   params,
@@ -25,11 +29,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { mergePdfMeta } = await loadContent(locale as AppLocale);
   const path = mergePdfMeta.canonicalSlug;
 
-  // TODO (étape 6 du chantier i18n) : title/description traduits pour /en.
-  // Pour l'instant seule la structure technique (canonical, hreflang)
-  // change selon la locale, le contenu textuel reste identique.
   return {
     title: mergePdfMeta.metaTitle,
     description: mergePdfMeta.metaDescription,
@@ -38,8 +40,6 @@ export async function generateMetadata({
       languages: {
         fr: `${siteConfig.url}/fr${path}`,
         en: `${siteConfig.url}/en${path}`,
-        // x-default pointe vers /en (public international par défaut,
-        // décision du brief i18n).
         "x-default": `${siteConfig.url}/en${path}`,
       },
     },
@@ -51,19 +51,32 @@ export async function generateMetadata({
   };
 }
 
-const heroHighlights = [
-  "Traitement 100% local",
-  "Aucun fichier stocké",
-  "Rien ne persiste après fermeture",
-];
+const heroHighlights: Record<AppLocale, string[]> = {
+  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
+  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
+};
 
-export default function MergePdfPage() {
+export default async function MergePdfPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const {
+    mergePdfHero,
+    mergePdfHowItWorks,
+    mergePdfBenefits,
+    mergePdfUseCases,
+    mergePdfFaq,
+    mergePdfSummary,
+  } = await loadContent(locale as AppLocale);
+
   return (
     <Container className="pb-20">
       <ToolHeroSplit
         title={mergePdfHero.title}
         description={mergePdfHero.subtitle}
-        highlights={heroHighlights}
+        highlights={heroHighlights[locale as AppLocale]}
       >
         <MergeTool />
       </ToolHeroSplit>

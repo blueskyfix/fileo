@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowUpRight, File, FileText, Image as ImageIcon, Lock } from "lucide-react";
 import { pdfTools, getToolIcon, type Tool } from "@/data/tools/tools";
 import { NotifyMeModal } from "@/features/pdf/shared/components/notify-me-modal";

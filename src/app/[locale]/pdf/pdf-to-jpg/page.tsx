@@ -9,15 +9,19 @@ import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { PdfToJpgWidget } from "@/features/pdf/pdf-to-jpg";
 import { siteConfig } from "@/core/config/site";
-import {
-  pdfToJpgMeta,
-  pdfToJpgHero,
-  pdfToJpgHowItWorks,
-  pdfToJpgBenefits,
-  pdfToJpgUseCases,
-  pdfToJpgFaq,
-  pdfToJpgSummary,
-} from "@/data/tools/pdf-to-jpg";
+import type { AppLocale } from "@/i18n/routing";
+
+// Chargement du contenu SEO par locale (Option A : fichiers séparés
+// fr/pdf-to-jpg.ts et en/pdf-to-jpg.ts). if/else explicite plutôt qu'un
+// import dynamique par template string, pour garder le typage complet
+// de chaque module (un import dynamique `import(`.../${locale}/...`)`
+// ferait perdre l'inférence de type sur les exports).
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/tools/en/pdf-to-jpg");
+  }
+  return import("@/data/tools/fr/pdf-to-jpg");
+}
 
 export async function generateMetadata({
   params,
@@ -25,6 +29,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { pdfToJpgMeta } = await loadContent(locale as AppLocale);
   const path = pdfToJpgMeta.canonicalSlug;
 
   return {
@@ -46,19 +51,32 @@ export async function generateMetadata({
   };
 }
 
-const heroHighlights = [
-  "Traitement 100% local",
-  "Aucun fichier stocké",
-  "Rien ne persiste après fermeture",
-];
+const heroHighlights: Record<AppLocale, string[]> = {
+  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
+  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
+};
 
-export default function PdfToJpgPage() {
+export default async function PdfToJpgPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const {
+    pdfToJpgHero,
+    pdfToJpgHowItWorks,
+    pdfToJpgBenefits,
+    pdfToJpgUseCases,
+    pdfToJpgFaq,
+    pdfToJpgSummary,
+  } = await loadContent(locale as AppLocale);
+
   return (
     <Container className="pb-20">
       <ToolHeroSplit
         title={pdfToJpgHero.title}
         description={pdfToJpgHero.subtitle}
-        highlights={heroHighlights}
+        highlights={heroHighlights[locale as AppLocale]}
       >
         <PdfToJpgWidget />
       </ToolHeroSplit>

@@ -9,15 +9,19 @@ import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { RotatePdfTool } from "@/features/pdf/rotate-pdf";
 import { siteConfig } from "@/core/config/site";
-import {
-  rotatePdfMeta,
-  rotatePdfHero,
-  rotatePdfHowItWorks,
-  rotatePdfBenefits,
-  rotatePdfUseCases,
-  rotatePdfFaq,
-  rotatePdfSummary,
-} from "@/data/tools/rotate-pdf";
+import type { AppLocale } from "@/i18n/routing";
+
+// Chargement du contenu SEO par locale (Option A : fichiers séparés
+// fr/rotate-pdf.ts et en/rotate-pdf.ts). if/else explicite plutôt qu'un
+// import dynamique par template string, pour garder le typage complet
+// de chaque module (un import dynamique `import(`.../${locale}/...`)`
+// ferait perdre l'inférence de type sur les exports).
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/tools/en/rotate-pdf");
+  }
+  return import("@/data/tools/fr/rotate-pdf");
+}
 
 export async function generateMetadata({
   params,
@@ -25,6 +29,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { rotatePdfMeta } = await loadContent(locale as AppLocale);
   const path = rotatePdfMeta.canonicalSlug;
 
   return {
@@ -46,31 +51,51 @@ export async function generateMetadata({
   };
 }
 
-const heroHighlights = [
-  "Traitement 100% local",
-  "Aucun fichier stocké",
-  "Rien ne persiste après fermeture",
-];
+const heroHighlights: Record<AppLocale, string[]> = {
+  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
+  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
+};
 
-export default function RotatePdfPage() {
+export default async function RotatePdfPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const {
+    rotatePdfHero,
+    rotatePdfHowItWorks,
+    rotatePdfBenefits,
+    rotatePdfUseCases,
+    rotatePdfFaq,
+    rotatePdfSummary,
+  } = await loadContent(locale as AppLocale);
+
   return (
     <Container className="pb-20">
       <ToolHeroSplit
         title={rotatePdfHero.title}
-        description={rotatePdfHero.description}
-        highlights={rotatePdfHero.highlights}
+        description={rotatePdfHero.subtitle}
+        highlights={heroHighlights[locale as AppLocale]}
       >
         <RotatePdfTool />
       </ToolHeroSplit>
-      <HowItWorks steps={rotatePdfHowItWorks} />
+
+      <HowItWorks title={rotatePdfHowItWorks.title} steps={rotatePdfHowItWorks.steps} />
+
       <BenefitsAndUseCases
-        benefitsTitle="Pourquoi utiliser Rotate PDF"
-        benefits={rotatePdfBenefits}
-        useCasesTitle="Cas d'usage"
-        useCases={rotatePdfUseCases}
+        benefitsTitle={rotatePdfBenefits.title}
+        benefitsIntro={rotatePdfBenefits.intro}
+        benefits={rotatePdfBenefits.items}
+        useCasesTitle={rotatePdfUseCases.title}
+        useCasesIntro={rotatePdfUseCases.intro}
+        useCases={rotatePdfUseCases.cases}
       />
+
       <ToolFaq items={rotatePdfFaq} />
+
       <ContentSummary text={rotatePdfSummary.text} />
+
       <RelatedTools tools={getRelatedTools("rotate-pdf")} />
     </Container>
   );

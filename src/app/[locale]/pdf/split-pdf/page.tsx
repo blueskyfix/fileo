@@ -9,42 +9,74 @@ import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { SplitWidget } from "@/features/pdf/split";
 import { siteConfig } from "@/core/config/site";
-import {
-  splitPdfMeta,
-  splitPdfHero,
-  splitPdfHowItWorks,
-  splitPdfBenefits,
-  splitPdfUseCases,
-  splitPdfFaq,
-  splitPdfSummary,
-} from "@/data/tools/split-pdf";
+import type { AppLocale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: splitPdfMeta.metaTitle,
-  description: splitPdfMeta.metaDescription,
-  alternates: {
-    canonical: splitPdfMeta.canonicalSlug,
-  },
-  openGraph: {
-    title: splitPdfMeta.ogTitle,
-    description: splitPdfMeta.ogDescription,
-    url: `${siteConfig.url}${splitPdfMeta.canonicalSlug}`,
-  },
+// Chargement du contenu SEO par locale (Option A : fichiers séparés
+// fr/split-pdf.ts et en/split-pdf.ts). if/else explicite plutôt qu'un
+// import dynamique par template string, pour garder le typage complet
+// de chaque module (un import dynamique `import(`.../${locale}/...`)`
+// ferait perdre l'inférence de type sur les exports).
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/tools/en/split-pdf");
+  }
+  return import("@/data/tools/fr/split-pdf");
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { splitPdfMeta } = await loadContent(locale as AppLocale);
+  const path = splitPdfMeta.canonicalSlug;
+
+  return {
+    title: splitPdfMeta.metaTitle,
+    description: splitPdfMeta.metaDescription,
+    alternates: {
+      canonical: `${siteConfig.url}/${locale}${path}`,
+      languages: {
+        fr: `${siteConfig.url}/fr${path}`,
+        en: `${siteConfig.url}/en${path}`,
+        "x-default": `${siteConfig.url}/en${path}`,
+      },
+    },
+    openGraph: {
+      title: splitPdfMeta.ogTitle,
+      description: splitPdfMeta.ogDescription,
+      url: `${siteConfig.url}/${locale}${path}`,
+    },
+  };
+}
+
+const heroHighlights: Record<AppLocale, string[]> = {
+  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
+  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
 };
 
-const heroHighlights = [
-  "Traitement 100% local",
-  "Aucun fichier stocké",
-  "Rien ne persiste après fermeture",
-];
+export default async function SplitPdfPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const {
+    splitPdfHero,
+    splitPdfHowItWorks,
+    splitPdfBenefits,
+    splitPdfUseCases,
+    splitPdfFaq,
+    splitPdfSummary,
+  } = await loadContent(locale as AppLocale);
 
-export default function SplitPdfPage() {
   return (
     <Container className="pb-20">
       <ToolHeroSplit
         title={splitPdfHero.title}
         description={splitPdfHero.subtitle}
-        highlights={heroHighlights}
+        highlights={heroHighlights[locale as AppLocale]}
       >
         <SplitWidget />
       </ToolHeroSplit>

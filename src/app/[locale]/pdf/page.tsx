@@ -4,10 +4,19 @@ import { ToolCard } from "@/components/marketing/tool-card";
 import { Zap, Lock, UserX } from "lucide-react";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { pdfTools } from "@/data/tools/tools";
-import { pdfHubHero, pdfHubToolsIntro, pdfHubTrustBlock } from "@/data/categories/pdf";
 import { siteConfig } from "@/core/config/site";
+import type { AppLocale } from "@/i18n/routing";
 
 const HUB_PATH = "/pdf";
+
+// Même pattern que les pages outils (merge-pdf, compress-image) :
+// if/else explicite pour garder l'inférence de type des exports.
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/categories/en/pdf");
+  }
+  return import("@/data/categories/fr/pdf");
+}
 
 export async function generateMetadata({
   params,
@@ -15,6 +24,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { pdfHubHero } = await loadContent(locale as AppLocale);
 
   return {
     title: pdfHubHero.title,
@@ -30,8 +40,35 @@ export async function generateMetadata({
   };
 }
 
-export default function PdfHubPage() {
+export default async function PdfHubPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  // pdfHubToolsIntro et pdfHubTrustBlock existent dans le contenu mais
+  // n'étaient déjà pas consommés dans la version FR d'origine — conservé
+  // à l'identique, à traiter séparément si besoin de les afficher un jour.
+  const { pdfHubHero } = await loadContent(locale as AppLocale);
   const availableTools = pdfTools.filter((tool) => tool.status === "available");
+
+  const trustLabels: Record<
+    AppLocale,
+    { simple: string; local: string; noSignup: string }
+  > = {
+    fr: {
+      simple: "Simple et direct",
+      local: "100% traitement local",
+      noSignup: "Sans inscription",
+    },
+    en: {
+      simple: "Simple and direct",
+      local: "100% local processing",
+      noSignup: "No sign-up",
+    },
+  };
+  const trust = trustLabels[locale as AppLocale];
+
   return (
     <Container className="py-16">
       <div className="mx-auto max-w-2xl text-center sm:text-left">
@@ -49,9 +86,9 @@ export default function PdfHubPage() {
         <div className="mt-6 flex justify-center sm:justify-start">
           <InlineTrustStrip
             points={[
-              { label: "Simple et direct", icon: Zap },
-              { label: "100% traitement local", icon: Lock },
-              { label: "Sans inscription", icon: UserX },
+              { label: trust.simple, icon: Zap },
+              { label: trust.local, icon: Lock },
+              { label: trust.noSignup, icon: UserX },
             ]}
           />
         </div>

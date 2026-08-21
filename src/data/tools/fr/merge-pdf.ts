@@ -3,8 +3,8 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const mergePdfMeta = {
   metaTitle: "Fusionner un PDF en ligne, gratuit et sans inscription",
   metaDescription:
-    "Fusionnez plusieurs PDF en un seul fichier, directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
-  ogTitle: "Fusionner des PDF en ligne — traitement local, sans envoi de fichiers",
+    "Fusionnez plusieurs PDF en un seul fichier, directement dans votre navigateur. Aucun envoi sur un serveur. Gratuit, rapide, sans inscription.",
+  ogTitle: "Fusionner des PDF en ligne, traitement local et sans envoi de fichiers",
   ogDescription:
     "Assemblez plusieurs fichiers PDF en un seul document. Réorganisez l'ordre des pages, fusionnez, téléchargez. Tout se passe dans votre navigateur.",
   canonicalSlug: "/pdf/merge-pdf",

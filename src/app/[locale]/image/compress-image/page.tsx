@@ -6,18 +6,22 @@ import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-a
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
 import { ContentSummary } from "@/features/pdf/shared/components/content-summary";
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
-import { CompressImageWidget } from "@/features/images/compress";
 import { getRelatedTools } from "@/data/tools/tools";
+import { CompressImageWidget } from "@/features/images/compress";
 import { siteConfig } from "@/core/config/site";
-import {
-  compressImageMeta as meta,
-  compressImageHero as hero,
-  compressImageHowItWorks as howItWorks,
-  compressImageBenefits as benefits,
-  compressImageUseCases as useCases,
-  compressImageFaq as faq,
-  compressImageSummary as summary,
-} from "@/data/tools/compress-image";
+import type { AppLocale } from "@/i18n/routing";
+
+// Chargement du contenu SEO par locale (Option A : fichiers séparés
+// fr/compress-image.ts et en/compress-image.ts). if/else explicite plutôt qu'un
+// import dynamique par template string, pour garder le typage complet
+// de chaque module (un import dynamique `import(`.../${locale}/...`)`
+// ferait perdre l'inférence de type sur les exports).
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/tools/en/compress-image");
+  }
+  return import("@/data/tools/fr/compress-image");
+}
 
 export async function generateMetadata({
   params,
@@ -25,11 +29,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const path = meta.canonicalSlug;
+  const { compressImageMeta } = await loadContent(locale as AppLocale);
+  const path = compressImageMeta.canonicalSlug;
 
   return {
-    title: meta.metaTitle,
-    description: meta.metaDescription,
+    title: compressImageMeta.metaTitle,
+    description: compressImageMeta.metaDescription,
     alternates: {
       canonical: `${siteConfig.url}/${locale}${path}`,
       languages: {
@@ -39,32 +44,57 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: meta.ogTitle,
-      description: meta.ogDescription,
+      title: compressImageMeta.ogTitle,
+      description: compressImageMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
     },
   };
 }
 
-export default function CompressImagePage() {
+const heroHighlights: Record<AppLocale, string[]> = {
+  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
+  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
+};
+
+export default async function CompressImagePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const {
+    compressImageHero,
+    compressImageHowItWorks,
+    compressImageBenefits,
+    compressImageUseCases,
+    compressImageFaq,
+    compressImageSummary,
+  } = await loadContent(locale as AppLocale);
+
   return (
     <Container className="pb-20">
-      <ToolHeroSplit title={hero.title} description={hero.description} highlights={hero.highlights}>
+      <ToolHeroSplit
+        title={compressImageHero.title}
+        description={compressImageHero.subtitle}
+        highlights={heroHighlights[locale as AppLocale]}
+      >
         <CompressImageWidget />
       </ToolHeroSplit>
 
-      <HowItWorks steps={howItWorks} />
+      <HowItWorks title={compressImageHowItWorks.title} steps={compressImageHowItWorks.steps} />
 
       <BenefitsAndUseCases
-        benefitsTitle="Pourquoi compresser vos images"
-        benefits={benefits}
-        useCasesTitle="Cas d'usage"
-        useCases={useCases}
+        benefitsTitle={compressImageBenefits.title}
+        benefitsIntro={compressImageBenefits.intro}
+        benefits={compressImageBenefits.items}
+        useCasesTitle={compressImageUseCases.title}
+        useCasesIntro={compressImageUseCases.intro}
+        useCases={compressImageUseCases.cases}
       />
 
-      <ToolFaq items={faq} />
+      <ToolFaq items={compressImageFaq} />
 
-      <ContentSummary text={summary.text} />
+      <ContentSummary text={compressImageSummary.text} />
 
       <RelatedTools tools={getRelatedTools("compress-image")} />
     </Container>
