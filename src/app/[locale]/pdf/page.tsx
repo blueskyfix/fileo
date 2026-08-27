@@ -25,17 +25,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { pdfHubHero } = await loadContent(locale as AppLocale);
+  const url = `${siteConfig.url}/${locale}${HUB_PATH}`;
 
   return {
     title: pdfHubHero.title,
     description: pdfHubHero.subtitle,
     alternates: {
-      canonical: `${siteConfig.url}/${locale}${HUB_PATH}`,
+      canonical: url,
       languages: {
         fr: `${siteConfig.url}/fr${HUB_PATH}`,
         en: `${siteConfig.url}/en${HUB_PATH}`,
         "x-default": `${siteConfig.url}/en${HUB_PATH}`,
       },
+    },
+    openGraph: {
+      title: pdfHubHero.title,
+      description: pdfHubHero.subtitle,
+      url,
     },
   };
 }

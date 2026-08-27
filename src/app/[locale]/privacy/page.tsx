@@ -10,17 +10,25 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const url = `${siteConfig.url}/${locale}${PATH}`;
+  const title = "Politique de confidentialité";
+  const description = "Comment FileoPDF traite vos données et vos fichiers.";
 
   return {
-    title: "Politique de confidentialité",
-    description: "Comment FileoPDF traite vos données et vos fichiers.",
+    title,
+    description,
     alternates: {
-      canonical: `${siteConfig.url}/${locale}${PATH}`,
+      canonical: url,
       languages: {
         fr: `${siteConfig.url}/fr${PATH}`,
         en: `${siteConfig.url}/en${PATH}`,
         "x-default": `${siteConfig.url}/en${PATH}`,
       },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
     },
   };
 }
