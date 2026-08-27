@@ -4,10 +4,19 @@ import { ToolCard } from "@/components/marketing/tool-card";
 import { Zap, Lock, UserX } from "lucide-react";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { wordTools } from "@/data/tools/tools";
-import { wordHubHero } from "@/data/categories/word";
 import { siteConfig } from "@/core/config/site";
+import type { AppLocale } from "@/i18n/routing";
 
 const HUB_PATH = "/word";
+
+// Même pattern que les autres hubs (pdf/page.tsx) : if/else explicite
+// pour garder l'inférence de type de chaque module fr/en.
+async function loadContent(locale: AppLocale) {
+  if (locale === "en") {
+    return import("@/data/categories/en/word");
+  }
+  return import("@/data/categories/fr/word");
+}
 
 export async function generateMetadata({
   params,
@@ -15,6 +24,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { wordHubHero } = await loadContent(locale as AppLocale);
 
   return {
     title: wordHubHero.title,
@@ -30,8 +40,32 @@ export async function generateMetadata({
   };
 }
 
-export default function WordHubPage() {
+export default async function WordHubPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { wordHubHero } = await loadContent(locale as AppLocale);
   const availableTools = wordTools.filter((tool) => tool.status === "available");
+
+  const trustLabels: Record<
+    AppLocale,
+    { simple: string; local: string; noSignup: string }
+  > = {
+    fr: {
+      simple: "Simple et direct",
+      local: "100% traitement local",
+      noSignup: "Sans inscription",
+    },
+    en: {
+      simple: "Simple and direct",
+      local: "100% local processing",
+      noSignup: "No sign-up",
+    },
+  };
+  const trust = trustLabels[locale as AppLocale];
+
   return (
     <Container className="py-16">
       <div className="mx-auto max-w-2xl text-center sm:text-left">
@@ -49,9 +83,9 @@ export default function WordHubPage() {
         <div className="mt-6 flex justify-center sm:justify-start">
           <InlineTrustStrip
             points={[
-              { label: "Simple et direct", icon: Zap },
-              { label: "100% traitement local", icon: Lock },
-              { label: "Sans inscription", icon: UserX },
+              { label: trust.simple, icon: Zap },
+              { label: trust.local, icon: Lock },
+              { label: trust.noSignup, icon: UserX },
             ]}
           />
         </div>
@@ -59,7 +93,7 @@ export default function WordHubPage() {
 
       <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
         {availableTools.map((tool) => (
-          <ToolCard key={tool.slug} tool={tool} />
+          <ToolCard key={tool.slug} tool={tool} locale={locale as AppLocale} />
         ))}
       </div>
     </Container>
