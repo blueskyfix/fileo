@@ -97,7 +97,7 @@ export default async function LocaleLayout({
             <Script
               src="https://analytics.ahrefs.com/analytics.js"
               data-key="sHtLKUZNI+80zGPJZ/Lb9A"
-              strategy="afterInteractive"
+              strategy="beforeInteractive"
             />
           )}
           <Navbar />
