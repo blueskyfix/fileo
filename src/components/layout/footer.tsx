@@ -3,10 +3,11 @@ import { useLocale, useTranslations } from "next-intl";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
-import { getToolsByCategory, toolCategoryLabels, type Tool } from "@/data/tools/tools";
+import { getToolsByCategory, getToolLabel, toolCategoryLabels, type Tool } from "@/data/tools/tools";
+import type { AppLocale } from "@/i18n/routing";
 
 export function Footer() {
-  const locale = useLocale();
+  const locale = useLocale() as AppLocale;
   const t = useTranslations("Footer");
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
@@ -66,7 +67,7 @@ function FooterColumn({
 }: {
   title: string;
   tools: Tool[];
-  locale: string;
+  locale: AppLocale;
 }) {
   if (tools.length === 0) return null;
 
@@ -80,7 +81,7 @@ function FooterColumn({
               href={`/${locale}${tool.href}`}
               className="text-base font-medium text-foreground-muted transition-colors hover:text-foreground"
             >
-              {tool.name}
+              {getToolLabel(tool.slug, locale).name}
             </Link>
           </li>
         ))}
