@@ -11,11 +11,6 @@ import { WordToPdfWidget } from "@/features/word/word-to-pdf";
 import { siteConfig } from "@/core/config/site";
 import type { AppLocale } from "@/i18n/routing";
 
-// Chargement du contenu SEO par locale (Option A : fichiers séparés
-// fr/word-to-pdf.ts et en/word-to-pdf.ts). if/else explicite plutôt qu'un
-// import dynamique par template string, pour garder le typage complet
-// de chaque module (un import dynamique `import(`.../${locale}/...`)`
-// ferait perdre l'inférence de type sur les exports).
 async function loadContent(locale: AppLocale) {
   if (locale === "en") {
     return import("@/data/tools/en/word-to-pdf");
@@ -96,7 +91,7 @@ export default async function WordToPdfPage({
 
       <ContentSummary text={wordToPdfSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("word-to-pdf")} />
+      <RelatedTools tools={getRelatedTools("word-to-pdf", locale as AppLocale)} />
     </Container>
   );
 }

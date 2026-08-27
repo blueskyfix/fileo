@@ -11,14 +11,16 @@ import { siteConfig } from "@/core/config/site";
 import {
   tools,
   getToolsByCategory,
+  getToolLabel,
   toolCategoryLabels,
   type Tool,
 } from "@/data/tools/tools";
+import type { AppLocale } from "@/i18n/routing";
 
 type DropdownKey = "convert" | "organize" | "all";
 
 export function Navbar() {
-  const locale = useLocale();
+  const locale = useLocale() as AppLocale;
   const t = useTranslations("Nav");
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
@@ -74,7 +76,7 @@ export function Navbar() {
                 href={`/${locale}${tool.status === "available" ? tool.href : "/pdf"}`}
                 className="relative inline-block whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100 motion-reduce:after:transition-none"
               >
-                {tool.name}
+                {getToolLabel(tool.slug, locale).name}
               </Link>
             ))}
 
@@ -120,7 +122,7 @@ export function Navbar() {
                       onClick={() => setOpenDropdown(null)}
                       className="flex items-center justify-between gap-2 rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
                     >
-                      {tool.name}
+                      {getToolLabel(tool.slug, locale).name}
                       {tool.status !== "available" && (
                         <span className="rounded-full border border-border px-2 py-0.5 text-xs">
                           {t("comingSoon")}
@@ -188,7 +190,7 @@ function NavDropdown({
 }: {
   label: string;
   tools: Tool[];
-  locale: string;
+  locale: AppLocale;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -216,7 +218,7 @@ function NavDropdown({
               onClick={onClose}
               className="flex items-center rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
             >
-              {tool.name}
+              {getToolLabel(tool.slug, locale).name}
             </Link>
           ))}
         </div>
@@ -233,7 +235,7 @@ function MobileGroup({
 }: {
   label: string;
   tools: Tool[];
-  locale: string;
+  locale: AppLocale;
   onNavigate: () => void;
 }) {
   if (tools.length === 0) return null;
@@ -250,7 +252,7 @@ function MobileGroup({
           onClick={onNavigate}
           className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
         >
-          {tool.name}
+          {getToolLabel(tool.slug, locale).name}
         </Link>
       ))}
     </div>

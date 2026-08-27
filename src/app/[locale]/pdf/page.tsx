@@ -96,7 +96,7 @@ export default async function PdfHubPage({
 
       <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
         {availableTools.map((tool) => (
-          <ToolCard key={tool.slug} tool={tool} />
+          <ToolCard key={tool.slug} tool={tool} locale={locale as AppLocale} />
         ))}
       </div>
     </Container>

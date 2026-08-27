@@ -65,7 +65,7 @@ export default async function HomePage({
 
         <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {availableTools.map((tool) => (
-            <ToolCard key={tool.slug} tool={tool} />
+            <ToolCard key={tool.slug} tool={tool} locale={locale as AppLocale} />
           ))}
         </div>
 

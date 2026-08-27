@@ -11,11 +11,6 @@ import { PdfToJpgWidget } from "@/features/pdf/pdf-to-jpg";
 import { siteConfig } from "@/core/config/site";
 import type { AppLocale } from "@/i18n/routing";
 
-// Chargement du contenu SEO par locale (Option A : fichiers séparés
-// fr/pdf-to-jpg.ts et en/pdf-to-jpg.ts). if/else explicite plutôt qu'un
-// import dynamique par template string, pour garder le typage complet
-// de chaque module (un import dynamique `import(`.../${locale}/...`)`
-// ferait perdre l'inférence de type sur les exports).
 async function loadContent(locale: AppLocale) {
   if (locale === "en") {
     return import("@/data/tools/en/pdf-to-jpg");
@@ -96,7 +91,7 @@ export default async function PdfToJpgPage({
 
       <ContentSummary text={pdfToJpgSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("pdf-to-jpg")} />
+      <RelatedTools tools={getRelatedTools("pdf-to-jpg", locale as AppLocale)} />
     </Container>
   );
 }

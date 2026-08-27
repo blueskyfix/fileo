@@ -13,5 +13,10 @@
     "privacy": "Confidentialité",
     "terms": "Conditions d'utilisation",
     "support": "Support"
+  },
+  "ToolCard": {
+    "comingSoon": "Bientôt",
+    "openTool": "Ouvrir l'outil",
+    "viewAllTools": "Voir tous les outils"
   }
 }

@@ -11,11 +11,6 @@ import { RotatePdfTool } from "@/features/pdf/rotate-pdf";
 import { siteConfig } from "@/core/config/site";
 import type { AppLocale } from "@/i18n/routing";
 
-// Chargement du contenu SEO par locale (Option A : fichiers séparés
-// fr/rotate-pdf.ts et en/rotate-pdf.ts). if/else explicite plutôt qu'un
-// import dynamique par template string, pour garder le typage complet
-// de chaque module (un import dynamique `import(`.../${locale}/...`)`
-// ferait perdre l'inférence de type sur les exports).
 async function loadContent(locale: AppLocale) {
   if (locale === "en") {
     return import("@/data/tools/en/rotate-pdf");
@@ -96,7 +91,7 @@ export default async function RotatePdfPage({
 
       <ContentSummary text={rotatePdfSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("rotate-pdf")} />
+      <RelatedTools tools={getRelatedTools("rotate-pdf", locale as AppLocale)} />
     </Container>
   );
 }

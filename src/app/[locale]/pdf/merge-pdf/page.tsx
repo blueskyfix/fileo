@@ -11,11 +11,6 @@ import { MergeTool } from "@/features/pdf/merge";
 import { siteConfig } from "@/core/config/site";
 import type { AppLocale } from "@/i18n/routing";
 
-// Chargement du contenu SEO par locale (Option A : fichiers séparés
-// fr/merge-pdf.ts et en/merge-pdf.ts). if/else explicite plutôt qu'un
-// import dynamique par template string, pour garder le typage complet
-// de chaque module (un import dynamique `import(`.../${locale}/...`)`
-// ferait perdre l'inférence de type sur les exports).
 async function loadContent(locale: AppLocale) {
   if (locale === "en") {
     return import("@/data/tools/en/merge-pdf");
@@ -96,7 +91,7 @@ export default async function MergePdfPage({
 
       <ContentSummary text={mergePdfSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("merge-pdf")} />
+      <RelatedTools tools={getRelatedTools("merge-pdf", locale as AppLocale)} />
     </Container>
   );
 }

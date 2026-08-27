@@ -11,11 +11,6 @@ import { RemovePagesWidget } from "@/features/pdf/remove-pages";
 import { siteConfig } from "@/core/config/site";
 import type { AppLocale } from "@/i18n/routing";
 
-// Chargement du contenu SEO par locale (Option A : fichiers séparés
-// fr/remove-pages.ts et en/remove-pages.ts). if/else explicite plutôt qu'un
-// import dynamique par template string, pour garder le typage complet
-// de chaque module (un import dynamique `import(`.../${locale}/...`)`
-// ferait perdre l'inférence de type sur les exports).
 async function loadContent(locale: AppLocale) {
   if (locale === "en") {
     return import("@/data/tools/en/remove-pages");
@@ -96,7 +91,7 @@ export default async function RemovePagesPage({
 
       <ContentSummary text={removePagesSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("remove-pages")} />
+      <RelatedTools tools={getRelatedTools("remove-pages", locale as AppLocale)} />
     </Container>
   );
 }

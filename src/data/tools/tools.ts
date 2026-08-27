@@ -11,6 +11,9 @@ import {
   FileUp,
   File as FileFallbackIcon,
 } from "lucide-react";
+import type { AppLocale } from "@/i18n/routing";
+import { toolLabelsFr } from "@/data/tools/labels/fr";
+import { toolLabelsEn } from "@/data/tools/labels/en";
 
 export type ToolStatus = "available" | "coming-soon";
 export type ToolIcon =
@@ -39,10 +42,14 @@ export const toolCategoryLabels: Record<ToolCategory, string> = {
   organize: "Organiser",
 };
 
-export interface Tool {
-  slug: string;
+/** name/description traduits d'un outil — voir data/tools/labels/{fr,en}.ts. */
+export interface ToolLabel {
   name: string;
   description: string;
+}
+
+export interface Tool {
+  slug: string;
   href: string;
   status: ToolStatus;
   icon: ToolIcon;
@@ -54,14 +61,14 @@ export interface Tool {
 
 /**
  * Source unique de vérité pour tous les outils, tous formats confondus.
+ * name/description ne vivent PAS ici — voir data/tools/labels/{fr,en}.ts
+ * et getToolLabel(). tools.ts reste indépendant de la locale (routing,
+ * statut, icônes, sitemap).
  * Utiliser `pdfTools` / `imageTools` / `wordTools` pour les vues filtrées par format.
  */
 export const tools: Tool[] = [
   {
     slug: "merge-pdf",
-    name: "Fusionner des PDF",
-    description:
-      "Fusionnez plusieurs fichiers PDF en un seul, dans l'ordre de votre choix.",
     href: "/pdf/merge-pdf",
     status: "available",
     icon: "merge",
@@ -71,8 +78,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "split-pdf",
-    name: "Diviser un PDF",
-    description: "Extrayez des pages ou divisez un PDF en plusieurs fichiers.",
     href: "/pdf/split-pdf",
     status: "available",
     icon: "split",
@@ -82,9 +87,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "jpg-to-pdf",
-    name: "JPG vers PDF",
-    description:
-      "Convertissez vos images JPG ou PNG en un seul fichier PDF.",
     href: "/pdf/jpg-to-pdf",
     status: "available",
     icon: "jpg-to-pdf",
@@ -94,9 +96,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "pdf-to-jpg",
-    name: "PDF vers JPG",
-    description:
-      "Convertissez les pages d'un PDF en images JPG, individuellement ou en une seule fois.",
     href: "/pdf/pdf-to-jpg",
     status: "available",
     icon: "pdf-to-jpg",
@@ -106,8 +105,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "pdf-to-word",
-    name: "PDF vers Word",
-    description: "Convertissez votre PDF en document Word éditable.",
     href: "/pdf/pdf-to-word",
     status: "coming-soon",
     icon: "pdf-to-word",
@@ -117,9 +114,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "remove-pages",
-    name: "Supprimer des pages PDF",
-    description:
-      "Supprimez des pages spécifiques d'un PDF sans le retraiter entièrement.",
     href: "/pdf/remove-pages",
     status: "available",
     icon: "remove-pages",
@@ -129,8 +123,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "rotate-pdf",
-    name: "Rotate PDF",
-    description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
     href: "/pdf/rotate-pdf",
     status: "available",
     icon: "rotate-pdf",
@@ -140,9 +132,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "compress-image",
-    name: "Compresser une image",
-    description:
-      "Réduisez le poids de vos images JPEG, PNG et WebP sans perte de qualité visible.",
     href: "/image/compress-image",
     status: "available",
     icon: "compress-image",
@@ -152,9 +141,6 @@ export const tools: Tool[] = [
   },
   {
     slug: "word-to-pdf",
-    name: "Word vers PDF",
-    description:
-      "Convertissez votre document Word (.docx) en PDF, directement dans votre navigateur.",
     href: "/word/word-to-pdf",
     status: "coming-soon",
     icon: "word-to-pdf",
@@ -204,6 +190,27 @@ export function getToolIcon(icon: ToolIcon): LucideIcon {
   return resolved;
 }
 
+const toolLabels: Record<AppLocale, Record<string, ToolLabel>> = {
+  fr: toolLabelsFr,
+  en: toolLabelsEn,
+};
+
+/**
+ * Résout name/description traduits pour un outil donné.
+ * Fallback + warning dev si le slug n'a pas d'entrée dans le dictionnaire
+ * de la locale (ex: nouvel outil ajouté à tools.ts sans label associé).
+ */
+export function getToolLabel(slug: string, locale: AppLocale): ToolLabel {
+  const label = toolLabels[locale][slug];
+  if (!label) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(`[getToolLabel] Aucun label pour "${slug}" (${locale}).`);
+    }
+    return { name: slug, description: "" };
+  }
+  return label;
+}
+
 /**
  * Retourne les outils "available" d'une catégorie donnée, dans l'ordre du tableau.
  */
@@ -217,8 +224,9 @@ export function getToolsByCategory(category: ToolCategory, onlyAvailable = true)
  * Retourne `count` outils liés à `currentSlug`, basé sur `relatedSlugs`.
  * Fallback : si `relatedSlugs` absent/insuffisant, complète avec les autres
  * outils "available" (ordre du tableau), puis "coming-soon" si besoin.
+ * `locale` requis pour résoudre name/description traduits (getToolLabel).
  */
-export function getRelatedTools(currentSlug: string, count = 2) {
+export function getRelatedTools(currentSlug: string, locale: AppLocale, count = 2) {
   const current = tools.find((tool) => tool.slug === currentSlug);
   const others = tools.filter((tool) => tool.slug !== currentSlug);
 
@@ -233,10 +241,13 @@ export function getRelatedTools(currentSlug: string, count = 2) {
 
   const result = [...preferred, ...available, ...comingSoon].slice(0, count);
 
-  return result.map((tool) => ({
-    name: tool.name,
-    description: tool.description,
-    href: tool.href,
-    icon: getToolIcon(tool.icon),
-  }));
+  return result.map((tool) => {
+    const { name, description } = getToolLabel(tool.slug, locale);
+    return {
+      name,
+      description,
+      href: tool.href,
+      icon: getToolIcon(tool.icon),
+    };
+  });
 }

@@ -13,5 +13,10 @@
     "privacy": "Privacy",
     "terms": "Terms of use",
     "support": "Support"
+  },
+  "ToolCard": {
+    "comingSoon": "Coming soon",
+    "openTool": "Open tool",
+    "viewAllTools": "View all tools"
   }
 }

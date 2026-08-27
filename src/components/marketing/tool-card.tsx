@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import {
   FileStack,
   Scissors,
@@ -12,7 +13,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { cn } from "@/core/utils/cn";
-import type { Tool } from "@/data/tools/tools";
+import { getToolLabel, type Tool } from "@/data/tools/tools";
+import type { AppLocale } from "@/i18n/routing";
 
 const icons = {
   merge: FileStack,
@@ -26,9 +28,17 @@ const icons = {
   "word-to-pdf": FileUp,
 } as const;
 
-export function ToolCard({ tool }: { tool: Tool }) {
+export async function ToolCard({
+  tool,
+  locale,
+}: {
+  tool: Tool;
+  locale: AppLocale;
+}) {
   const Icon = icons[tool.icon];
   const isAvailable = tool.status === "available";
+  const { name, description } = getToolLabel(tool.slug, locale);
+  const t = await getTranslations({ locale, namespace: "ToolCard" });
 
   const content = (
     <div
@@ -45,21 +55,21 @@ export function ToolCard({ tool }: { tool: Tool }) {
         </div>
         {!isAvailable && (
           <span className="rounded-lg border border-border px-2 py-0.5 text-xs text-foreground-muted">
-            Bientôt
+            {t("comingSoon")}
           </span>
         )}
       </div>
 
       <div className="flex-1">
-        <h3 className="text-base text-foreground">{tool.name}</h3>
+        <h3 className="text-base text-foreground">{name}</h3>
         <p className="mt-1 hidden text-sm text-foreground-muted sm:block">
-          {tool.description}
+          {description}
         </p>
       </div>
 
       {isAvailable && (
         <span className="hidden items-center gap-1 text-sm font-medium text-primary sm:flex">
-          Ouvrir l&apos;outil
+          {t("openTool")}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
         </span>
       )}

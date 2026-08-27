@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight, File, FileText, Image as ImageIcon, Lock } from "lucide-react";
-import { pdfTools, getToolIcon, type Tool } from "@/data/tools/tools";
+import { pdfTools, getToolIcon, getToolLabel, type Tool } from "@/data/tools/tools";
 import { NotifyMeModal } from "@/features/pdf/shared/components/notify-me-modal";
+import type { AppLocale } from "@/i18n/routing";
 
 const heroSlugs = [
   "merge-pdf",
@@ -16,6 +18,8 @@ const heroSlugs = [
 ];
 
 export function HeroPreview() {
+  const locale = useLocale() as AppLocale;
+  const t = useTranslations("ToolCard");
   const [notifyTool, setNotifyTool] = useState<Tool | null>(null);
 
   return (
@@ -28,6 +32,7 @@ export function HeroPreview() {
             .map((tool) => {
               const Icon = getToolIcon(tool.icon);
               const isAvailable = tool.status === "available";
+              const { name } = getToolLabel(tool.slug, locale);
 
               const content = (
                 <>
@@ -46,11 +51,11 @@ export function HeroPreview() {
                         isAvailable ? "text-foreground" : "text-foreground-muted"
                       }`}
                     >
-                      {tool.name}
+                      {name}
                     </span>
                     {!isAvailable && (
                       <span className="mt-1 inline-block rounded-full border border-border px-2 py-0.5 text-[10px] font-medium text-foreground-muted">
-                        Bientôt
+                        {t("comingSoon")}
                       </span>
                     )}
                   </div>
@@ -88,7 +93,7 @@ export function HeroPreview() {
           href="/pdf"
           className="mt-3 flex items-center justify-center gap-2 rounded-lg border border-border bg-surface py-2.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
         >
-          Voir tous les outils
+          {t("viewAllTools")}
           <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
@@ -143,7 +148,7 @@ export function HeroPreview() {
       {notifyTool && (
         <NotifyMeModal
           toolSlug={notifyTool.slug}
-          toolName={notifyTool.name}
+          toolName={getToolLabel(notifyTool.slug, locale).name}
           onClose={() => setNotifyTool(null)}
         />
       )}

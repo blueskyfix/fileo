@@ -93,6 +93,13 @@ export default async function LocaleLayout({
               data-website-id={analyticsConfig.umamiWebsiteId}
             />
           )}
+          {isProd && (
+            <Script
+              src="https://analytics.ahrefs.com/analytics.js"
+              data-key="sHtLKUZNI+80zGPJZ/Lb9A"
+              strategy="afterInteractive"
+            />
+          )}
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
