@@ -2,7 +2,8 @@ import type { ContentItem } from "@/features/pdf/shared/types";
 
 export const pdfHubHero = {
   title: "Outils PDF gratuits en ligne",
-  subtitle: "Fusionnez, découpez et modifiez vos PDF directement dans votre navigateur.",
+  subtitle:
+    "Fusionnez, découpez, convertissez et modifiez vos PDF gratuitement, sans inscription. Tout se passe dans votre navigateur, en toute sécurité.",
   paragraphs: [
     "FileoPDF propose une suite d'outils PDF gratuits pensés pour un usage rapide, sans installation et sans inscription. Chaque outil traite vos fichiers PDF localement, dans votre navigateur, plutôt que de les envoyer vers un serveur distant pour les transformer.",
     "Cette approche limite l'exposition de vos documents, en particulier pour les fichiers sensibles : justificatifs, contrats, factures ou dossiers administratifs. Vous gardez le contrôle sur vos fichiers du début à la fin du traitement.",

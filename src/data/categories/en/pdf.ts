@@ -2,7 +2,8 @@ import type { ContentItem } from "@/features/pdf/shared/types";
 
 export const pdfHubHero = {
   title: "Free Online PDF Tools",
-  subtitle: "Merge, split, and edit your PDFs directly in your browser.",
+  subtitle:
+    "Merge, split, convert, and edit your PDFs for free, no sign-up needed. Everything runs securely in your browser.",
   paragraphs: [
     "FileoPDF offers a suite of free PDF tools built for fast use, with no install and no sign-up required. Each tool processes your PDF files locally, in your browser, instead of sending them to a remote server for processing.",
     "This approach limits exposure of your documents, especially for sensitive files: proof of ID, contracts, invoices, or administrative records. You keep full control of your files from start to finish.",
