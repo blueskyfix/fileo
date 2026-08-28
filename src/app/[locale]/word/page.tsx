@@ -25,17 +25,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { wordHubHero } = await loadContent(locale as AppLocale);
+  const url = `${siteConfig.url}/${locale}${HUB_PATH}`;
 
   return {
     title: wordHubHero.title,
     description: wordHubHero.subtitle,
     alternates: {
-      canonical: `${siteConfig.url}/${locale}${HUB_PATH}`,
+      canonical: url,
       languages: {
         fr: `${siteConfig.url}/fr${HUB_PATH}`,
         en: `${siteConfig.url}/en${HUB_PATH}`,
         "x-default": `${siteConfig.url}/en${HUB_PATH}`,
       },
+    },
+    openGraph: {
+      title: wordHubHero.title,
+      description: wordHubHero.subtitle,
+      url,
     },
   };
 }
@@ -49,10 +55,7 @@ export default async function WordHubPage({
   const { wordHubHero } = await loadContent(locale as AppLocale);
   const availableTools = wordTools.filter((tool) => tool.status === "available");
 
-  const trustLabels: Record<
-    AppLocale,
-    { simple: string; local: string; noSignup: string }
-  > = {
+  const trustLabels: Record<AppLocale, { simple: string; local: string; noSignup: string }> = {
     fr: {
       simple: "Simple et direct",
       local: "100% traitement local",
