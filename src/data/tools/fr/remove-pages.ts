@@ -3,7 +3,7 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const removePagesMeta = {
   metaTitle: "Supprimer des pages d'un PDF en ligne, gratuit et sans inscription",
   metaDescription:
-    "Supprimez des pages spécifiques d'un PDF directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
+    "Supprimez les pages inutiles d'un PDF en quelques clics, directement dans votre navigateur. Gratuit, sans inscription, sans serveur.",
   ogTitle: "Supprimer des pages d'un PDF — traitement local, sans envoi de fichiers",
   ogDescription:
     "Sélectionnez et supprimez les pages dont vous n'avez plus besoin dans un PDF. Tout se passe dans votre navigateur.",

@@ -3,7 +3,7 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const pdfToJpgMeta = {
   metaTitle: "Convertir PDF en JPG en ligne, gratuit et sans inscription",
   metaDescription:
-    "Convertissez les pages de votre PDF en images JPG, directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
+    "Transformez vos pages PDF en images JPG en un clic, sans logiciel ni compte. Tout se passe dans votre navigateur, gratuitement.",
   ogTitle: "Convertir un PDF en images JPG — traitement local, sans envoi de fichiers",
   ogDescription:
     "Transformez les pages de votre PDF en images JPG, individuellement ou toutes à la fois. Tout se passe dans votre navigateur.",

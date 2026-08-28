@@ -3,7 +3,7 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const compressImageMeta = {
   metaTitle: "Compresser une image en ligne, gratuit et sans inscription",
   metaDescription:
-    "Réduisez le poids de vos images JPEG, PNG et WebP directement dans votre navigateur. Vos fichiers ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
+    "Réduisez le poids de vos JPEG, PNG et WebP en un clic, sans perte visible. Traitement local, gratuit, sans inscription.",
   ogTitle: "Compresser une image — traitement local, sans envoi de fichiers",
   ogDescription:
     "Réduisez le poids de vos photos et images JPEG, PNG ou WebP, une par une ou en lot. Tout se passe dans votre navigateur.",

@@ -3,7 +3,7 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const splitPdfMeta = {
   metaTitle: "Diviser un PDF en ligne, gratuit et sans inscription",
   metaDescription:
-    "Extrayez des pages ou divisez un PDF en plusieurs fichiers, directement dans votre navigateur. Vos fichiers ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
+    "Extrayez ou divisez vos PDF en quelques clics, sans logiciel ni inscription. Traitement 100% local, gratuit et rapide.",
   ogTitle: "Diviser un PDF — traitement local, sans envoi de fichiers",
   ogDescription:
     "Extrayez une sélection de pages en un seul PDF, ou divisez votre document en plusieurs fichiers séparés. Tout se passe dans votre navigateur.",

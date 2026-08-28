@@ -3,7 +3,7 @@ import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 export const rotatePdfMeta = {
   metaTitle: "Pivoter un PDF en ligne, gratuit et sans inscription",
   metaDescription:
-    "Faites pivoter les pages de votre PDF à 90°, 180° ou 270°, directement dans votre navigateur. Vos fichiers PDF ne sont pas envoyés sur un serveur. Gratuit, rapide, sans inscription.",
+    "Pivotez vos pages PDF à 90°, 180° ou 270° en quelques secondes, sans logiciel ni inscription. Traitement 100% local dans votre navigateur.",
   ogTitle: "Pivoter les pages d'un PDF — traitement local, sans envoi de fichiers",
   ogDescription:
     "Corrigez l'orientation de vos pages PDF, une par une ou toutes en même temps. Tout se passe dans votre navigateur.",
