@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: wordHubHero.title,
       description: wordHubHero.subtitle,
       url,
+      images: [siteConfig.ogImage],
     },
   };
 }

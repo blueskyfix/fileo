@@ -31,6 +31,7 @@ export async function generateMetadata({
       title,
       description,
       url,
+      images: [siteConfig.ogImage],
     },
   };
 }

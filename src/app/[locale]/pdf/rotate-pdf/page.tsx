@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: rotatePdfMeta.ogTitle,
       description: rotatePdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }

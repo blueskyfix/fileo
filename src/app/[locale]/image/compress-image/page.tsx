@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: compressImageMeta.ogTitle,
       description: compressImageMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }

@@ -3,4 +3,5 @@ export const siteConfig = {
   description:
     "Fusionnez, traitez et organisez vos documents directement dans votre navigateur. Rapide, sécurisé, aucun fichier envoyé sur un serveur.",
   url: "https://www.fileopdf.com",
+  ogImage: "/og-image.png",
 } as const;

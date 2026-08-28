@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: splitPdfMeta.ogTitle,
       description: splitPdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }

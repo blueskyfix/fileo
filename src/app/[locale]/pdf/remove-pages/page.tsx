@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: removePagesMeta.ogTitle,
       description: removePagesMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }

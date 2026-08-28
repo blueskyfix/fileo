@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: wordToPdfMeta.ogTitle,
       description: wordToPdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }

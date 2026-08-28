@@ -42,6 +42,7 @@ export async function generateMetadata({
       title: mergePdfMeta.ogTitle,
       description: mergePdfMeta.ogDescription,
       url: `${siteConfig.url}/${locale}${path}`,
+      images: [siteConfig.ogImage],
     },
   };
 }
