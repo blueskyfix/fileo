@@ -6,7 +6,7 @@ import { defineRouting } from "next-intl/routing";
 // d'effet "racine sans préfixe" ici puisque localePrefix = "always".
 export const routing = defineRouting({
   locales: ["fr", "en"],
-  defaultLocale: "fr",
+  defaultLocale: "en",
   localePrefix: "always",
   // Cookie NEXT_LOCALE : priorité au choix explicite de l'utilisateur
   // (switcher), sinon détection Accept-Language. Comportement par défaut
