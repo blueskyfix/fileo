@@ -11,10 +11,16 @@ const categoryLabels: Record<AppLocale, { main: string; convert: string; organiz
   en: { main: "Main tools", convert: "Convert", organize: "Organize" },
 };
 
+const footerDescription: Record<AppLocale, string> = {
+  fr: siteConfig.description,
+  en: "Merge, process, and organize your documents directly in your browser. Fast, secure, no file ever leaves your device.",
+};
+
 export function Footer() {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("Footer");
   const labels = categoryLabels[locale] ?? categoryLabels.fr;
+  const description = footerDescription[locale] ?? footerDescription.fr;
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
@@ -33,7 +39,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1">
             <Logo />
             <p className="max-w-xs text-sm text-foreground-muted">
-              {siteConfig.description}
+              {description}
             </p>
           </div>
 
