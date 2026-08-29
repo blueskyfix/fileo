@@ -3,12 +3,18 @@ import { useLocale, useTranslations } from "next-intl";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { siteConfig } from "@/core/config/site";
-import { getToolsByCategory, getToolLabel, toolCategoryLabels, type Tool } from "@/data/tools/tools";
+import { getToolsByCategory, getToolLabel, type Tool } from "@/data/tools/tools";
 import type { AppLocale } from "@/i18n/routing";
+
+const categoryLabels: Record<AppLocale, { main: string; convert: string; organize: string }> = {
+  fr: { main: "Principaux", convert: "Convertir", organize: "Organiser" },
+  en: { main: "Main tools", convert: "Convert", organize: "Organize" },
+};
 
 export function Footer() {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("Footer");
+  const labels = categoryLabels[locale] ?? categoryLabels.fr;
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
@@ -31,9 +37,9 @@ export function Footer() {
             </p>
           </div>
 
-          <FooterColumn title={toolCategoryLabels.main} tools={mainTools} locale={locale} />
-          <FooterColumn title={toolCategoryLabels.convert} tools={convertTools} locale={locale} />
-          <FooterColumn title={toolCategoryLabels.organize} tools={organizeTools} locale={locale} />
+          <FooterColumn title={labels.main} tools={mainTools} locale={locale} />
+          <FooterColumn title={labels.convert} tools={convertTools} locale={locale} />
+          <FooterColumn title={labels.organize} tools={organizeTools} locale={locale} />
 
           <div>
             <p className="mb-3 text-base font-bold text-foreground">Fileo</p>

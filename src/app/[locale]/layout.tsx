@@ -21,44 +21,57 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const localizedDefaults: Record<AppLocale, { title: string; description: string; ogAlt: string }> = {
+  fr: {
+    title: `${siteConfig.name} | Outils PDF rapides et sécurisés`,
+    description: siteConfig.description,
+    ogAlt: `${siteConfig.name} — Traitez vos documents et images sensibles, sans les envoyer nulle part`,
+  },
+  en: {
+    title: `${siteConfig.name} | Fast, secure PDF tools`,
+    description:
+      "Merge, process, and organize your documents directly in your browser. Fast, secure, no file ever leaves your device.",
+    ogAlt: `${siteConfig.name} — Process your sensitive documents and images without sending them anywhere`,
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const appLocale = locale as AppLocale;
+  const defaults = localizedDefaults[appLocale] ?? localizedDefaults.fr;
 
-  // TODO (étape 6 du chantier i18n) : title/description traduits.
-  // Pour l'instant seule la structure technique (lang, og:locale) change,
-  // le contenu textuel reste identique aux deux langues.
   return {
     title: {
-      default: `${siteConfig.name} | Outils PDF rapides et sécurisés`,
+      default: defaults.title,
       template: "%s",
     },
-    description: siteConfig.description,
+    description: defaults.description,
     metadataBase: new URL(siteConfig.url),
     openGraph: {
       title: siteConfig.name,
-      description: siteConfig.description,
+      description: defaults.description,
       url: `${siteConfig.url}/${locale}`,
       siteName: siteConfig.name,
       images: [
         {
-          url: "/og-image.png",
+          url: siteConfig.ogImage,
           width: 1200,
           height: 630,
-          alt: `${siteConfig.name} — Traitez vos documents et images sensibles, sans les envoyer nulle part`,
+          alt: defaults.ogAlt,
         },
       ],
-      locale: locale === "en" ? "en_US" : "fr_FR",
+      locale: appLocale === "en" ? "en_US" : "fr_FR",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: siteConfig.name,
-      description: siteConfig.description,
-      images: ["/og-image.png"],
+      description: defaults.description,
+      images: [siteConfig.ogImage],
     },
   };
 }
@@ -76,7 +89,6 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Active le rendu statique pour cette locale (recommandation next-intl).
   setRequestLocale(locale as AppLocale);
 
   const messages = await getMessages();

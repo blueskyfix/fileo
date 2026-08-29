@@ -18,6 +18,11 @@ async function loadContent(locale: AppLocale) {
   return import("@/data/tools/fr/compress-image");
 }
 
+const relatedToolsTitle: Record<AppLocale, string> = {
+  fr: "Voir aussi",
+  en: "See also",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -44,6 +49,12 @@ export async function generateMetadata({
       url: `${siteConfig.url}/${locale}${path}`,
       images: [siteConfig.ogImage],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: compressImageMeta.ogTitle,
+      description: compressImageMeta.ogDescription,
+      images: [siteConfig.ogImage],
+    },
   };
 }
 
@@ -58,6 +69,7 @@ export default async function CompressImagePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const appLocale = locale as AppLocale;
   const {
     compressImageHero,
     compressImageHowItWorks,
@@ -65,14 +77,14 @@ export default async function CompressImagePage({
     compressImageUseCases,
     compressImageFaq,
     compressImageSummary,
-  } = await loadContent(locale as AppLocale);
+  } = await loadContent(appLocale);
 
   return (
     <Container className="pb-20">
       <ToolHeroSplit
         title={compressImageHero.title}
         description={compressImageHero.subtitle}
-        highlights={heroHighlights[locale as AppLocale]}
+        highlights={heroHighlights[appLocale]}
       >
         <CompressImageWidget />
       </ToolHeroSplit>
@@ -92,7 +104,10 @@ export default async function CompressImagePage({
 
       <ContentSummary text={compressImageSummary.text} />
 
-      <RelatedTools tools={getRelatedTools("compress-image", locale as AppLocale)} />
+      <RelatedTools
+        title={relatedToolsTitle[appLocale]}
+        tools={getRelatedTools("compress-image", appLocale)}
+      />
     </Container>
   );
 }
