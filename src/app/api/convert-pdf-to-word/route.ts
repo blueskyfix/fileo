@@ -45,8 +45,8 @@ class QuotaExceededError extends Error {
 }
 
 function getCloudConvertConfig() {
-  const isProduction = process.env.NODE_ENV === "production";
-
+    const isProduction = process.env.NODE_ENV === "production";
+    
   const apiKey = isProduction
     ? process.env.CLOUDCONVERT_API_KEY_LIVE
     : process.env.CLOUDCONVERT_API_KEY_SANDBOX;

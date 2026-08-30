@@ -2,24 +2,22 @@
 import type { ContentItem, FaqItem, HowItWorksStep } from "@/features/pdf/shared/types";
 
 export const pdfToWordMeta = {
-  title: "Convertir un PDF en Word gratuitement | FileoPDF",
-  description:
+  metaTitle: "Convertir un PDF en Word gratuitement | FileoPDF",
+  metaDescription:
     "Convertissez votre PDF en document Word modifiable en quelques secondes. Gratuit, sans compte, sans limite de conversions.",
   canonicalSlug: "/pdf/pdf-to-word",
+  ogTitle: "Convertir un PDF en Word gratuitement",
+  ogDescription:
+    "Un PDF transformé en document Word modifiable, prêt à corriger ou compléter.",
 };
 
 export const pdfToWordHero = {
   title: "Convertir un PDF en Word",
-  description:
-    "Transformez votre PDF en fichier Word modifiable, prêt à corriger ou compléter. Le traitement passe par un service sécurisé dédié à cette conversion, et votre fichier est supprimé aussitôt après.",
-  highlights: [
-    "Texte, titres et mise en page reconstruits automatiquement",
-    "Aucune inscription, aucun logiciel à installer",
-    "Fichier original supprimé après la conversion",
-  ],
+  subtitle:
+    "Transformez votre PDF en fichier Word modifiable, prêt à corriger ou compléter.",
 };
 
-export const pdfToWordHowItWorks: HowItWorksStep[] = [
+const pdfToWordSteps: HowItWorksStep[] = [
   {
     title: "Déposez votre PDF",
     description: "Glissez votre fichier ou sélectionnez-le depuis votre appareil.",
@@ -34,7 +32,12 @@ export const pdfToWordHowItWorks: HowItWorksStep[] = [
   },
 ];
 
-export const pdfToWordBenefits: ContentItem[] = [
+export const pdfToWordHowItWorks = {
+  title: "Comment convertir un PDF en Word",
+  steps: pdfToWordSteps,
+};
+
+const pdfToWordBenefitsItems: ContentItem[] = [
   {
     title: "Texte modifiable immédiatement",
     description: "Corrigez, complétez ou réutilisez le contenu sans tout retaper.",
@@ -49,7 +52,13 @@ export const pdfToWordBenefits: ContentItem[] = [
   },
 ];
 
-export const pdfToWordUseCases: ContentItem[] = [
+export const pdfToWordBenefits = {
+  title: "Pourquoi convertir votre PDF avec FileoPDF",
+  intro: "Un document Word prêt à l'emploi, sans étape superflue.",
+  items: pdfToWordBenefitsItems,
+};
+
+const pdfToWordUseCasesItems: ContentItem[] = [
   {
     title: "Réviser un rapport reçu en PDF",
     description: "Passez directement à la correction sans ressaisir le contenu.",
@@ -63,6 +72,12 @@ export const pdfToWordUseCases: ContentItem[] = [
     description: "Modifiez un contrat, un CV ou un modèle de lettre reçu en PDF.",
   },
 ];
+
+export const pdfToWordUseCases = {
+  title: "Cas d'usage courants",
+  intro: "Quelques situations où cet outil fait gagner du temps.",
+  cases: pdfToWordUseCasesItems,
+};
 
 export const pdfToWordFaq: FaqItem[] = [
   {

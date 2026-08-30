@@ -2,24 +2,22 @@
 import type { ContentItem, FaqItem, HowItWorksStep } from "@/features/pdf/shared/types";
 
 export const pdfToWordMeta = {
-  title: "Convert PDF to Word for Free | FileoPDF",
-  description:
+  metaTitle: "Convert PDF to Word for Free | FileoPDF",
+  metaDescription:
     "Convert your PDF into an editable Word document in seconds. Free, no account needed, no conversion limit.",
   canonicalSlug: "/pdf/pdf-to-word",
+  ogTitle: "Convert PDF to Word for Free",
+  ogDescription:
+    "A PDF turned into an editable Word document, ready to correct or complete.",
 };
 
 export const pdfToWordHero = {
   title: "Convert PDF to Word",
-  description:
-    "Turn your PDF into an editable Word file, ready to correct or complete. Processing runs through a dedicated secure service, and your file is deleted right after conversion.",
-  highlights: [
-    "Text, headings and layout rebuilt automatically",
-    "No sign-up, no software to install",
-    "Original file deleted after conversion",
-  ],
+  subtitle:
+    "Turn your PDF into an editable Word file, ready to correct or complete.",
 };
 
-export const pdfToWordHowItWorks: HowItWorksStep[] = [
+const pdfToWordSteps: HowItWorksStep[] = [
   {
     title: "Drop your PDF",
     description: "Drag your file in or select it from your device.",
@@ -34,7 +32,12 @@ export const pdfToWordHowItWorks: HowItWorksStep[] = [
   },
 ];
 
-export const pdfToWordBenefits: ContentItem[] = [
+export const pdfToWordHowItWorks = {
+  title: "How to convert a PDF to Word",
+  steps: pdfToWordSteps,
+};
+
+const pdfToWordBenefitsItems: ContentItem[] = [
   {
     title: "Editable text right away",
     description: "Correct, complete or reuse the content without retyping it.",
@@ -49,7 +52,13 @@ export const pdfToWordBenefits: ContentItem[] = [
   },
 ];
 
-export const pdfToWordUseCases: ContentItem[] = [
+export const pdfToWordBenefits = {
+  title: "Why convert your PDF with FileoPDF",
+  intro: "A ready-to-use Word document, with no unnecessary steps.",
+  items: pdfToWordBenefitsItems,
+};
+
+const pdfToWordUseCasesItems: ContentItem[] = [
   {
     title: "Editing a report received as a PDF",
     description: "Jump straight into edits without retyping the content.",
@@ -63,6 +72,12 @@ export const pdfToWordUseCases: ContentItem[] = [
     description: "Edit a contract, resume or letter template received as a PDF.",
   },
 ];
+
+export const pdfToWordUseCases = {
+  title: "Common use cases",
+  intro: "A few situations where this tool saves real time.",
+  cases: pdfToWordUseCasesItems,
+};
 
 export const pdfToWordFaq: FaqItem[] = [
   {
