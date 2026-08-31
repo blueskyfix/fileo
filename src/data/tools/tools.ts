@@ -106,7 +106,7 @@ export const tools: Tool[] = [
   {
     slug: "pdf-to-word",
     href: "/pdf/pdf-to-word",
-    status: "coming-soon",
+    status: "available",
     icon: "pdf-to-word",
     category: "convert",
     mediaType: "pdf",
