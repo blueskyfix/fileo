@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useTranslations } from "next-intl";
 import { UploadCloud } from "lucide-react";
 import { cn } from "@/core/utils/cn";
 
@@ -10,6 +11,8 @@ interface ImageDropzoneProps {
 }
 
 export function ImageDropzone({ onFilesAdded }: ImageDropzoneProps) {
+  const t = useTranslations("ImageDropzone");
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
@@ -39,12 +42,8 @@ export function ImageDropzone({ onFilesAdded }: ImageDropzoneProps) {
     >
       <input {...getInputProps()} />
       <UploadCloud className="h-8 w-8 text-primary" strokeWidth={1.5} />
-      <p className="text-sm font-medium text-foreground">
-        Déposez vos images ici, ou cliquez pour parcourir
-      </p>
-      <p className="text-xs text-foreground-muted">
-        JPEG, PNG, WebP — plusieurs fichiers acceptés
-      </p>
+      <p className="text-sm font-medium text-foreground">{t("title")}</p>
+      <p className="text-xs text-foreground-muted">{t("subtitle")}</p>
     </div>
   );
 }

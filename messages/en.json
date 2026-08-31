@@ -18,5 +18,17 @@
     "comingSoon": "Coming soon",
     "openTool": "Open tool",
     "viewAllTools": "View all tools"
+  },
+  "PdfDropzone": {
+    "title": "Drop your PDF file here",
+    "subtitle": "or click to select it from your device"
+  },
+  "ImageDropzone": {
+    "title": "Drop your images here, or click to browse",
+    "subtitle": "JPEG, PNG, WebP — multiple files accepted"
+  },
+  "WordDropzone": {
+    "title": "Drop your Word file here",
+    "subtitle": "or click to browse — .docx only"
   }
 }

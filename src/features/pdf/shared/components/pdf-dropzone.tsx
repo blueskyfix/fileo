@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useTranslations } from "next-intl";
 import { FileText } from "lucide-react";
 import { cn } from "@/core/utils/cn";
 
@@ -10,6 +11,8 @@ interface PdfDropzoneProps {
 }
 
 export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
+  const t = useTranslations("PdfDropzone");
+
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const [firstFile] = acceptedFiles;
@@ -38,10 +41,8 @@ export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
       <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
         <FileText className="h-6 w-6" strokeWidth={1.75} />
       </div>
-      <p className="font-medium text-foreground">Déposez votre fichier PDF ici</p>
-      <p className="text-sm text-foreground-muted">
-        ou cliquez pour le sélectionner depuis votre appareil
-      </p>
+      <p className="font-medium text-foreground">{t("title")}</p>
+      <p className="text-sm text-foreground-muted">{t("subtitle")}</p>
     </div>
   );
 }

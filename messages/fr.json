@@ -18,5 +18,17 @@
     "comingSoon": "Bientôt",
     "openTool": "Ouvrir l'outil",
     "viewAllTools": "Voir tous les outils"
+  },
+  "PdfDropzone": {
+    "title": "Déposez votre fichier PDF ici",
+    "subtitle": "ou cliquez pour le sélectionner depuis votre appareil"
+  },
+  "ImageDropzone": {
+    "title": "Déposez vos images ici, ou cliquez pour parcourir",
+    "subtitle": "JPEG, PNG, WebP — plusieurs fichiers acceptés"
+  },
+  "WordDropzone": {
+    "title": "Déposez votre fichier Word ici",
+    "subtitle": "ou cliquez pour parcourir — .docx uniquement"
   }
 }
