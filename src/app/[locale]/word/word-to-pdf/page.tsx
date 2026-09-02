@@ -1,3 +1,4 @@
+// src/app/[locale]/word/word-to-pdf/page.tsx
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
@@ -48,8 +49,8 @@ export async function generateMetadata({
 }
 
 const heroHighlights: Record<AppLocale, string[]> = {
-  fr: ["Traitement 100% local", "Aucun fichier stocké", "Rien ne persiste après fermeture"],
-  en: ["100% local processing", "No files stored", "Nothing persists after closing"],
+  fr: ["Traitement sécurisé", "Fichier supprimé après conversion", "Mise en page fidèle"],
+  en: ["Secure processing", "File deleted after conversion", "Faithful layout"],
 };
 
 export default async function WordToPdfPage({
