@@ -142,7 +142,7 @@ export const tools: Tool[] = [
   {
     slug: "word-to-pdf",
     href: "/word/word-to-pdf",
-    status: "coming-soon",
+    status: "available",
     icon: "word-to-pdf",
     category: "convert",
     mediaType: "word",
