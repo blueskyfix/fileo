@@ -1,6 +1,9 @@
+// app/[locale]/pdf/remove-pages/page.tsx
 import type { Metadata } from "next";
+import { Lock, CloudOff, Trash2 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
+import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-and-use-cases";
 import { ToolFaq } from "@/features/pdf/shared/components/tool-faq";
@@ -60,6 +63,7 @@ export default async function RemovePagesPage({
   const { locale } = await params;
   const {
     removePagesHero,
+    removePagesTrustBlock,
     removePagesHowItWorks,
     removePagesBenefits,
     removePagesUseCases,
@@ -76,6 +80,18 @@ export default async function RemovePagesPage({
       >
         <RemovePagesWidget />
       </ToolHeroSplit>
+
+      <section className="mt-16 space-y-4">
+        <h2 className="text-2xl font-bold text-foreground">{removePagesTrustBlock.title}</h2>
+        <p className="max-w-2xl text-foreground-muted">{removePagesTrustBlock.intro}</p>
+        <InlineTrustStrip
+          points={[
+            { label: "Traitement local", icon: Lock },
+            { label: "Aucun stockage de votre fichier", icon: CloudOff },
+            { label: "Tout disparaît à la fermeture", icon: Trash2 },
+          ]}
+        />
+      </section>
 
       <HowItWorks title={removePagesHowItWorks.title} steps={removePagesHowItWorks.steps} />
 

@@ -1,26 +1,27 @@
+// data/tools/fr/split-pdf.ts
 import type { ContentItem, FaqItem } from "@/features/pdf/shared/types";
 
 export const splitPdfMeta = {
-  metaTitle: "Diviser un PDF en ligne, gratuit et sans inscription",
+  metaTitle: "Diviser un PDF en toute confidentialité, sans inscription",
   metaDescription:
-    "Extrayez ou divisez vos PDF en quelques clics, sans logiciel ni inscription. Traitement 100% local, gratuit et rapide.",
-  ogTitle: "Diviser un PDF — traitement local, sans envoi de fichiers",
+    "Extrayez ou divisez vos PDF confidentiels sans qu'ils quittent votre appareil. Traitement 100% local, gratuit, sans inscription.",
+  ogTitle: "Diviser un PDF sans l'envoyer sur un serveur",
   ogDescription:
-    "Extrayez une sélection de pages en un seul PDF, ou divisez votre document en plusieurs fichiers séparés. Tout se passe dans votre navigateur.",
+    "Extrayez ou séparez des pages d'un PDF directement dans votre navigateur. Rien n'est envoyé, rien n'est stocké.",
   canonicalSlug: "/pdf/split-pdf",
 };
 
 export const splitPdfHero = {
-  eyebrow: "Outil PDF",
-  title: "Diviser un PDF ou extraire des pages",
+  eyebrow: "Outil PDF confidentiel",
+  title: "Diviser un PDF sans l'exposer à un serveur externe",
   subtitle:
-    "Ajoutez votre fichier PDF, sélectionnez les pages qui vous intéressent, puis choisissez d'extraire une sélection en un seul document ou de diviser le PDF en plusieurs fichiers séparés. Le traitement se fait dans votre navigateur : votre PDF n'est pas envoyé sur un serveur.",
+    "Extrayez ou séparez les pages d'un PDF directement dans votre navigateur. Aucun envoi de fichier, aucun stockage : une méthode adaptée aux contrats, dossiers RH ou documents médicaux que vous ne pouvez pas confier à un service tiers.",
 };
 
 export const splitPdfTrustBlock: { title: string; intro: string; points: ContentItem[] } = {
-  title: "Votre PDF reste sur votre appareil",
+  title: "Votre PDF ne quitte jamais votre appareil",
   intro:
-    "Le découpage se fait directement dans votre navigateur, avec la puissance de calcul de votre appareil. Votre fichier PDF n'est pas envoyé vers un serveur pour être divisé.",
+    "Le découpage se fait entièrement dans votre navigateur, avec la puissance de calcul de votre appareil. Aucune page, aucune donnée de votre document n'est transmise à un serveur pour être traitée.",
   points: [
     {
       title: "Traitement local",
@@ -30,7 +31,7 @@ export const splitPdfTrustBlock: { title: string; intro: string; points: Content
     {
       title: "Aucun stockage de votre PDF",
       description:
-        "FileoPDF ne conserve pas de copie de votre fichier : rien n'est mis en file d'attente ni archivé côté serveur.",
+        "Fileo ne conserve pas de copie de votre fichier : rien n'est mis en file d'attente ni archivé côté serveur.",
     },
     {
       title: "Fermez l'onglet, tout disparaît",
@@ -41,14 +42,14 @@ export const splitPdfTrustBlock: { title: string; intro: string; points: Content
 };
 
 export const splitPdfHowItWorks: { title: string; intro: string; steps: ContentItem[] } = {
-  title: "Comment diviser un PDF avec FileoPDF",
+  title: "Comment diviser un PDF sans le transmettre à un tiers",
   intro:
-    "Quelques étapes suffisent pour extraire ou diviser les pages d'un PDF, sans logiciel à installer.",
+    "Quatre étapes suffisent, toutes exécutées sur votre appareil, sans logiciel à installer.",
   steps: [
     {
       title: "1. Ajoutez votre fichier PDF",
       description:
-        "Glissez-déposez votre fichier ou sélectionnez-le depuis votre appareil. Un aperçu de chaque page s'affiche.",
+        "Glissez-déposez votre fichier ou sélectionnez-le depuis votre appareil. Il reste local dès cet instant.",
     },
     {
       title: "2. Sélectionnez les pages",
@@ -63,22 +64,22 @@ export const splitPdfHowItWorks: { title: string; intro: string; steps: ContentI
     {
       title: "4. Téléchargez le résultat",
       description:
-        "Un seul fichier se télécharge directement ; plusieurs fichiers sont regroupés dans une archive ZIP.",
+        "Un seul fichier se télécharge directement ; plusieurs fichiers sont regroupés dans une archive ZIP, générée elle aussi dans votre navigateur.",
     },
   ],
 };
 
 export const splitPdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi utiliser l'outil Split PDF de FileoPDF",
-  intro: "Diviser ou extraire des pages d'un PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
+  title: "Pourquoi diviser vos PDF confidentiels avec Fileo",
+  intro: "Un outil pensé pour les documents que vous ne pouvez pas exposer à un service cloud classique.",
   items: [
     {
-      title: "Deux modes en un seul outil",
-      description: "Extraire une sélection en un document, ou diviser en fichiers séparés : à vous de choisir selon votre besoin.",
+      title: "Zéro upload",
+      description: "Vos pages ne sont jamais téléversées sur un serveur, un point essentiel pour les documents sensibles.",
     },
     {
-      title: "Aucune inscription",
-      description: "L'outil est utilisable immédiatement, sans créer de compte ni fournir d'adresse e-mail.",
+      title: "Deux modes en un seul outil",
+      description: "Extraire une sélection en un document, ou diviser en fichiers séparés, selon votre besoin.",
     },
     {
       title: "Sélection visuelle des pages",
@@ -86,11 +87,11 @@ export const splitPdfBenefits: { title: string; intro: string; items: ContentIte
     },
     {
       title: "Téléchargement groupé",
-      description: "Les divisions multi-fichiers sont automatiquement regroupées dans une archive ZIP prête à télécharger.",
+      description: "Les divisions multi-fichiers sont automatiquement regroupées dans une archive ZIP, générée elle aussi côté client.",
     },
     {
-      title: "Traitement local",
-      description: "Le découpage s'exécute dans votre navigateur plutôt que sur un serveur distant, ce qui limite l'exposition de vos documents.",
+      title: "Aucune inscription",
+      description: "L'outil est utilisable immédiatement, sans créer de compte ni fournir d'adresse e-mail.",
     },
     {
       title: "Gratuit, sans limite artificielle",
@@ -100,28 +101,28 @@ export const splitPdfBenefits: { title: string; intro: string; items: ContentIte
 };
 
 export const splitPdfUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Dans quels cas utiliser Split PDF",
-  intro: "Quelques situations concrètes où extraire ou diviser un PDF simplifie les choses.",
+  title: "Qui utilise Split PDF pour ses documents sensibles",
+  intro: "Des professionnels qui manipulent des données qu'ils ne peuvent pas envoyer à un outil tiers.",
   cases: [
     {
-      title: "Extraire un chapitre ou une section",
-      description: "Isoler quelques pages d'un rapport ou d'un livre pour les partager sans envoyer tout le document.",
+      title: "Juristes et cabinets d'avocats",
+      description: "Extraire une clause ou une pièce d'un contrat sans exposer l'intégralité du dossier client.",
     },
     {
-      title: "Séparer un lot de documents scannés",
-      description: "Diviser un PDF issu d'un scanner multi-documents en fichiers individuels, un par document d'origine.",
+      title: "Ressources humaines",
+      description: "Séparer un bulletin de paie ou un dossier de candidature sans passer par un service cloud externe.",
     },
     {
-      title: "Retirer une partie confidentielle avant envoi",
-      description: "Extraire uniquement les pages pertinentes d'un contrat ou dossier avant de le transmettre à un tiers.",
+      title: "Professionnels de santé",
+      description: "Isoler une page d'un compte rendu médical en respectant la confidentialité du patient.",
     },
     {
-      title: "Alléger un PDF trop volumineux",
-      description: "Diviser un document en plusieurs fichiers plus légers, plus faciles à envoyer par e-mail.",
+      title: "Comptabilité et finance",
+      description: "Diviser des factures ou des relevés sensibles sans dépendre d'un outil en ligne tiers.",
     },
     {
-      title: "Réorganiser un dossier administratif",
-      description: "Séparer les pages d'un PDF regroupant plusieurs justificatifs pour les classer individuellement.",
+      title: "PME et indépendants",
+      description: "Réorganiser un dossier administratif sans confier ses documents à un service externe.",
     },
   ],
 };
@@ -129,11 +130,11 @@ export const splitPdfUseCases: { title: string; intro: string; cases: ContentIte
 export const splitPdfFaq: FaqItem[] = [
   {
     question: "Mon PDF est-il envoyé sur un serveur pour être divisé ?",
-    answer: "Non. Le découpage s'exécute directement dans votre navigateur : votre fichier PDF n'est pas envoyé sur un serveur. Les fichiers sont générés localement, sur votre appareil.",
+    answer: "Non. Le découpage s'exécute directement dans votre navigateur : votre fichier PDF n'est jamais transmis à un serveur. Les fichiers sont générés localement, sur votre appareil.",
   },
   {
-    question: "L'outil Split PDF de FileoPDF est-il vraiment gratuit ?",
-    answer: "Oui. L'extraction et la division de PDF sont gratuites et ne nécessitent aucune inscription ni aucune information personnelle.",
+    question: "Puis-je utiliser cet outil pour des documents confidentiels ?",
+    answer: "Oui, c'est exactement l'usage pour lequel l'outil a été pensé. Le traitement 100% local garantit qu'aucune donnée sensible, contrat, dossier RH ou médical, ne sort de votre appareil.",
   },
   {
     question: "Quelle est la différence entre extraire et diviser ?",
@@ -141,11 +142,11 @@ export const splitPdfFaq: FaqItem[] = [
   },
   {
     question: "Comment sont téléchargés les fichiers en mode division ?",
-    answer: "Si une seule page est sélectionnée, le PDF se télécharge directement. Si plusieurs pages sont sélectionnées, les fichiers sont automatiquement regroupés dans une archive ZIP.",
+    answer: "Si une seule page est sélectionnée, le PDF se télécharge directement. Si plusieurs pages sont sélectionnées, les fichiers sont regroupés dans une archive ZIP, elle aussi générée dans votre navigateur.",
   },
   {
-    question: "Puis-je choisir précisément quelles pages garder ?",
-    answer: "Oui, toutes les pages sont cochées par défaut avec un aperçu visuel, et vous pouvez décocher celles que vous ne souhaitez pas inclure avant de lancer le traitement.",
+    question: "L'outil Split PDF de Fileo est-il vraiment gratuit ?",
+    answer: "Oui. L'extraction et la division de PDF sont gratuites et ne nécessitent aucune inscription ni aucune information personnelle.",
   },
   {
     question: "La qualité du PDF est-elle affectée par le split ?",
@@ -153,7 +154,7 @@ export const splitPdfFaq: FaqItem[] = [
   },
   {
     question: "Puis-je diviser un PDF depuis mon téléphone ou ma tablette ?",
-    answer: "Oui, l'outil fonctionne sur mobile et tablette via un navigateur récent. L'ajout du fichier se fait via le sélecteur de fichiers de l'appareil plutôt que par glisser-déposer.",
+    answer: "Oui, l'outil fonctionne sur mobile et tablette via un navigateur récent. Le traitement reste local, y compris sur ces appareils.",
   },
   {
     question: "Que se passe-t-il si mon PDF est protégé par un mot de passe ou corrompu ?",
@@ -162,5 +163,5 @@ export const splitPdfFaq: FaqItem[] = [
 ];
 
 export const splitPdfSummary = {
-  text: "Diviser un PDF avec FileoPDF ne demande ni compte ni installation. Choisissez vos pages, extrayez-les en un seul fichier ou divisez-les en documents séparés, directement dans votre navigateur.",
+  text: "Split PDF permet de diviser ou d'extraire des pages d'un document directement dans le navigateur, sans envoi de fichier vers un serveur. Un outil gratuit et sans compte, pensé pour les professionnels qui manipulent des documents confidentiels : contrats, dossiers RH, relevés médicaux ou comptables.",
 };
