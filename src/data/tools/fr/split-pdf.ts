@@ -133,6 +133,10 @@ export const splitPdfFaq: FaqItem[] = [
     answer: "Non. Le découpage s'exécute directement dans votre navigateur : votre fichier PDF n'est jamais transmis à un serveur. Les fichiers sont générés localement, sur votre appareil.",
   },
   {
+    question: "Diviser, scinder, séparer ou fractionner un PDF : est-ce la même chose ?",
+    answer: "Oui, il s'agit toujours de la même opération. Que vous cherchiez à diviser, scinder, dissocier, fractionner ou séparer un PDF, Fileo propose les deux méthodes possibles dans un seul outil : extraire une sélection de pages dans un nouveau document, ou éclater le fichier en plusieurs PDF distincts.",
+  },
+  {
     question: "Puis-je utiliser cet outil pour des documents confidentiels ?",
     answer: "Oui, c'est exactement l'usage pour lequel l'outil a été pensé. Le traitement 100% local garantit qu'aucune donnée sensible, contrat, dossier RH ou médical, ne sort de votre appareil.",
   },

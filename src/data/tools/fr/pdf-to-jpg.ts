@@ -127,6 +127,10 @@ export const pdfToJpgFaq: FaqItem[] = [
     answer: "Non. La conversion s'exécute directement dans votre navigateur : votre fichier PDF n'est pas envoyé sur un serveur. Les images sont générées localement, sur votre appareil.",
   },
   {
+    question: "Convertir, exporter ou transformer un PDF en image : quelle différence ?",
+    answer: "Aucune. Que vous parliez de convertir, exporter ou transformer un PDF en JPG, en photo ou en image, il s'agit toujours de la même opération : chaque page sélectionnée est transformée en fichier image JPG, directement dans votre navigateur.",
+  },
+  {
     question: "L'outil PDF to JPG de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La conversion de PDF en images JPG est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
