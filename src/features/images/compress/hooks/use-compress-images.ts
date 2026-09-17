@@ -6,6 +6,7 @@ import { compressReducer, initialCompressState } from "../store/compress-store";
 import { compressImage } from "../lib/compress-client";
 import { trackEvent } from "@/core/config/analytics";
 import { sanitizeFilename } from "@/core/utils/sanitize-filename";
+import type { CompressionLevel } from "../lib/compression-levels";
 import type { ImageFileInfo, SupportedImageMime } from "@/features/images/shared/types";
 
 let nextId = 0;
@@ -39,8 +40,8 @@ export function useCompressImages() {
     dispatch({ type: "REMOVE_FILE", id });
   }, []);
 
-  const setQuality = useCallback((quality: number) => {
-    dispatch({ type: "SET_QUALITY", quality });
+  const setLevel = useCallback((level: CompressionLevel) => {
+    dispatch({ type: "SET_LEVEL", level });
   }, []);
 
   const setOutputFormat = useCallback((format: SupportedImageMime) => {
@@ -60,7 +61,7 @@ export function useCompressImages() {
           id: fileInfo.id,
           fileBuffer,
           mimeType: fileInfo.file.type,
-          quality: state.quality,
+          level: state.level,
           outputFormat: state.outputFormat,
         });
 
@@ -73,7 +74,7 @@ export function useCompressImages() {
 
         trackEvent("compress_image_completed", {
           format: state.outputFormat,
-          quality: String(state.quality),
+          level: state.level,
         });
       } catch (error) {
         dispatch({
@@ -83,7 +84,7 @@ export function useCompressImages() {
         });
       }
     }
-  }, [state.files, state.quality, state.outputFormat]);
+  }, [state.files, state.level, state.outputFormat]);
 
   const downloadZip = useCallback(async () => {
     const zip = new JSZip();
@@ -116,11 +117,11 @@ export function useCompressImages() {
 
   return {
     files: state.files,
-    quality: state.quality,
+    level: state.level,
     outputFormat: state.outputFormat,
     addFiles,
     removeFile,
-    setQuality,
+    setLevel,
     setOutputFormat,
     compressAll,
     downloadZip,

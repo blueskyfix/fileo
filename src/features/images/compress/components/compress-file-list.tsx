@@ -28,9 +28,10 @@ export function CompressFileList({ files, onRemove }: CompressFileListProps) {
               <p className="truncate text-sm font-medium text-foreground">{f.file.name}</p>
               <p className="text-xs text-foreground-muted">
                 {formatFileSize(f.originalSize)}
-                {reduction !== null && f.compressedSize && (
+                {reduction !== null && reduction > 0 && f.compressedSize && (
                   <> → {formatFileSize(f.compressedSize)} (-{reduction}%)</>
                 )}
+                {reduction !== null && reduction <= 0 && <> · Déjà optimisée</>}
               </p>
             </div>
 

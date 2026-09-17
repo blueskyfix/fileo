@@ -1,15 +1,16 @@
 import type { ImageFileInfo, SupportedImageMime } from "@/features/images/shared/types";
+import type { CompressionLevel } from "../lib/compression-levels";
 
 export interface CompressState {
   files: ImageFileInfo[];
-  quality: number;
+  level: CompressionLevel;
   outputFormat: SupportedImageMime;
 }
 
 export type CompressAction =
   | { type: "ADD_FILES"; files: ImageFileInfo[] }
   | { type: "REMOVE_FILE"; id: string }
-  | { type: "SET_QUALITY"; quality: number }
+  | { type: "SET_LEVEL"; level: CompressionLevel }
   | { type: "SET_OUTPUT_FORMAT"; format: SupportedImageMime }
   | { type: "SET_STATUS"; id: string; status: ImageFileInfo["status"] }
   | { type: "SET_RESULT"; id: string; compressedBlob: Blob; compressedSize: number }
@@ -18,7 +19,7 @@ export type CompressAction =
 
 export const initialCompressState: CompressState = {
   files: [],
-  quality: 80,
+  level: "balanced",
   outputFormat: "image/jpeg",
 };
 
@@ -30,8 +31,8 @@ export function compressReducer(state: CompressState, action: CompressAction): C
     case "REMOVE_FILE":
       return { ...state, files: state.files.filter((f) => f.id !== action.id) };
 
-    case "SET_QUALITY":
-      return { ...state, quality: action.quality };
+    case "SET_LEVEL":
+      return { ...state, level: action.level };
 
     case "SET_OUTPUT_FORMAT":
       return { ...state, outputFormat: action.format };
