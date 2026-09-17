@@ -49,10 +49,29 @@
     "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}"
   },
   "MergeActionBar": {
-    "filenameLabel": "Nom du fichier :",
+    "filenameLabel": "Nom du fichier",
     "resultReady": "Votre PDF fusionné est prêt :",
     "download": "Télécharger",
     "restart": "Recommencer",
     "merge": "Fusionner les PDF"
+  },
+  "SplitModeToggle": {
+    "extract": "Extraire en un seul PDF",
+    "divide": "Diviser en fichiers séparés"
+  },
+  "SplitActionBar": {
+    "download": "Télécharger",
+    "restart": "Recommencer",
+    "loadingPdf": "Lecture du PDF...",
+    "processing": "Traitement en cours...",
+    "launch": "Lancer le split"
+  },
+  "RemovePagesActionBar": {
+    "removeCount": "{count, plural, one {Supprimer # page} other {Supprimer # pages}}",
+    "selectPrompt": "Sélectionnez des pages à supprimer",
+    "removing": "Suppression en cours…",
+    "download": "Télécharger",
+    "restart": "Recommencer",
+    "retry": "Réessayer"
   }
 }

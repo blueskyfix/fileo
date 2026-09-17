@@ -5,6 +5,7 @@ import { Download } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useObjectUrl } from "@/features/pdf/shared/hooks/use-object-url";
 import { sanitizeFilename } from "@/core/utils/sanitize-filename";
+import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 
 interface MergeActionBarProps {
   canMerge: boolean;
@@ -55,27 +56,31 @@ export function MergeActionBar({
   }
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <label className="flex items-center gap-2 text-sm text-foreground-muted">
-        {t("filenameLabel")}
-        <input
-          type="text"
-          value={outputName}
-          onChange={(e) => setOutputName(e.target.value)}
-          disabled={isProcessing}
-          className="rounded-lg border border-border bg-elevated px-3 py-1.5 text-sm text-foreground disabled:opacity-60"
-        />
-        <span>.pdf</span>
-      </label>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <label className="flex items-center gap-2 text-sm text-foreground-muted">
+          {t("filenameLabel")}
+          <input
+            type="text"
+            value={outputName}
+            onChange={(e) => setOutputName(e.target.value)}
+            disabled={isProcessing}
+            className="rounded-lg border border-border bg-elevated px-3 py-1.5 text-sm text-foreground disabled:opacity-60"
+          />
+          <span>.pdf</span>
+        </label>
 
-      <button
-        type="button"
-        onClick={() => onMerge(outputName)}
-        disabled={!canMerge}
-        className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-[filter] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        {isProcessing ? tCommon("processing") : t("merge")}
-      </button>
+        <button
+          type="button"
+          onClick={() => onMerge(outputName)}
+          disabled={!canMerge || isProcessing}
+          className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-[filter] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isProcessing ? tCommon("processing") : t("merge")}
+        </button>
+      </div>
+
+      {isProcessing && <ProgressBar mode="indeterminate" />}
     </div>
   );
 }

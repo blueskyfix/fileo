@@ -1,6 +1,8 @@
 "use client";
 
-import { Download, Loader2, RotateCcw } from "lucide-react";
+import { Download, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 import type { SplitStatus } from "../lib/types";
 
 interface SplitActionBarProps {
@@ -20,6 +22,9 @@ export function SplitActionBar({
   onDownload,
   onReset,
 }: SplitActionBarProps) {
+  const t = useTranslations("SplitActionBar");
+  const isBusy = status === "splitting" || status === "loading";
+
   if (status === "idle") return null;
 
   return (
@@ -37,7 +42,7 @@ export function SplitActionBar({
               className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
               <Download className="h-4 w-4" />
-              Télécharger
+              {t("download")}
             </button>
             <button
               type="button"
@@ -45,25 +50,24 @@ export function SplitActionBar({
               className="flex items-center gap-2 rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors"
             >
               <RotateCcw className="h-4 w-4" />
-              Recommencer
+              {t("restart")}
             </button>
           </>
         ) : (
           <button
             type="button"
             onClick={onSplit}
-            disabled={status === "splitting" || status === "loading" || selectedCount === 0}
-            className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+            disabled={isBusy || selectedCount === 0}
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {(status === "splitting" || status === "loading") && (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            )}
-            {status === "loading" && "Lecture du PDF..."}
-            {status === "splitting" && "Traitement en cours..."}
-            {status === "ready" && "Lancer le split"}
+            {status === "loading" && t("loadingPdf")}
+            {status === "splitting" && t("processing")}
+            {status === "ready" && t("launch")}
           </button>
         )}
       </div>
+
+      {isBusy && <ProgressBar mode="indeterminate" />}
     </div>
   );
 }

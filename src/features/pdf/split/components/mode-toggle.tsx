@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { cn } from "@/core/utils/cn";
 import type { SplitMode } from "../lib/types";
 
@@ -9,6 +10,8 @@ interface ModeToggleProps {
 }
 
 export function ModeToggle({ mode, onChange }: ModeToggleProps) {
+  const t = useTranslations("SplitModeToggle");
+
   return (
     <div className="inline-flex rounded-xl border border-border bg-elevated p-1">
       <button
@@ -19,7 +22,7 @@ export function ModeToggle({ mode, onChange }: ModeToggleProps) {
           mode === "extract" ? "bg-primary text-white" : "text-foreground-muted",
         )}
       >
-        Extraire en un seul PDF
+        {t("extract")}
       </button>
       <button
         type="button"
@@ -29,7 +32,7 @@ export function ModeToggle({ mode, onChange }: ModeToggleProps) {
           mode === "divide" ? "bg-primary text-white" : "text-foreground-muted",
         )}
       >
-        Diviser en fichiers séparés
+        {t("divide")}
       </button>
     </div>
   );

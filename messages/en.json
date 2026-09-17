@@ -49,10 +49,29 @@
     "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}"
   },
   "MergeActionBar": {
-    "filenameLabel": "File name :",
+    "filenameLabel": "File name",
     "resultReady": "Your merged PDF is ready:",
     "download": "Download",
     "restart": "Start over",
     "merge": "Merge PDFs"
+  },
+  "SplitModeToggle": {
+    "extract": "Extract into a single PDF",
+    "divide": "Split into separate files"
+  },
+  "SplitActionBar": {
+    "download": "Download",
+    "restart": "Start over",
+    "loadingPdf": "Reading the PDF...",
+    "processing": "Processing...",
+    "launch": "Run split"
+  },
+  "RemovePagesActionBar": {
+    "removeCount": "{count, plural, one {Delete # page} other {Delete # pages}}",
+    "selectPrompt": "Select pages to remove",
+    "removing": "Removing pages…",
+    "download": "Download",
+    "restart": "Start over",
+    "retry": "Retry"
   }
 }

@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 import type { RemovePagesStatus } from "../lib/types";
 
 interface RemovePagesActionBarProps {
@@ -17,6 +19,8 @@ export function RemovePagesActionBar({
   onDownload,
   onReset,
 }: RemovePagesActionBarProps) {
+  const t = useTranslations("RemovePagesActionBar");
+
   if (status === "ready") {
     return (
       <button
@@ -25,15 +29,18 @@ export function RemovePagesActionBar({
         disabled={selectedCount === 0}
         className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {selectedCount > 0
-          ? `Supprimer ${selectedCount} page${selectedCount > 1 ? "s" : ""}`
-          : "Sélectionnez des pages à supprimer"}
+        {selectedCount > 0 ? t("removeCount", { count: selectedCount }) : t("selectPrompt")}
       </button>
     );
   }
 
   if (status === "removing") {
-    return <p className="text-sm text-foreground-muted">Suppression en cours…</p>;
+    return (
+      <div className="flex flex-col gap-2">
+        <p className="text-sm text-foreground-muted">{t("removing")}</p>
+        <ProgressBar mode="indeterminate" />
+      </div>
+    );
   }
 
   if (status === "done") {
@@ -44,14 +51,14 @@ export function RemovePagesActionBar({
           onClick={onDownload}
           className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover"
         >
-          Télécharger 
+          {t("download")}
         </button>
         <button
           type="button"
           onClick={onReset}
           className="rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-unelevated"
         >
-          Recommencer
+          {t("restart")}
         </button>
       </div>
     );
@@ -66,7 +73,7 @@ export function RemovePagesActionBar({
           onClick={onReset}
           className="rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-unelevated"
         >
-          Réessayer
+          {t("retry")}
         </button>
       </div>
     );
