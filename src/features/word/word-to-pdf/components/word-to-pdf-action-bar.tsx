@@ -57,14 +57,14 @@ export function WordToPdfActionBar({
             className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
           >
             <Download className="h-4 w-4" />
-            Télécharger le PDF
+            Télécharger
           </button>
           <button
             onClick={onReset}
             className="flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
           >
             <RotateCcw className="h-4 w-4" />
-            Convertir un autre fichier
+            Recommencer
           </button>
         </div>
       )}

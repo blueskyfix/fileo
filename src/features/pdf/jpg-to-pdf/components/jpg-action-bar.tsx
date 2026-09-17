@@ -37,7 +37,7 @@ export function JpgActionBar({
               className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
               <Download className="h-4 w-4" />
-              Télécharger le PDF
+              Télécharger
             </button>
             <button
               type="button"

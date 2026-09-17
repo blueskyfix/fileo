@@ -53,14 +53,14 @@ export function PdfToWordActionBar({
             onClick={onDownload}
             className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
           >
-            Télécharger le fichier Word
+            Télécharger
           </button>
           <button
             type="button"
             onClick={onReset}
             className="rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition hover:bg-unelevated"
           >
-            Convertir un autre fichier
+            Recommencer
           </button>
         </div>
       )}

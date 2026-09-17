@@ -50,14 +50,14 @@ export function RotatePdfActionBar({
           className="flex items-center gap-2 rounded-xl bg-(--color-primary) px-5 py-3 font-medium text-white hover:bg-(--color-primary-hover)"
         >
           <Download className="h-4 w-4" />
-          Télécharger le PDF
+          Télécharger
         </button>
         <button
           type="button"
           onClick={onNewFile}
           className="rounded-xl border border-(--color-border) px-5 py-3 font-medium text-(--color-foreground) hover:bg-(--color-unelevated)"
         >
-          Rotationner un autre PDF
+          Recommencer
         </button>
       </div>
     );

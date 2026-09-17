@@ -44,14 +44,14 @@ export function RemovePagesActionBar({
           onClick={onDownload}
           className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover"
         >
-          Télécharger le PDF
+          Télécharger 
         </button>
         <button
           type="button"
           onClick={onReset}
           className="rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-unelevated"
         >
-          Traiter un autre fichier
+          Recommencer
         </button>
       </div>
     );
