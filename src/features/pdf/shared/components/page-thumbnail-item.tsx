@@ -1,6 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/core/utils/cn";
 import type { PdfPageInfo } from "@/features/pdf/shared/types";
 
@@ -10,6 +11,9 @@ interface PageThumbnailItemProps {
 }
 
 export function PageThumbnailItem({ page, onToggle }: PageThumbnailItemProps) {
+  const t = useTranslations("PageThumbnailItem");
+  const label = t("pageLabel", { number: page.pageNumber });
+
   return (
     <button
       type="button"
@@ -32,13 +36,11 @@ export function PageThumbnailItem({ page, onToggle }: PageThumbnailItemProps) {
 
       <img
         src={page.thumbnailUrl}
-        alt={`Page ${page.pageNumber}`}
+        alt={label}
         className="aspect-[3/4] w-full rounded-lg border border-border object-cover"
       />
 
-      <span className="text-xs font-medium text-foreground-muted">
-        Page {page.pageNumber}
-      </span>
+      <span className="text-xs font-medium text-foreground-muted">{label}</span>
     </button>
   );
 }

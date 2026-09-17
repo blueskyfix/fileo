@@ -73,5 +73,13 @@
     "download": "Télécharger",
     "restart": "Recommencer",
     "retry": "Réessayer"
+  },
+  "PageGallery": {
+    "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} {selected, plural, one {sélectionnée} other {sélectionnées}}",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner"
+  },
+  "PageThumbnailItem": {
+    "pageLabel": "Page {number}"
   }
 }

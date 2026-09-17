@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import type { PdfPageInfo } from "@/features/pdf/shared/types";
 import { PageThumbnailItem } from "./page-thumbnail-item";
 
@@ -11,21 +12,21 @@ interface PageGalleryProps {
 }
 
 export function PageGallery({ pages, onToggle, onSelectAll, onDeselectAll }: PageGalleryProps) {
+  const t = useTranslations("PageGallery");
   const selectedCount = pages.filter((p) => p.selected).length;
 
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <p className="text-sm text-foreground-muted">
-          {selectedCount} / {pages.length} page{pages.length > 1 ? "s" : ""} sélectionnée
-          {selectedCount > 1 ? "s" : ""}
+          {t("selectionSummary", { selected: selectedCount, total: pages.length })}
         </p>
         <div className="flex gap-3 text-sm font-medium text-primary">
           <button type="button" onClick={onSelectAll}>
-            Tout sélectionner
+            {t("selectAll")}
           </button>
           <button type="button" onClick={onDeselectAll}>
-            Tout désélectionner
+            {t("deselectAll")}
           </button>
         </div>
       </div>
