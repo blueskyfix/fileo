@@ -9,6 +9,7 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { useTranslations } from "next-intl";
 import { MergeFileItem } from "@/features/pdf/merge/components/merge-file-item";
 import type { PdfFileItem } from "@/features/pdf/shared/types/pdf-file-item";
 
@@ -25,6 +26,7 @@ export function MergeFileList({
   onRemove,
   disabled,
 }: MergeFileListProps) {
+  const t = useTranslations("MergeFileList");
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
   );
@@ -32,7 +34,7 @@ export function MergeFileList({
   if (files.length === 0) {
     return (
       <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-10 text-center text-sm text-foreground-muted">
-        Aucun fichier ajouté pour le moment
+        {t("empty")}
       </div>
     );
   }

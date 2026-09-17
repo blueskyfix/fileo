@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Download } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useObjectUrl } from "@/features/pdf/shared/hooks/use-object-url";
 import { sanitizeFilename } from "@/core/utils/sanitize-filename";
 
@@ -20,6 +21,8 @@ export function MergeActionBar({
   onMerge,
   onReset,
 }: MergeActionBarProps) {
+  const t = useTranslations("MergeActionBar");
+  const tCommon = useTranslations("Merge");
   const [outputName, setOutputName] = useState("merged");
   const downloadUrl = useObjectUrl(resultBlob);
   const finalName = sanitizeFilename(outputName);
@@ -28,24 +31,23 @@ export function MergeActionBar({
     return (
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-elevated p-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-foreground">
-          Votre PDF fusionné est prêt :{" "}
-          <span className="font-medium">{finalName}</span>
+          {t("resultReady")} <span className="font-medium">{finalName}</span>
         </p>
         <div className="flex gap-2">
-          <a  
+          <a
             href={downloadUrl}
             download={finalName}
             className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-[filter] hover:brightness-110"
           >
             <Download className="h-4 w-4" />
-            Télécharger
+            {t("download")}
           </a>
           <button
             type="button"
             onClick={onReset}
             className="rounded-lg border border-border px-4 py-2 text-sm text-foreground-muted hover:bg-unelevated"
           >
-            Recommencer
+            {t("restart")}
           </button>
         </div>
       </div>
@@ -55,7 +57,7 @@ export function MergeActionBar({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <label className="flex items-center gap-2 text-sm text-foreground-muted">
-        Nom du fichier
+        {t("filenameLabel")}
         <input
           type="text"
           value={outputName}
@@ -72,7 +74,7 @@ export function MergeActionBar({
         disabled={!canMerge}
         className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-accent-foreground transition-[filter] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        {isProcessing ? "Fusion en cours..." : "Fusionner les PDF"}
+        {isProcessing ? tCommon("processing") : t("merge")}
       </button>
     </div>
   );

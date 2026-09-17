@@ -30,5 +30,29 @@
   "WordDropzone": {
     "title": "Déposez votre fichier Word ici",
     "subtitle": "ou cliquez pour parcourir — .docx uniquement"
+  },
+  "Merge": {
+    "processing": "Fusion en cours..."
+  },
+  "MergeDropzone": {
+    "title": "Déposez vos fichiers PDF ici",
+    "titleDragActive": "Déposez vos fichiers ici",
+    "subtitle": "ou cliquez pour parcourir vos fichiers"
+  },
+  "MergeFileList": {
+    "empty": "Aucun fichier ajouté pour le moment"
+  },
+  "MergeFileItem": {
+    "reorder": "Réordonner",
+    "remove": "Supprimer",
+    "validating": "Validation en cours...",
+    "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}"
+  },
+  "MergeActionBar": {
+    "filenameLabel": "Nom du fichier :",
+    "resultReady": "Votre PDF fusionné est prêt :",
+    "download": "Télécharger",
+    "restart": "Recommencer",
+    "merge": "Fusionner les PDF"
   }
 }
