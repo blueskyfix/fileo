@@ -74,7 +74,7 @@ export const tools: Tool[] = [
     icon: "merge",
     category: "main",
     mediaType: "pdf",
-    relatedSlugs: ["split-pdf", "remove-pages"],
+    relatedSlugs: ["split-pdf", "remove-pages", "pdf-to-word"],
   },
   {
     slug: "split-pdf",
@@ -83,7 +83,7 @@ export const tools: Tool[] = [
     icon: "split",
     category: "main",
     mediaType: "pdf",
-    relatedSlugs: ["remove-pages", "merge-pdf"],
+    relatedSlugs: ["remove-pages", "merge-pdf", "rotate-pdf"],
   },
   {
     slug: "jpg-to-pdf",
@@ -92,7 +92,7 @@ export const tools: Tool[] = [
     icon: "jpg-to-pdf",
     category: "convert",
     mediaType: "pdf",
-    relatedSlugs: ["pdf-to-jpg", "merge-pdf"],
+    relatedSlugs: ["pdf-to-jpg", "merge-pdf", "compress-image"],
   },
   {
     slug: "pdf-to-jpg",
@@ -101,7 +101,7 @@ export const tools: Tool[] = [
     icon: "pdf-to-jpg",
     category: "convert",
     mediaType: "pdf",
-    relatedSlugs: ["jpg-to-pdf", "split-pdf"],
+    relatedSlugs: ["jpg-to-pdf", "split-pdf", "compress-image"],
   },
   {
     slug: "pdf-to-word",
@@ -110,7 +110,7 @@ export const tools: Tool[] = [
     icon: "pdf-to-word",
     category: "convert",
     mediaType: "pdf",
-    relatedSlugs: ["merge-pdf", "pdf-to-jpg"],
+    relatedSlugs: ["merge-pdf", "word-to-pdf", "pdf-to-jpg"],
   },
   {
     slug: "remove-pages",
@@ -119,7 +119,7 @@ export const tools: Tool[] = [
     icon: "remove-pages",
     category: "organize",
     mediaType: "pdf",
-    relatedSlugs: ["split-pdf", "merge-pdf"],
+    relatedSlugs: ["split-pdf", "merge-pdf", "rotate-pdf"],
   },
   {
     slug: "rotate-pdf",
@@ -128,7 +128,7 @@ export const tools: Tool[] = [
     icon: "rotate-pdf",
     category: "organize",
     mediaType: "pdf",
-    relatedSlugs: ["merge-pdf", "split-pdf"],
+    relatedSlugs: ["merge-pdf", "split-pdf", "remove-pages"],
   },
   {
     slug: "compress-image",
@@ -225,8 +225,12 @@ export function getToolsByCategory(category: ToolCategory, onlyAvailable = true)
  * Fallback : si `relatedSlugs` absent/insuffisant, complète avec les autres
  * outils "available" (ordre du tableau), puis "coming-soon" si besoin.
  * `locale` requis pour résoudre name/description traduits (getToolLabel).
+ *
+ * count par défaut passé de 2 à 3 (2026-09) : renforce le maillage interne
+ * maintenant que le site couvre 3 mediaTypes (pdf/image/word) — réduit le
+ * risque d'orphelinage relatif de compress-image et word-to-pdf.
  */
-export function getRelatedTools(currentSlug: string, locale: AppLocale, count = 2) {
+export function getRelatedTools(currentSlug: string, locale: AppLocale, count = 3) {
   const current = tools.find((tool) => tool.slug === currentSlug);
   const others = tools.filter((tool) => tool.slug !== currentSlug);
 
