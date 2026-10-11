@@ -28,6 +28,8 @@ export function Footer() {
   const legalLinks = [
     { label: t("about"), href: "/about" },
     { label: t("allPdfTools"), href: "/pdf" },
+    { label: t("allWordTools"), href: "/word" },
+    { label: t("allImageTools"), href: "/image" },
     { label: t("privacy"), href: "/privacy" },
     { label: t("terms"), href: "/terms" },
     { label: t("support"), href: "/support" },

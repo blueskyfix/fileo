@@ -12,6 +12,11 @@ export const routing = defineRouting({
   // (switcher), sinon détection Accept-Language. Comportement par défaut
   // de next-intl, conforme au brief.
   localeDetection: true,
+  // Les hreflang sont déjà déclarés dans les métadonnées de chaque page et dans
+  // le sitemap. Sans ça, next-intl ajoute un en-tête HTTP `Link` dont le
+  // x-default pointe vers l'URL SANS locale (ex. /pdf/rotate-pdf), qui redirige
+  // en 301 : doublon d'hreflang + hreflang vers une redirection (Ahrefs).
+  alternateLinks: false,
 });
 
 export type AppLocale = (typeof routing.locales)[number];

@@ -11,6 +11,8 @@
   "Footer": {
     "about": "About",
     "allPdfTools": "All PDF tools",
+    "allWordTools": "All Word tools",
+    "allImageTools": "All image tools",
     "privacy": "Privacy",
     "terms": "Terms of use",
     "support": "Support"
