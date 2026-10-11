@@ -131,3 +131,28 @@ export async function pollJobUntilDone(
     if (allDone) return status.data;
   }
 }
+
+/**
+ * Supprime un job CloudConvert (tâches, fichier envoyé et fichier converti)
+ * dès la fin de la conversion, sans attendre la purge automatique de 24 h.
+ * Best-effort : un échec est journalisé mais ne bloque pas la réponse.
+ */
+export async function deleteJob(
+  baseUrl: string,
+  apiKey: string,
+  jobId: string
+): Promise<void> {
+  try {
+    const response = await fetch(`${baseUrl}/jobs/${jobId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${apiKey}` },
+    });
+    if (!response.ok) {
+      console.error(
+        `CloudConvert : suppression du job ${jobId} impossible (HTTP ${response.status})`
+      );
+    }
+  } catch (error) {
+    console.error(`CloudConvert : suppression du job ${jobId} impossible`, error);
+  }
+}

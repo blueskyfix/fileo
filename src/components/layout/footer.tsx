@@ -13,7 +13,7 @@ const categoryLabels: Record<AppLocale, { main: string; convert: string; organiz
 
 const footerDescription: Record<AppLocale, string> = {
   fr: siteConfig.description,
-  en: "Merge, process, and organize your documents directly in your browser. Fast, secure, no file ever leaves your device.",
+  en: "Merge, split, and convert your documents for free. PDFs and images are processed in your browser, never uploaded to a server.",
 };
 
 export function Footer() {

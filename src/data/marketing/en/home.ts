@@ -11,7 +11,7 @@ export const homeHero = {
   ctaSecondaryLabel: "View all tools",
   reassurance: [
     "Simple and direct",
-    "100% local processing",
+    "PDFs processed locally",
     "No sign-up",
   ],
 };
@@ -25,9 +25,9 @@ export const homeWhyPoints = {
   title: "Why use FileoPDF?",
   points: [
     {
-      title: "100% local processing",
+      title: "PDFs and images stay local",
       description:
-        "Your files never leave your device — nothing is sent to a server.",
+        "PDF and image tools run in your browser: your files are never sent to a server.",
     },
     {
       title: "No sign-up",

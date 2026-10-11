@@ -52,12 +52,12 @@ export default async function PdfHubPage({
   > = {
     fr: {
       simple: "Simple et direct",
-      local: "100% traitement local",
+      local: "Traitement local des PDF",
       noSignup: "Sans inscription",
     },
     en: {
       simple: "Simple and direct",
-      local: "100% local processing",
+      local: "Local PDF processing",
       noSignup: "No sign-up",
     },
   };

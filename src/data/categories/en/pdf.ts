@@ -3,15 +3,15 @@ import type { ContentItem } from "@/features/pdf/shared/types";
 export const pdfHubHero = {
   title: "Free Online PDF Tools",
   subtitle:
-    "Merge, split, convert, and edit your PDFs for free, no sign-up needed. Everything runs securely in your browser.",
+    "Merge, split, convert, and edit your PDFs for free, no sign-up needed, with processing done right in your browser.",
   paragraphs: [
-    "FileoPDF offers a suite of free PDF tools built for fast use, with no install and no sign-up required. Each tool processes your PDF files locally, in your browser, instead of sending them to a remote server for processing.",
+    "FileoPDF offers a suite of free PDF tools built for fast use, with no install and no sign-up required. Each tool processes your PDF files locally, in your browser, instead of sending them to a remote server for processing. Only PDF to Word conversion goes through an external service, which deletes the file once done.",
     "This approach limits exposure of your documents, especially for sensitive files: proof of ID, contracts, invoices, or administrative records. You keep full control of your files from start to finish.",
   ],
 };
 
 export const pdfHubToolsIntro = {
-  text: "Pick a tool below to get started. More PDF tools (splitting, page removal) are being added to the suite progressively.",
+  text: "Pick a tool below to get started. New PDF tools are added to the suite regularly.",
 };
 
 export const pdfHubTrustBlock: { title: string; items: ContentItem[] } = {
@@ -23,7 +23,7 @@ export const pdfHubTrustBlock: { title: string; items: ContentItem[] } = {
     },
     {
       title: "Local processing",
-      description: "Your PDF files are processed in your browser, never sent to a server to be transformed.",
+      description: "Your PDF files are processed in your browser, never sent to a server. PDF to Word conversion is the only exception, and the file is deleted afterwards.",
     },
     {
       title: "No sign-up",

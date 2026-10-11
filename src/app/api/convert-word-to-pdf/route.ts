@@ -16,6 +16,7 @@ import {
   cloudConvertFetch,
   checkRemainingCredits,
   pollJobUntilDone,
+  deleteJob,
   QuotaExceededError,
   type CloudConvertJob,
 } from "@/core/cloudconvert/client";
@@ -37,6 +38,8 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+
+  let jobId: string | undefined;
 
   try {
     const formData = await request.formData();
@@ -95,6 +98,8 @@ export async function POST(request: NextRequest) {
         }),
       }
     );
+
+    jobId = job.data.id;
 
     const importTask = job.data.tasks.find((t) => t.name === "import-file");
     if (!importTask?.result?.form) {
@@ -163,5 +168,7 @@ export async function POST(request: NextRequest) {
       { error: "La conversion a échoué. Réessayez dans quelques instants." },
       { status: 500 }
     );
+  } finally {
+    if (jobId) await deleteJob(baseUrl, apiKey, jobId);
   }
 }

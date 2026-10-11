@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "FileoPDF",
   description:
-    "Fusionnez, traitez et organisez vos documents directement dans votre navigateur. Rapide, sécurisé, aucun fichier envoyé sur un serveur.",
+    "Fusionnez, divisez et convertissez vos documents gratuitement. Les PDF et les images sont traités dans votre navigateur, sans envoi sur un serveur.",
   descriptions: {
-    fr: "Fusionnez, traitez et organisez vos documents directement dans votre navigateur. Rapide, sécurisé, aucun fichier envoyé sur un serveur.",
-    en: "Merge, process, and organize your documents directly in your browser. Fast, secure, no file ever leaves your device.",
+    fr: "Fusionnez, divisez et convertissez vos documents gratuitement. Les PDF et les images sont traités dans votre navigateur, sans envoi sur un serveur.",
+    en: "Merge, split, and convert your documents for free. PDFs and images are processed in your browser, never uploaded to a server.",
   },
   url: "https://www.fileopdf.com",
   ogImage: "/og-image.png",

@@ -46,12 +46,12 @@ export default async function WordHubPage({
   const trustLabels: Record<AppLocale, { simple: string; local: string; noSignup: string }> = {
     fr: {
       simple: "Simple et direct",
-      local: "100% traitement local",
+      local: "Fichiers supprimés après conversion",
       noSignup: "Sans inscription",
     },
     en: {
       simple: "Simple and direct",
-      local: "100% local processing",
+      local: "Files deleted after conversion",
       noSignup: "No sign-up",
     },
   };

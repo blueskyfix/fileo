@@ -12,6 +12,7 @@
 //   whitelisté depuis le dashboard CloudConvert, section "Sandbox").
 
 import { NextRequest, NextResponse } from "next/server";
+import { deleteJob } from "@/core/cloudconvert/client";
 
 export const runtime = "nodejs";
 export const maxDuration = 60; // les conversions observées prennent quelques secondes, marge de sécurité
@@ -113,6 +114,8 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  let jobId: string | undefined;
+
   try {
     const formData = await request.formData();
     const file = formData.get("file");
@@ -167,6 +170,8 @@ export async function POST(request: NextRequest) {
       }
     );
 
+    jobId = job.data.id;
+
     const importTask = job.data.tasks.find((t) => t.name === "import-file");
     if (!importTask?.result?.form) {
       throw new Error("Tâche d'import introuvable dans la réponse CloudConvert.");
@@ -194,7 +199,6 @@ export async function POST(request: NextRequest) {
     }
 
     // 4. Attendre la fin du job (polling)
-    const jobId = job.data.id;
     let finishedJob: CloudConvertJob | undefined;
     const startTime = Date.now();
 
@@ -260,5 +264,7 @@ export async function POST(request: NextRequest) {
       { error: "La conversion a échoué. Réessayez dans quelques instants." },
       { status: 500 }
     );
+  } finally {
+    if (jobId) await deleteJob(baseUrl, apiKey, jobId);
   }
 }

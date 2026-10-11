@@ -11,7 +11,7 @@ export const homeHero = {
   ctaSecondaryLabel: "Voir tous les outils",
   reassurance: [
     "Simple et direct",
-    "100% traitement local",
+    "PDF traités localement",
     "Sans inscription",
   ],
 };
@@ -25,9 +25,9 @@ export const homeWhyPoints = {
   title: "Pourquoi utiliser FileoPDF ?",
   points: [
     {
-      title: "Traitement 100% local",
+      title: "PDF et images traités en local",
       description:
-        "Vos fichiers ne quittent jamais votre appareil, aucun envoi vers un serveur.",
+        "Les outils PDF et image fonctionnent dans votre navigateur : vos fichiers ne sont envoyés sur aucun serveur.",
     },
     {
       title: "Sans inscription",

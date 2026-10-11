@@ -26,14 +26,14 @@ type AboutContent = {
 
 const content: Record<AppLocale, AboutContent> = {
   fr: {
-    metaTitle: "Pourquoi Fileo existe : traitement 100% local",
+    metaTitle: "Pourquoi Fileo existe : le traitement local des documents",
     metaDescription:
       "Fileo traite vos PDF et images dans votre navigateur, sans serveur, sans pub, gratuit. Découvrez pourquoi ce hub a été créé.",
     eyebrow: "Notre histoire",
     h1: "Pourquoi j'ai créé Fileo",
     heroLede: "Vos documents ne devraient jamais quitter votre appareil.",
     ctaLabel: "Essayer Fusionner un PDF",
-    trustPoints: ["Aucun compte requis", "Aucun fichier envoyé", "100% gratuit"],
+    trustPoints: ["Aucun compte requis", "PDF et images traités localement", "100% gratuit"],
     section1Title: "Un passeport, un doute, une idée",
     section1Paragraphs: [
       "Un jour, j'ai eu besoin de convertir mon passeport en image pour un formulaire en ligne. Une tâche banale. Mais au moment de choisir un outil, je me suis arrêté : pourquoi enverrais-je une pièce d'identité sur le serveur d'un inconnu ?",
@@ -41,25 +41,25 @@ const content: Record<AppLocale, AboutContent> = {
     ],
     section2Title: "Ce que fait Fileo aujourd'hui",
     section2Paragraphs: [
-      "J'ai construit Fileo pour répondre à ce problème précis. Fusionner un PDF, convertir une image, pivoter un document : tout se passe directement dans votre navigateur, sur votre appareil. Aucun fichier n'est envoyé vers un serveur, donc aucune fuite de données n'est possible de notre côté, même en cas de piratage ailleurs sur le web.",
-      "L'équipe Fileo travaille aujourd'hui sur le PDF, avec l'image et le Word déjà disponibles.",
+      "J'ai construit Fileo pour répondre à ce problème précis. Fusionner un PDF, convertir une image, pivoter un document : tout se passe directement dans votre navigateur, sur votre appareil. Ces fichiers ne sont envoyés vers aucun serveur, donc aucune fuite de données n'est possible de notre côté, même en cas de piratage ailleurs sur le web.",
+      "L'équipe Fileo travaille aujourd'hui sur le PDF, avec l'image et le Word déjà disponibles. Seules les conversions Word passent par un service externe, CloudConvert, car elles ne peuvent pas encore se faire dans le navigateur : le fichier y est supprimé dès la fin de la conversion.",
     ],
     section3Title: "Une question de confiance, pas de marketing",
     section3Paragraphs: [
       "Le traitement local n'est pas un argument commercial chez Fileo. C'est la raison d'être du produit. Pas de compte à créer, pas de publicité, pas d'abonnement pour un usage normal. Fileo reste gratuit pour ses fonctionnalités actuelles.",
-      "Basé à Douala, au Cameroun, Fileo est pensé pour toute personne qui veut traiter ses documents sans jamais les partager avec un tiers.",
+      "Basé à Douala, au Cameroun, Fileo est pensé pour toute personne qui veut traiter ses documents sans les exposer inutilement.",
     ],
     signature: "— Horatio NGUEND, fondateur",
   },
   en: {
-    metaTitle: "Why Fileo exists: 100% local document processing",
+    metaTitle: "Why Fileo exists: local document processing",
     metaDescription:
       "Fileo processes your PDFs and images right in your browser, no server, no ads, free. Here's why this hub was created.",
     eyebrow: "Our story",
     h1: "Why I created Fileo",
     heroLede: "Your documents should never leave your device.",
     ctaLabel: "Try Merge PDF",
-    trustPoints: ["No account required", "No file ever uploaded", "100% free"],
+    trustPoints: ["No account required", "PDFs and images processed locally", "100% free"],
     section1Title: "A passport, a doubt, an idea",
     section1Paragraphs: [
       "One day, I needed to convert my passport into an image for an online form. A simple task. But when it came time to pick a tool, I stopped: why would I send an identity document to a stranger's server?",
@@ -67,13 +67,13 @@ const content: Record<AppLocale, AboutContent> = {
     ],
     section2Title: "What Fileo does today",
     section2Paragraphs: [
-      "I built Fileo to solve this exact problem. Merging a PDF, converting an image, rotating a document: everything happens directly in your browser, on your device. No file is ever sent to a server, so no data leak is possible on our end, even if another service gets breached.",
-      "The Fileo team is currently focused on PDF, with image and Word tools already available.",
+      "I built Fileo to solve this exact problem. Merging a PDF, converting an image, rotating a document: everything happens directly in your browser, on your device. These files are never sent to a server, so no data leak is possible on our end, even if another service gets breached.",
+      "The Fileo team is currently focused on PDF, with image and Word tools already available. Only Word conversions go through an external service, CloudConvert, because they cannot yet be done in the browser: the file is deleted there as soon as the conversion ends.",
     ],
     section3Title: "A matter of trust, not marketing",
     section3Paragraphs: [
       "Local processing isn't a selling point at Fileo. It's the reason the product exists. No account to create, no ads, no subscription for normal use. Fileo stays free for its current features.",
-      "Based in Douala, Cameroon, Fileo is built for anyone who wants to process their documents without ever sharing them with a third party.",
+      "Based in Douala, Cameroon, Fileo is built for anyone who wants to process their documents without exposing them needlessly.",
     ],
     signature: "— Horatio NGUEND, founder",
   },

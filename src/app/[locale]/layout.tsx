@@ -25,13 +25,13 @@ const localizedDefaults: Record<AppLocale, { title: string; description: string;
   fr: {
     title: `${siteConfig.name} | Outils PDF rapides et sécurisés`,
     description: siteConfig.description,
-    ogAlt: `${siteConfig.name} — Traitez vos documents et images sensibles, sans les envoyer nulle part`,
+    ogAlt: `${siteConfig.name} — Traitez vos PDF et images sensibles directement dans votre navigateur`,
   },
   en: {
     title: `${siteConfig.name} | Fast, secure PDF tools`,
     description:
-      "Merge, process, and organize your documents directly in your browser. Fast, secure, no file ever leaves your device.",
-    ogAlt: `${siteConfig.name} — Process your sensitive documents and images without sending them anywhere`,
+      "Merge, split, and convert your documents for free. PDFs and images are processed in your browser, never uploaded to a server.",
+    ogAlt: `${siteConfig.name} — Process your sensitive PDFs and images right in your browser`,
   },
 };
 
