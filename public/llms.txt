@@ -1,0 +1,41 @@
+# FileoPDF
+
+> FileoPDF is a free, no-account website of PDF, Word and image tools, available in English and French. The PDF and image tools run entirely in the user's browser: files are never uploaded to a server. The two Word conversion tools (PDF to Word, Word to PDF) are the exception: the file is sent to a third-party conversion service (CloudConvert) and deleted once the result is generated.
+
+FileoPDF is built for people who want to handle sensitive documents (contracts, IDs, invoices) without sending them to an online service. It has no ads and does not use tracking cookies. Site: https://www.fileopdf.com
+
+## PDF tools (processed locally in the browser)
+
+- [Merge PDF](https://www.fileopdf.com/en/pdf/merge-pdf): combine several PDF files into a single document.
+- [Split PDF](https://www.fileopdf.com/en/pdf/split-pdf): extract pages or split a PDF into several files.
+- [Rotate PDF](https://www.fileopdf.com/en/pdf/rotate-pdf): rotate one or all pages of a PDF.
+- [Remove pages from a PDF](https://www.fileopdf.com/en/pdf/remove-pages): delete unwanted pages from a PDF.
+- [JPG to PDF](https://www.fileopdf.com/en/pdf/jpg-to-pdf): turn one or more images into a PDF.
+- [PDF to JPG](https://www.fileopdf.com/en/pdf/pdf-to-jpg): export PDF pages as JPG images.
+
+## Image tools (processed locally in the browser)
+
+- [Compress image](https://www.fileopdf.com/en/image/compress-image): reduce the file size of images.
+
+## Word conversion tools (processed by a third-party service, file deleted afterwards)
+
+- [PDF to Word](https://www.fileopdf.com/en/pdf/pdf-to-word): convert a PDF into an editable Word document.
+- [Word to PDF](https://www.fileopdf.com/en/word/word-to-pdf): convert a Word document into a PDF.
+
+## Category pages
+
+- [PDF tools](https://www.fileopdf.com/en/pdf)
+- [Word tools](https://www.fileopdf.com/en/word)
+- [Image tools](https://www.fileopdf.com/en/image)
+
+## About and policies
+
+- [About FileoPDF](https://www.fileopdf.com/en/about): why the project exists.
+- [Privacy policy](https://www.fileopdf.com/en/privacy)
+- [Terms of use](https://www.fileopdf.com/en/terms)
+- [Support](https://www.fileopdf.com/en/support)
+
+## Optional
+
+- [Version française](https://www.fileopdf.com/fr): every page above exists in French under /fr/ (for example https://www.fileopdf.com/fr/pdf/merge-pdf).
+- [Sitemap](https://www.fileopdf.com/sitemap.xml)
