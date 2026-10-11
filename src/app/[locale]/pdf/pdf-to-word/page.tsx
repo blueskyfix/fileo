@@ -1,6 +1,7 @@
 // src/app/[locale]/pdf/pdf-to-word/page.tsx
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { ToolJsonLd } from "@/components/seo/tool-json-ld";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-and-use-cases";
@@ -9,7 +10,7 @@ import { ContentSummary } from "@/features/pdf/shared/components/content-summary
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { PdfToWordWidget } from "@/features/pdf/pdf-to-word";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 async function loadContent(locale: AppLocale) {
@@ -28,24 +29,14 @@ export async function generateMetadata({
   const { pdfToWordMeta } = await loadContent(locale as AppLocale);
   const path = pdfToWordMeta.canonicalSlug;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: path,
     title: pdfToWordMeta.metaTitle,
     description: pdfToWordMeta.metaDescription,
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}${path}`,
-      languages: {
-        fr: `${siteConfig.url}/fr${path}`,
-        en: `${siteConfig.url}/en${path}`,
-        "x-default": `${siteConfig.url}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: pdfToWordMeta.ogTitle,
-      description: pdfToWordMeta.ogDescription,
-      url: `${siteConfig.url}/${locale}${path}`,
-      images: [siteConfig.ogImage],
-    },
-  };
+    ogTitle: pdfToWordMeta.ogTitle,
+    ogDescription: pdfToWordMeta.ogDescription,
+  });
 }
 
 const heroHighlights: Record<AppLocale, string[]> = {
@@ -70,6 +61,7 @@ export default async function PdfToWordPage({
 
   return (
     <Container className="pb-20">
+      <ToolJsonLd locale={locale as AppLocale} slug="pdf-to-word" />
       <ToolHeroSplit
         title={pdfToWordHero.title}
         description={pdfToWordHero.subtitle}

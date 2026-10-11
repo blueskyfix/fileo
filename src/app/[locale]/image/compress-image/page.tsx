@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { ToolJsonLd } from "@/components/seo/tool-json-ld";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-and-use-cases";
@@ -8,7 +9,7 @@ import { ContentSummary } from "@/features/pdf/shared/components/content-summary
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { CompressImageWidget } from "@/features/images/compress";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 async function loadContent(locale: AppLocale) {
@@ -32,30 +33,14 @@ export async function generateMetadata({
   const { compressImageMeta } = await loadContent(locale as AppLocale);
   const path = compressImageMeta.canonicalSlug;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: path,
     title: compressImageMeta.metaTitle,
     description: compressImageMeta.metaDescription,
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}${path}`,
-      languages: {
-        fr: `${siteConfig.url}/fr${path}`,
-        en: `${siteConfig.url}/en${path}`,
-        "x-default": `${siteConfig.url}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: compressImageMeta.ogTitle,
-      description: compressImageMeta.ogDescription,
-      url: `${siteConfig.url}/${locale}${path}`,
-      images: [siteConfig.ogImage],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: compressImageMeta.ogTitle,
-      description: compressImageMeta.ogDescription,
-      images: [siteConfig.ogImage],
-    },
-  };
+    ogTitle: compressImageMeta.ogTitle,
+    ogDescription: compressImageMeta.ogDescription,
+  });
 }
 
 const heroHighlights: Record<AppLocale, string[]> = {
@@ -81,6 +66,7 @@ export default async function CompressImagePage({
 
   return (
     <Container className="pb-20">
+      <ToolJsonLd locale={locale as AppLocale} slug="compress-image" />
       <ToolHeroSplit
         title={compressImageHero.title}
         description={compressImageHero.subtitle}

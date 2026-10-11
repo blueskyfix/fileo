@@ -15,6 +15,9 @@
     "terms": "Conditions d'utilisation",
     "support": "Support"
   },
+  "ToolFaq": {
+    "title": "Questions fréquentes"
+  },
   "ToolCard": {
     "comingSoon": "Bientôt",
     "openTool": "Ouvrir l'outil",

@@ -4,7 +4,7 @@ import { ToolCard } from "@/components/marketing/tool-card";
 import { Zap, Lock, UserX } from "lucide-react";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { pdfTools } from "@/data/tools/tools";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 const HUB_PATH = "/pdf";
@@ -25,26 +25,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { pdfHubHero } = await loadContent(locale as AppLocale);
-  const url = `${siteConfig.url}/${locale}${HUB_PATH}`;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: HUB_PATH,
     title: pdfHubHero.title,
     description: pdfHubHero.subtitle,
-    alternates: {
-      canonical: url,
-      languages: {
-        fr: `${siteConfig.url}/fr${HUB_PATH}`,
-        en: `${siteConfig.url}/en${HUB_PATH}`,
-        "x-default": `${siteConfig.url}/en${HUB_PATH}`,
-      },
-    },
-    openGraph: {
-      title: pdfHubHero.title,
-      description: pdfHubHero.subtitle,
-      url,
-      images: [siteConfig.ogImage],
-    },
-  };
+  });
 }
 
 export default async function PdfHubPage({

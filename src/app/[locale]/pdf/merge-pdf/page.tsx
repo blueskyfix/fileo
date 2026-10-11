@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Lock, CloudOff, Trash2 } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { ToolJsonLd } from "@/components/seo/tool-json-ld";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
 import { InlineTrustStrip } from "@/features/pdf/shared/components/inline-trust-strip";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
@@ -11,7 +12,7 @@ import { ContentSummary } from "@/features/pdf/shared/components/content-summary
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { MergeTool } from "@/features/pdf/merge";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 async function loadContent(locale: AppLocale) {
@@ -30,24 +31,14 @@ export async function generateMetadata({
   const { mergePdfMeta } = await loadContent(locale as AppLocale);
   const path = mergePdfMeta.canonicalSlug;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: path,
     title: mergePdfMeta.metaTitle,
     description: mergePdfMeta.metaDescription,
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}${path}`,
-      languages: {
-        fr: `${siteConfig.url}/fr${path}`,
-        en: `${siteConfig.url}/en${path}`,
-        "x-default": `${siteConfig.url}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: mergePdfMeta.ogTitle,
-      description: mergePdfMeta.ogDescription,
-      url: `${siteConfig.url}/${locale}${path}`,
-      images: [siteConfig.ogImage],
-    },
-  };
+    ogTitle: mergePdfMeta.ogTitle,
+    ogDescription: mergePdfMeta.ogDescription,
+  });
 }
 
 const heroHighlights: Record<AppLocale, string[]> = {
@@ -73,6 +64,7 @@ export default async function MergePdfPage({
 
   return (
     <Container className="pb-20">
+      <ToolJsonLd locale={locale as AppLocale} slug="merge-pdf" />
       <ToolHeroSplit
         title={mergePdfHero.title}
         description={mergePdfHero.subtitle}
@@ -86,9 +78,9 @@ export default async function MergePdfPage({
         <p className="max-w-2xl text-foreground-muted">{mergePdfTrustBlock.intro}</p>
         <InlineTrustStrip
           points={[
-            { label: "Fusion locale", icon: Lock },
-            { label: "Aucun stockage de vos fichiers", icon: CloudOff },
-            { label: "Tout disparaît à la fermeture", icon: Trash2 },
+            { label: mergePdfTrustBlock.points[0]?.title ?? "", icon: Lock },
+            { label: mergePdfTrustBlock.points[1]?.title ?? "", icon: CloudOff },
+            { label: mergePdfTrustBlock.points[2]?.title ?? "", icon: Trash2 },
           ]}
         />
       </section>

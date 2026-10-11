@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { Lock, UserX, Gift } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Hero } from "@/components/marketing/hero";
 import { ToolCard } from "@/components/marketing/tool-card";
 import { pdfTools } from "@/data/tools/tools";
 import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 // Même pattern que les pages outils : if/else explicite pour garder
@@ -27,18 +29,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const { homeMeta } = await loadContent(locale as AppLocale);
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: "",
     title: homeMeta.title,
-    description: siteConfig.description,
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}`,
-      languages: {
-        fr: `${siteConfig.url}/fr`,
-        en: `${siteConfig.url}/en`,
-        "x-default": `${siteConfig.url}/en`,
-      },
-    },
-  };
+    description: siteConfig.descriptions[locale as AppLocale] ?? siteConfig.description,
+  });
 }
 
 export default async function HomePage({
@@ -52,8 +48,31 @@ export default async function HomePage({
   );
   const availableTools = pdfTools.filter((tool) => tool.status === "available");
 
+  const siteJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteConfig.url}/#organization`,
+        name: siteConfig.name,
+        url: siteConfig.url,
+        logo: `${siteConfig.url}/logos/logo.png`,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.url}/#website`,
+        name: siteConfig.name,
+        url: `${siteConfig.url}/${locale}`,
+        inLanguage: locale,
+        description: siteConfig.descriptions[locale as AppLocale],
+        publisher: { "@id": `${siteConfig.url}/#organization` },
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={siteJsonLd} />
       <Container>
         <Hero locale={locale as AppLocale} />
       </Container>

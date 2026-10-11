@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 const PATH = "/support";
@@ -51,26 +51,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const c = content[locale as AppLocale];
-  const url = `${siteConfig.url}/${locale}${PATH}`;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: PATH,
     title: c.metaTitle,
     description: c.metaDescription,
-    alternates: {
-      canonical: url,
-      languages: {
-        fr: `${siteConfig.url}/fr${PATH}`,
-        en: `${siteConfig.url}/en${PATH}`,
-        "x-default": `${siteConfig.url}/en${PATH}`,
-      },
-    },
-    openGraph: {
-      title: c.metaTitle,
-      description: c.metaDescription,
-      url,
-      images: [siteConfig.ogImage],
-    },
-  };
+  });
 }
 
 export default async function SupportPage({

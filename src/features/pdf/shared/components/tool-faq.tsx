@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { FaqAccordionItem } from "@/features/pdf/shared/components/faq-accordion-item";
 import type { FaqItem } from "@/features/pdf/shared/types";
 
@@ -5,7 +6,8 @@ interface ToolFaqProps {
   items: FaqItem[];
 }
 
-export function ToolFaq({ items }: ToolFaqProps) {
+export async function ToolFaq({ items }: ToolFaqProps) {
+  const t = await getTranslations("ToolFaq");
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -35,7 +37,7 @@ export function ToolFaq({ items }: ToolFaqProps) {
       />
 
       <h2 className="text-2xl font-bold tracking-tight text-foreground">
-        Questions fréquentes
+        {t("title")}
       </h2>
 
       <div className="mt-6 flex flex-col gap-3">

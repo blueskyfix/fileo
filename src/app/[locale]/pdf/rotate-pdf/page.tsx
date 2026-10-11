@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
+import { ToolJsonLd } from "@/components/seo/tool-json-ld";
 import { ToolHeroSplit } from "@/features/pdf/shared/components/tool-hero-split";
 import { HowItWorks } from "@/features/pdf/shared/components/how-it-works";
 import { BenefitsAndUseCases } from "@/features/pdf/shared/components/benefits-and-use-cases";
@@ -8,7 +9,7 @@ import { ContentSummary } from "@/features/pdf/shared/components/content-summary
 import { RelatedTools } from "@/features/pdf/shared/components/related-tools";
 import { getRelatedTools } from "@/data/tools/tools";
 import { RotatePdfTool } from "@/features/pdf/rotate-pdf";
-import { siteConfig } from "@/core/config/site";
+import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
 
 async function loadContent(locale: AppLocale) {
@@ -27,24 +28,14 @@ export async function generateMetadata({
   const { rotatePdfMeta } = await loadContent(locale as AppLocale);
   const path = rotatePdfMeta.canonicalSlug;
 
-  return {
+  return buildPageMetadata({
+    locale,
+    path: path,
     title: rotatePdfMeta.metaTitle,
     description: rotatePdfMeta.metaDescription,
-    alternates: {
-      canonical: `${siteConfig.url}/${locale}${path}`,
-      languages: {
-        fr: `${siteConfig.url}/fr${path}`,
-        en: `${siteConfig.url}/en${path}`,
-        "x-default": `${siteConfig.url}/en${path}`,
-      },
-    },
-    openGraph: {
-      title: rotatePdfMeta.ogTitle,
-      description: rotatePdfMeta.ogDescription,
-      url: `${siteConfig.url}/${locale}${path}`,
-      images: [siteConfig.ogImage],
-    },
-  };
+    ogTitle: rotatePdfMeta.ogTitle,
+    ogDescription: rotatePdfMeta.ogDescription,
+  });
 }
 
 const heroHighlights: Record<AppLocale, string[]> = {
@@ -69,6 +60,7 @@ export default async function RotatePdfPage({
 
   return (
     <Container className="pb-20">
+      <ToolJsonLd locale={locale as AppLocale} slug="rotate-pdf" />
       <ToolHeroSplit
         title={rotatePdfHero.title}
         description={rotatePdfHero.subtitle}
