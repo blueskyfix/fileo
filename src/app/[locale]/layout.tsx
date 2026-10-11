@@ -112,14 +112,6 @@ export default async function LocaleLayout({
               strategy="afterInteractive"
             />
           )}
-          {isProd && (
-            <Script
-              async
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5286690973312577"
-              crossOrigin="anonymous"
-              strategy="afterInteractive"
-            />
-          )}
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />

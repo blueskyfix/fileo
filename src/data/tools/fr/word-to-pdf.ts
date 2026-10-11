@@ -2,7 +2,7 @@
 import type { ContentItem, FaqItem, HowItWorksStep } from "@/features/pdf/shared/types";
 
 export const wordToPdfMeta = {
-  metaTitle: "Convertir un Word en PDF gratuitement | FileoPDF",
+  metaTitle: "Convertir un Word en PDF gratuitement",
   metaDescription:
     "Convertissez votre document Word en PDF en quelques secondes, mise en page conservée. Gratuit, sans compte, sans limite.",
   canonicalSlug: "/word/word-to-pdf",
