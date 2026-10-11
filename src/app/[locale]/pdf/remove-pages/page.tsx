@@ -73,7 +73,7 @@ export default async function RemovePagesPage({
         <RemovePagesWidget />
       </ToolHeroSplit>
 
-      <section className="mt-16 space-y-4">
+      <section className="mt-16 space-y-4 pb-16">
         <h2 className="text-2xl font-bold text-foreground">{removePagesTrustBlock.title}</h2>
         <p className="max-w-2xl text-foreground-muted">{removePagesTrustBlock.intro}</p>
         <InlineTrustStrip

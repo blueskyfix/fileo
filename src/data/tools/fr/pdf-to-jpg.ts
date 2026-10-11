@@ -64,7 +64,7 @@ export const pdfToJpgHowItWorks: { title: string; intro: string; steps: ContentI
 };
 
 export const pdfToJpgBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi utiliser l'outil PDF to JPG de FileoPDF",
+  title: "Pourquoi convertir vos PDF en images avec FileoPDF",
   intro: "Extraire des images d'un PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
   items: [
     {
@@ -95,7 +95,7 @@ export const pdfToJpgBenefits: { title: string; intro: string; items: ContentIte
 };
 
 export const pdfToJpgUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Dans quels cas utiliser PDF to JPG",
+  title: "Dans quels cas convertir un PDF en JPG",
   intro: "Quelques situations concrètes où extraire des images d'un PDF simplifie les choses.",
   cases: [
     {
@@ -131,7 +131,7 @@ export const pdfToJpgFaq: FaqItem[] = [
     answer: "Aucune. Que vous parliez de convertir, exporter ou transformer un PDF en JPG, en photo ou en image, il s'agit toujours de la même opération : chaque page sélectionnée est transformée en fichier image JPG, directement dans votre navigateur.",
   },
   {
-    question: "L'outil PDF to JPG de FileoPDF est-il vraiment gratuit ?",
+    question: "L'outil PDF vers JPG de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La conversion de PDF en images JPG est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
   {

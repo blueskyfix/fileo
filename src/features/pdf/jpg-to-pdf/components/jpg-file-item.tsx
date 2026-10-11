@@ -2,6 +2,7 @@
 
 import { X, GripVertical } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
+import { useTranslations } from "next-intl";
 import { CSS } from "@dnd-kit/utilities";
 import { formatFileSize } from "@/features/pdf/shared/utils/format-file-size";
 import type { JpgToPdfImage } from "../lib/types";
@@ -13,6 +14,7 @@ interface JpgFileItemProps {
 }
 
 export function JpgFileItem({ image, index, onRemove }: JpgFileItemProps) {
+  const t = useTranslations("MergeFileItem");
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: image.id });
 
@@ -26,16 +28,16 @@ export function JpgFileItem({ image, index, onRemove }: JpgFileItemProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-3 rounded-xl border border-border bg-elevated p-3"
+      className="flex items-center gap-2 rounded-xl border border-border bg-elevated px-3 py-2"
     >
       <button
         type="button"
-        className="cursor-grab touch-none text-foreground-muted hover:text-foreground"
+        className="-ml-2 flex h-11 w-11 shrink-0 cursor-grab touch-none items-center justify-center rounded-lg text-foreground-muted hover:bg-unelevated hover:text-foreground"
         {...attributes}
         {...listeners}
-        aria-label="Réordonner"
+        aria-label={t("reorderNamed", { name: image.name })}
       >
-        <GripVertical className="h-4 w-4" />
+        <GripVertical className="h-5 w-5" />
       </button>
 
       <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
@@ -56,10 +58,10 @@ export function JpgFileItem({ image, index, onRemove }: JpgFileItemProps) {
       <button
         type="button"
         onClick={() => onRemove(image.id)}
-        className="text-foreground-muted hover:text-foreground"
-        aria-label="Retirer"
+        className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground-muted hover:bg-unelevated hover:text-danger"
+        aria-label={t("removeNamed", { name: image.name })}
       >
-        <X className="h-4 w-4" />
+        <X className="h-5 w-5" />
       </button>
     </div>
   );

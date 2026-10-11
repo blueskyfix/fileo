@@ -22,7 +22,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
       <div className="flex flex-col gap-6">
         <h1 className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl">
           {homeHero.titleLead}{" "}
-          <span className="text-primary">{homeHero.titleHighlight}</span>
+          <span className="text-brand">{homeHero.titleHighlight}</span>
         </h1>
 
         <p className="max-w-xl text-lg text-foreground-muted">
@@ -32,7 +32,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/pdf/merge-pdf"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-[filter] hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             {homeHero.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4" />
@@ -40,7 +40,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
 
           <Link
             href="/pdf"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
           >
             {homeHero.ctaSecondaryLabel}
           </Link>
@@ -52,7 +52,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
             if (!Icon) return null;
             return (
               <div key={label} className="flex items-center gap-2">
-                <Icon className="h-4 w-4 shrink-0 text-primary" />
+                <Icon className="h-4 w-4 shrink-0 text-safe" aria-hidden="true" />
                 <span className="text-sm text-foreground-muted">{label}</span>
               </div>
             );

@@ -34,7 +34,7 @@ export const toolLabelsFr: Record<string, ToolLabel> = {
       "Supprimez des pages spécifiques d'un PDF sans le retraiter entièrement.",
   },
   "rotate-pdf": {
-    name: "Rotate PDF",
+    name: "Faire pivoter un PDF",
     description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
   },
   "compress-image": {

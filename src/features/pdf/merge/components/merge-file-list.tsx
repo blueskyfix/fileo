@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  DndContext,
-  closestCenter,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-} from "@dnd-kit/core";
+import { DndContext, closestCenter, type DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { useTranslations } from "next-intl";
+import { useSortableList } from "@/components/ui/use-sortable-list";
 import { MergeFileItem } from "@/features/pdf/merge/components/merge-file-item";
 import type { PdfFileItem } from "@/features/pdf/shared/types/pdf-file-item";
 
@@ -26,18 +19,13 @@ export function MergeFileList({
   onRemove,
   disabled,
 }: MergeFileListProps) {
-  const t = useTranslations("MergeFileList");
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
+  const { sensors, accessibility } = useSortableList(
+    (id) => files.find((f) => f.id === id)?.name ?? "",
   );
 
-  if (files.length === 0) {
-    return (
-      <div className="flex flex-col items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-10 text-center text-sm text-foreground-muted">
-        {t("empty")}
-      </div>
-    );
-  }
+  // Pas de cadre « aucun fichier » : la zone de dépôt suffit, et le bouton
+  // d'action reste ainsi visible sans défiler sur mobile.
+  if (files.length === 0) return null;
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -53,6 +41,7 @@ export function MergeFileList({
   return (
     <DndContext
       sensors={sensors}
+      accessibility={accessibility}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >

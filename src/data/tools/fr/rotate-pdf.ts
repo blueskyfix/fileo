@@ -64,7 +64,7 @@ export const rotatePdfHowItWorks: { title: string; intro: string; steps: Content
 };
 
 export const rotatePdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi utiliser l'outil Rotate PDF de FileoPDF",
+  title: "Pourquoi faire pivoter vos PDF avec FileoPDF",
   intro: "Corriger l'orientation d'un PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
   items: [
     {
@@ -95,7 +95,7 @@ export const rotatePdfBenefits: { title: string; intro: string; items: ContentIt
 };
 
 export const rotatePdfUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Dans quels cas utiliser Rotate PDF",
+  title: "Dans quels cas faire pivoter un PDF",
   intro: "Quelques situations concrètes où corriger l'orientation d'un PDF simplifie les choses.",
   cases: [
     {
@@ -127,7 +127,7 @@ export const rotatePdfFaq: FaqItem[] = [
     answer: "Non. La rotation s'exécute directement dans votre navigateur : votre fichier PDF n'est pas envoyé sur un serveur. Le document final est généré localement, sur votre appareil.",
   },
   {
-    question: "L'outil Rotate PDF de FileoPDF est-il vraiment gratuit ?",
+    question: "L'outil de rotation de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La rotation de PDF est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
   {

@@ -29,6 +29,7 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -44,6 +45,20 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   }, []);
 
+  useEffect(() => {
+    if (!isMobileMenuOpen && openDropdown === null) return;
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+      setOpenDropdown(null);
+    }
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isMobileMenuOpen, openDropdown]);
+
   function toggleDropdown(key: DropdownKey) {
     setOpenDropdown((prev) => (prev === key ? null : key));
   }
@@ -53,10 +68,12 @@ export function Navbar() {
       <Container>
         <nav className="flex h-16 items-center justify-between gap-4">
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className="flex shrink-0 items-center justify-center rounded-lg p-2 text-foreground transition-colors hover:bg-unelevated md:hidden"
+            className="-ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground transition-colors hover:bg-unelevated md:hidden"
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
             aria-label={t("menu")}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -74,7 +91,7 @@ export function Navbar() {
               <Link
                 key={tool.slug}
                 href={`/${locale}${tool.status === "available" ? tool.href : "/pdf"}`}
-                className="relative inline-block whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100 motion-reduce:after:transition-none"
+                className="relative inline-flex min-h-11 items-center whitespace-nowrap text-sm font-medium text-foreground-muted transition-colors after:absolute after:bottom-2 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100 motion-reduce:after:transition-none"
               >
                 {getToolLabel(tool.slug, locale).name}
               </Link>
@@ -102,7 +119,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => toggleDropdown("all")}
-                className="flex items-center gap-1 whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
+                className="flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
                 aria-expanded={openDropdown === "all"}
               >
                 {t("allTools")}
@@ -135,22 +152,16 @@ export function Navbar() {
             </div>
           </div>
 
-          <div className="hidden shrink-0 items-center gap-4 md:flex">
+          <div className="hidden shrink-0 items-center md:flex">
             <LanguageSwitcher />
-            <Link
-              href={`/${locale}/pdf`}
-              className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground hover:shadow-md"
-            >
-              {t("tryFree")}
-            </Link>
           </div>
 
-          <div className="w-9 md:hidden" aria-hidden="true" />
+          <div className="w-11 md:hidden" aria-hidden="true" />
         </nav>
       </Container>
 
       {isMobileMenuOpen && (
-        <div className="border-t border-border bg-elevated md:hidden">
+        <div id="mobile-menu" className="border-t border-border bg-elevated md:hidden">
           <Container className="flex flex-col gap-5 py-4">
             <MobileGroup label={toolCategoryLabels.main} tools={mainTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
             <MobileGroup label={toolCategoryLabels.convert} tools={convertTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
@@ -159,20 +170,12 @@ export function Navbar() {
             <Link
               href={`/${locale}/pdf`}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-sm font-medium text-primary"
+              className="flex min-h-11 items-center px-3 text-sm font-medium text-primary"
             >
               {t("seeAllTools")}
             </Link>
 
             <LanguageSwitcher />
-
-            <Link
-              href={`/${locale}/pdf/merge-pdf`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground"
-            >
-              {t("tryFree")}
-            </Link>
           </Container>
         </div>
       )}
@@ -202,7 +205,7 @@ function NavDropdown({
       <button
         type="button"
         onClick={onToggle}
-        className="flex items-center gap-1 whitespace-nowrap py-1 text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
+        className="flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-medium text-foreground-muted transition-colors hover:text-foreground"
         aria-expanded={isOpen}
       >
         {label}
@@ -250,7 +253,7 @@ function MobileGroup({
           key={tool.slug}
           href={`/${locale}${tool.status === "available" ? tool.href : "/pdf"}`}
           onClick={onNavigate}
-          className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
+          className="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
         >
           {getToolLabel(tool.slug, locale).name}
         </Link>

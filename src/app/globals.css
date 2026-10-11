@@ -12,30 +12,68 @@
   --color-accent-foreground: var(--fileo-primary-foreground);
   --color-foreground: var(--fileo-foreground);
   --color-foreground-muted: var(--fileo-foreground-muted);
+  --color-brand: var(--fileo-brand);
+  --color-safe: var(--fileo-safe);
+  --color-safe-soft: var(--fileo-safe-soft);
+  --color-danger: var(--fileo-danger);
 
   --radius-lg: 12px;
 
   --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-display-face), var(--font-inter), sans-serif;
 }
 
 :root {
-  --fileo-surface: #f8fafc;
-  --fileo-unelevated: #f1f5f9;
+  /* Identite "dossier papier" : fond papier chaud, encre marine pour les
+     actions, bleu du logo en accent, vert reserve aux signaux de confidentialite.
+     Tous les couples texte/fond ci-dessous passent WCAG AA (>= 4.5:1). */
+  --fileo-surface: #f6f4ef;
+  --fileo-unelevated: #eeebe3;
   --fileo-elevated: #ffffff;
-  --fileo-border: #e2e8f0;
+  --fileo-border: #e2ddd2;
 
-  --fileo-primary: #2666eb;
-  --fileo-primary-hover: #1d54c7;
+  --fileo-primary: #1f3b73;
+  --fileo-primary-hover: #172e5a;
   --fileo-primary-foreground: #ffffff;
 
-  --fileo-foreground: #0f172a;
-  --fileo-foreground-muted: #64748b;
+  --fileo-brand: #2459e0;
+  --fileo-safe: #0d7050;
+  --fileo-safe-soft: #e3f1ea;
+  --fileo-danger: #b42318;
+
+  --fileo-foreground: #121b2e;
+  --fileo-foreground-muted: #535c6e;
 }
 
 @import "../styles/utilities.css";
 
 body {
   @apply bg-surface text-foreground font-sans antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Anneau de focus visible et contraste (WCAG 2.4.7), clavier uniquement. */
+:where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 ::selection {

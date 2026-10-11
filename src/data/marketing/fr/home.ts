@@ -3,7 +3,7 @@ export const homeMeta = {
 };
 
 export const homeHero = {
-  titleLead: "Traitez vos PDFs,",
+  titleLead: "Traitez vos PDF,",
   titleHighlight: "simplement.",
   subtitle:
     "Fusionnez, découpez et convertissez vos PDF dans votre navigateur en toute confidentialité et sans inscription.",

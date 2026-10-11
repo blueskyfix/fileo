@@ -35,9 +35,9 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
       ref={setNodeRef}
       style={style}
       className={cn(
-        "flex items-center gap-3 rounded-lg border border-border bg-elevated px-4 py-3",
+        "flex items-center gap-2 rounded-lg border border-border bg-elevated px-3 py-2",
         isDragging && "z-10 shadow-lg",
-        item.status === "error" && "border-red-500/40",
+        item.status === "error" && "border-danger/40",
       )}
     >
       <button
@@ -45,10 +45,10 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
         {...attributes}
         {...listeners}
         disabled={disabled || item.status !== "ready"}
-        className="cursor-grab touch-none text-foreground-muted disabled:cursor-not-allowed disabled:opacity-30"
-        aria-label={t("reorder")}
+        className="-ml-2 flex h-11 w-11 shrink-0 cursor-grab touch-none items-center justify-center rounded-lg text-foreground-muted hover:bg-unelevated disabled:cursor-not-allowed disabled:opacity-30"
+        aria-label={t("reorderNamed", { name: item.name })}
       >
-        <GripVertical className="h-4 w-4" />
+        <GripVertical className="h-5 w-5" />
       </button>
 
       <div className="flex h-10 w-8 shrink-0 items-center justify-center overflow-hidden rounded border border-border bg-surface">
@@ -71,8 +71,8 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
           {item.status === "ready" &&
             t("fileMeta", { size: formatFileSize(item.size), count: item.pageCount ?? 0 })}
           {item.status === "error" && (
-            <span className="flex items-center gap-1 text-red-500">
-              <AlertCircle className="h-3 w-3" />
+            <span className="flex items-center gap-1 text-danger">
+              <AlertCircle className="h-3 w-3" aria-hidden="true" />
               {item.errorMessage}
             </span>
           )}
@@ -87,10 +87,10 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
         type="button"
         onClick={() => onRemove(item.id)}
         disabled={disabled}
-        aria-label={t("remove")}
-        className="text-foreground-muted transition-colors hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-30"
+        aria-label={t("removeNamed", { name: item.name })}
+        className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground-muted transition-colors hover:bg-unelevated hover:text-danger disabled:cursor-not-allowed disabled:opacity-30"
       >
-        <X className="h-4 w-4" />
+        <X className="h-5 w-5" />
       </button>
     </div>
   );

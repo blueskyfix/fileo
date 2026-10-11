@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -16,6 +16,18 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
+
+// Police des titres : donne a FileoPDF une voix propre, Inter reste pour le texte.
+const displayFace = Bricolage_Grotesque({
+  variable: "--font-display-face",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
+const skipLinkLabel: Record<AppLocale, string> = {
+  fr: "Aller au contenu",
+  en: "Skip to content",
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -96,7 +108,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} flex min-h-screen flex-col`}>
+      <body className={`${inter.variable} ${displayFace.variable} flex min-h-screen flex-col`}>
+        <a
+          href="#main-content"
+          className="sr-only z-50 rounded-lg bg-primary px-4 py-3 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          {skipLinkLabel[locale as AppLocale]}
+        </a>
         <NextIntlClientProvider messages={messages}>
           {isProd && analyticsConfig.umamiWebsiteId && (
             <Script
@@ -114,7 +132,9 @@ export default async function LocaleLayout({
             />
           )}
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+            {children}
+          </main>
           <Footer />
         </NextIntlClientProvider>
       </body>

@@ -101,7 +101,7 @@ export const splitPdfBenefits: { title: string; intro: string; items: ContentIte
 };
 
 export const splitPdfUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Qui utilise Split PDF pour ses documents sensibles",
+  title: "Qui divise ses documents sensibles avec FileoPDF",
   intro: "Des professionnels qui manipulent des données qu'ils ne peuvent pas envoyer à un outil tiers.",
   cases: [
     {
@@ -149,7 +149,7 @@ export const splitPdfFaq: FaqItem[] = [
     answer: "Si une seule page est sélectionnée, le PDF se télécharge directement. Si plusieurs pages sont sélectionnées, les fichiers sont regroupés dans une archive ZIP, elle aussi générée dans votre navigateur.",
   },
   {
-    question: "L'outil Split PDF de Fileo est-il vraiment gratuit ?",
+    question: "L'outil de division de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. L'extraction et la division de PDF sont gratuites et ne nécessitent aucune inscription ni aucune information personnelle.",
   },
   {
@@ -167,5 +167,5 @@ export const splitPdfFaq: FaqItem[] = [
 ];
 
 export const splitPdfSummary = {
-  text: "Split PDF permet de diviser ou d'extraire des pages d'un document directement dans le navigateur, sans envoi de fichier vers un serveur. Un outil gratuit et sans compte, pensé pour les professionnels qui manipulent des documents confidentiels : contrats, dossiers RH, relevés médicaux ou comptables.",
+  text: "L'outil de division de FileoPDF permet de diviser ou d'extraire des pages d'un document directement dans le navigateur, sans envoi de fichier vers un serveur. Un outil gratuit et sans compte, pensé pour les professionnels qui manipulent des documents confidentiels : contrats, dossiers RH, relevés médicaux ou comptables.",
 };
