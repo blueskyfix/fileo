@@ -103,13 +103,14 @@ export default async function LocaleLayout({
               defer
               src="https://cloud.umami.is/script.js"
               data-website-id={analyticsConfig.umamiWebsiteId}
+              strategy="lazyOnload"
             />
           )}
           {isProd && (
             <Script
               src="https://analytics.ahrefs.com/analytics.js"
               data-key="sHtLKUZNI+80zGPJZ/Lb9A"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
           )}
           <Navbar />
