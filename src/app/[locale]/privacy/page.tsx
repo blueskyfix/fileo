@@ -185,8 +185,7 @@ export default async function PrivacyPage({
             </h2>
             <p className="mt-2">
               {c.section5Pre}
-              
-              <a href="mailto:contact@fileopdf.app" className="text-primary hover:underline">contact@fileopdf.app</a>
+              <a href="mailto:hnguend1@gmail.com" className="text-primary hover:underline">hnguend1@gmail.com</a>
               {c.section5Post}
             </p>
           </section>

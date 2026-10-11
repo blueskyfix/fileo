@@ -26,6 +26,7 @@ export function Footer() {
   const organizeTools = getToolsByCategory("organize");
 
   const legalLinks = [
+    { label: t("about"), href: "/about" },
     { label: t("allPdfTools"), href: "/pdf" },
     { label: t("privacy"), href: "/privacy" },
     { label: t("terms"), href: "/terms" },
