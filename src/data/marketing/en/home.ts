@@ -10,9 +10,9 @@ export const homeHero = {
   ctaPrimaryLabel: "Merge a PDF",
   ctaSecondaryLabel: "View all tools",
   reassurance: [
-    "Simple and direct",
     "PDFs processed locally",
-    "No sign-up",
+    "0 account",
+    "0 ads",
   ],
 };
 

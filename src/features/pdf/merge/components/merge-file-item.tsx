@@ -71,8 +71,8 @@ export function MergeFileItem({ item, onRemove, disabled }: MergeFileItemProps) 
           {item.status === "ready" &&
             t("fileMeta", { size: formatFileSize(item.size), count: item.pageCount ?? 0 })}
           {item.status === "error" && (
-            <span className="flex items-center gap-1 text-danger">
-              <AlertCircle className="h-3 w-3" aria-hidden="true" />
+            <span className="flex items-center gap-1 text-foreground">
+              <AlertCircle className="h-3 w-3 text-danger" aria-hidden="true" />
               {item.errorMessage}
             </span>
           )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, RotateCcw } from "lucide-react";
+import { AlertTriangle, Download, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
@@ -37,7 +37,8 @@ export function SplitActionBar({
     <div className="flex flex-col gap-3">
       <StatusAnnouncer message={announcement} />
       {error && (
-        <p role="alert" className="rounded-lg border border-danger/40 p-3 text-sm text-danger">
+        <p role="alert" className="flex items-start gap-2 rounded-lg border border-border border-l-4 border-l-danger bg-elevated p-3 text-sm text-foreground">
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
           {error}
         </p>
       )}
@@ -49,7 +50,7 @@ export function SplitActionBar({
               ref={downloadRef}
               type="button"
               onClick={onDownload}
-              className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
             >
               <Download className="h-4 w-4" />
               {t("download")}
@@ -68,7 +69,7 @@ export function SplitActionBar({
             type="button"
             onClick={onSplit}
             disabled={isBusy || selectedCount === 0}
-            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "loading" && t("loadingPdf")}
             {status === "splitting" && t("processing")}

@@ -16,6 +16,7 @@ export function MergeDropzone({ onFilesAdded, disabled }: MergeDropzoneProps) {
     <FileDropzone
       accept={{ "application/pdf": [".pdf"] }}
       multiple
+      localNote
       onFiles={onFilesAdded}
       acceptedLabel=".pdf"
       title={t("title")}

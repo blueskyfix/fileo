@@ -24,7 +24,7 @@ export default function ErrorPage({
       <button
         type="button"
         onClick={() => reset()}
-        className="rounded-lg bg-accent px-6 py-2.5 text-sm font-medium text-accent-foreground transition-[filter] hover:brightness-110"
+        className="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
       >
         Réessayer
       </button>

@@ -10,9 +10,9 @@ export const homeHero = {
   ctaPrimaryLabel: "Fusionner un PDF",
   ctaSecondaryLabel: "Voir tous les outils",
   reassurance: [
-    "Simple et direct",
-    "PDF traités localement",
-    "Sans inscription",
+    "PDF traités en local",
+    "0 compte",
+    "0 publicité",
   ],
 };
 

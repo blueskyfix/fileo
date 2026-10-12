@@ -58,7 +58,7 @@ export function RotatePdfActionBar({
           ref={downloadRef}
           type="button"
           onClick={onDownload}
-          className="flex items-center gap-2 rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary-hover"
+          className="flex items-center gap-2 rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-primary-hover"
         >
           <Download className="h-4 w-4" aria-hidden="true" />
           {tStatus("download")}
@@ -106,7 +106,7 @@ export function RotatePdfActionBar({
           type="button"
           onClick={onApply}
           disabled={!hasChanges || status === "rotating"}
-          className="rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
+          className="rounded-xl bg-primary px-5 py-3 font-semibold text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
         >
           {status === "rotating" ? t("rotating") : t("apply")}
         </button>

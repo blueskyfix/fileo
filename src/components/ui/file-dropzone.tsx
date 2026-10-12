@@ -2,7 +2,7 @@
 
 import { useCallback, useState, type ReactNode } from "react";
 import { useDropzone, type Accept, type FileRejection } from "react-dropzone";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/core/utils/cn";
 
@@ -17,6 +17,8 @@ interface FileDropzoneProps {
   subtitle: string;
   icon: ReactNode;
   disabled?: boolean;
+  /** Vrai seulement si le fichier est traité dans le navigateur. */
+  localNote?: boolean;
 }
 
 /**
@@ -34,6 +36,7 @@ export function FileDropzone({
   subtitle,
   icon,
   disabled,
+  localNote = false,
 }: FileDropzoneProps) {
   const t = useTranslations("FileDropzone");
   const [rejectionMessage, setRejectionMessage] = useState<string | null>(null);
@@ -71,9 +74,9 @@ export function FileDropzone({
           "aria-disabled": disabled || undefined,
         })}
         className={cn(
-          "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed bg-elevated px-6 py-12 text-center transition-colors",
-          !disabled && "cursor-pointer hover:border-primary/60",
-          isDragActive ? "border-primary bg-primary/5" : "border-border",
+          "flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed bg-elevated px-6 py-12 text-center transition-colors duration-200 sm:p-12",
+          !disabled && "cursor-pointer hover:border-secondary",
+          isDragActive ? "border-secondary bg-secondary/5" : "border-border",
           rejectionMessage && !isDragActive && "border-danger/50",
           disabled && "cursor-not-allowed opacity-60",
         )}
@@ -86,12 +89,18 @@ export function FileDropzone({
           {isDragActive && titleDragActive ? titleDragActive : title}
         </p>
         <p className="text-sm text-foreground-muted">{subtitle}</p>
+        {localNote && (
+          <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-foreground">
+            <Lock className="h-4 w-4 text-secondary" aria-hidden="true" />
+            {t("localNote")}
+          </p>
+        )}
       </div>
 
-      <p role="alert" className="min-h-0 text-sm text-danger">
+      <p role="alert" className="min-h-0 text-sm text-foreground">
         {rejectionMessage && (
           <span className="flex items-start gap-1.5">
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
             {rejectionMessage}
           </span>
         )}

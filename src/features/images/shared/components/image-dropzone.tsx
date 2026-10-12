@@ -19,6 +19,7 @@ export function ImageDropzone({ onFilesAdded }: ImageDropzoneProps) {
         "image/webp": [".webp"],
       }}
       multiple
+      localNote
       onFiles={onFilesAdded}
       acceptedLabel="JPEG, PNG, WebP"
       title={t("title")}

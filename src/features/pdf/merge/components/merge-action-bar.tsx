@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download } from "lucide-react";
+import { CheckCircle2, Download } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { formatFileSize } from "@/features/pdf/shared/utils/format-file-size";
@@ -38,7 +38,8 @@ export function MergeActionBar({
     return (
       <div className="flex flex-col gap-3 rounded-xl border border-border bg-elevated p-4 sm:flex-row sm:items-center sm:justify-between">
         <StatusAnnouncer message={announcement} />
-        <p className="text-sm text-foreground">
+        <p className="flex flex-wrap items-center gap-x-1.5 text-sm text-foreground">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-success" aria-hidden="true" />
           {t("resultReady")} <span className="font-medium">{finalName}</span>
           <span className="text-foreground-muted"> · {formatFileSize(resultBlob.size)}</span>
         </p>
@@ -47,7 +48,7 @@ export function MergeActionBar({
             ref={downloadRef}
             href={downloadUrl}
             download={finalName}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             {t("download")}
@@ -84,7 +85,7 @@ export function MergeActionBar({
           type="button"
           onClick={() => onMerge(outputName)}
           disabled={!canMerge || isProcessing}
-          className="rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
+          className="shrink-0 whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isProcessing ? tCommon("processing") : t("merge")}
         </button>

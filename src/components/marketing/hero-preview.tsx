@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight, File, FileText, Image as ImageIcon, Lock } from "lucide-react";
 import { pdfTools, getToolIcon, getToolLabel, type Tool } from "@/data/tools/tools";
+import { formatTint, getToolFormat } from "@/data/tools/formats";
 import { NotifyMeModal } from "@/features/pdf/shared/components/notify-me-modal";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -33,17 +34,17 @@ export function HeroPreview() {
               const Icon = getToolIcon(tool.icon);
               const isAvailable = tool.status === "available";
               const { name } = getToolLabel(tool.slug, locale);
+              const { color } = getToolFormat(tool.slug);
 
               const content = (
                 <>
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
-                      isAvailable
-                        ? "bg-primary/10 text-primary"
-                        : "bg-unelevated text-foreground-muted"
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] ${
+                      isAvailable ? "" : "bg-unelevated text-foreground-muted"
                     }`}
+                    style={isAvailable ? { backgroundColor: formatTint(color), color } : undefined}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
                     <span

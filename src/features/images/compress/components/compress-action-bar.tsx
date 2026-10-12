@@ -44,7 +44,7 @@ export function CompressActionBar({
             type="button"
             onClick={onCompress}
             disabled={isCompressing}
-            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isCompressing ? t("compressing") : t("compress", { count: fileCount })}
           </button>
@@ -55,7 +55,7 @@ export function CompressActionBar({
             ref={downloadRef}
             type="button"
             onClick={onDownloadZip}
-            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             {t("downloadZip")}
           </button>

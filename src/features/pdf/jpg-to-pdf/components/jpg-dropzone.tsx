@@ -15,6 +15,7 @@ export function JpgDropzone({ onFilesAdded }: JpgDropzoneProps) {
     <FileDropzone
       accept={{ "image/jpeg": [".jpg", ".jpeg"], "image/png": [".png"] }}
       multiple
+      localNote
       onFiles={onFilesAdded}
       acceptedLabel="JPG, PNG"
       title={t("title")}

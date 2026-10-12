@@ -7,9 +7,11 @@ import { FileDropzone } from "@/components/ui/file-dropzone";
 
 interface PdfDropzoneProps {
   onFileAdded: (file: File) => void;
+  /** Faux pour les outils qui envoient le fichier à un service (PDF vers Word). */
+  localNote?: boolean;
 }
 
-export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
+export function PdfDropzone({ onFileAdded, localNote = true }: PdfDropzoneProps) {
   const t = useTranslations("PdfDropzone");
 
   const onFiles = useCallback(
@@ -24,6 +26,7 @@ export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
     <FileDropzone
       accept={{ "application/pdf": [".pdf"] }}
       multiple={false}
+      localNote={localNote}
       onFiles={onFiles}
       acceptedLabel=".pdf"
       title={t("title")}

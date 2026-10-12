@@ -44,7 +44,7 @@ export function PdfToWordActionBar({
         <button
           type="button"
           onClick={onConvert}
-          className="rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
+          className="rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover"
         >
           {t("convertToWord")}
         </button>
@@ -52,7 +52,7 @@ export function PdfToWordActionBar({
 
       {status === "converting" && (
         <p className="flex items-center gap-2 text-sm text-foreground-muted">
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          <Loader2 className="h-4 w-4 animate-spin text-secondary" aria-hidden="true" />
           {t("convertingRemote")}
         </p>
       )}
@@ -63,7 +63,7 @@ export function PdfToWordActionBar({
             ref={downloadRef}
             type="button"
             onClick={onDownload}
-            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
+            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             {t("download")}
@@ -81,8 +81,8 @@ export function PdfToWordActionBar({
 
       {status === "error" && (
         <div className="flex flex-col gap-3">
-          <p role="alert" className="flex items-start gap-2 text-sm text-danger">
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <p role="alert" className="flex items-start gap-2 text-sm text-foreground">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
             {errorMessage}
           </p>
           <button

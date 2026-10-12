@@ -42,7 +42,7 @@ export function WordToPdfActionBar({
         <button
           type="button"
           onClick={onConvert}
-          className="rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+          className="rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
         >
           {t("convertToPdf")}
         </button>
@@ -50,7 +50,7 @@ export function WordToPdfActionBar({
 
       {status === "converting" && (
         <div className="flex items-center gap-2 text-sm text-foreground-muted">
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          <Loader2 className="h-4 w-4 animate-spin text-secondary" aria-hidden="true" />
           {t("converting")}
         </div>
       )}
@@ -61,7 +61,7 @@ export function WordToPdfActionBar({
             ref={downloadRef}
             type="button"
             onClick={onDownload}
-            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
+            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             {t("download")}
@@ -79,8 +79,8 @@ export function WordToPdfActionBar({
 
       {status === "error" && (
         <div className="flex flex-col gap-2">
-          <div role="alert" className="flex items-start gap-2 text-sm text-danger">
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+          <div role="alert" className="flex items-start gap-2 text-sm text-foreground">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
             <span>{errorMessage}</span>
           </div>
           <button

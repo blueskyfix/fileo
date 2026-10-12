@@ -93,7 +93,8 @@
   },
   "FileDropzone": {
     "rejected": "{count, plural, one {{names} is not accepted} other {{names} are not accepted}}. Accepted formats: {accepted}.",
-    "tooMany": "One file at a time: please drop a single file."
+    "tooMany": "One file at a time: please drop a single file.",
+    "localNote": "The file never leaves your device."
   },
   "JpgDropzone": {
     "title": "Drop your JPG or PNG images here",

@@ -25,6 +25,10 @@ export function Navbar() {
   const mainTools = getToolsByCategory("main");
   const convertTools = getToolsByCategory("convert");
   const organizeTools = getToolsByCategory("organize");
+  const groupLabels =
+    locale === "en"
+      ? { main: "Main tools", convert: "Convert", organize: "Organize" }
+      : toolCategoryLabels;
 
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,13 +85,13 @@ export function Navbar() {
 
           <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2 md:mr-0">
             <Logo />
-            <span className="text-lg font-semibold tracking-tight text-foreground">
+            <span className="font-display text-lg font-bold tracking-tight text-primary">
               {siteConfig.name}
             </span>
           </Link>
 
           <div ref={navRef} className="hidden flex-1 items-center justify-center gap-6 md:flex">
-            {mainTools.map((tool) => (
+            {mainTools.filter((tool) => tool.mediaType === "pdf").map((tool) => (
               <Link
                 key={tool.slug}
                 href={`/${locale}${tool.status === "available" ? tool.href : "/pdf"}`}
@@ -103,15 +107,6 @@ export function Navbar() {
               locale={locale}
               isOpen={openDropdown === "convert"}
               onToggle={() => toggleDropdown("convert")}
-              onClose={() => setOpenDropdown(null)}
-            />
-
-            <NavDropdown
-              label={t("organize")}
-              tools={organizeTools}
-              locale={locale}
-              isOpen={openDropdown === "organize"}
-              onToggle={() => toggleDropdown("organize")}
               onClose={() => setOpenDropdown(null)}
             />
 
@@ -163,9 +158,9 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div id="mobile-menu" className="border-t border-border bg-elevated md:hidden">
           <Container className="flex flex-col gap-5 py-4">
-            <MobileGroup label={toolCategoryLabels.main} tools={mainTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
-            <MobileGroup label={toolCategoryLabels.convert} tools={convertTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
-            <MobileGroup label={toolCategoryLabels.organize} tools={organizeTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
+            <MobileGroup label={groupLabels.main} tools={mainTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
+            <MobileGroup label={groupLabels.convert} tools={convertTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
+            <MobileGroup label={groupLabels.organize} tools={organizeTools} locale={locale} onNavigate={() => setIsMobileMenuOpen(false)} />
 
             <Link
               href={`/${locale}/pdf`}
