@@ -29,6 +29,7 @@ const toolFormats: Record<string, { accent: FileFormat; tags: string[] }> = {
   "split-pdf": { accent: "pdf", tags: ["PDF"] },
   "remove-pages": { accent: "pdf", tags: ["PDF"] },
   "rotate-pdf": { accent: "pdf", tags: ["PDF"] },
+  "compress-pdf": { accent: "pdf", tags: ["PDF"] },
   "pdf-to-jpg": { accent: "pdf", tags: ["PDF", "JPG"] },
   "pdf-to-word": { accent: "pdf", tags: ["PDF", "DOCX"] },
   "jpg-to-pdf": { accent: "image", tags: ["JPG", "PDF"] },

@@ -10,6 +10,7 @@ import {
   RotateCw,
   Minimize2,
   FileUp,
+  FileArchive,
   ArrowRight,
 } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -28,6 +29,7 @@ const icons = {
   "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
   "compress-image": Minimize2,
+  "compress-pdf": FileArchive,
   "word-to-pdf": FileUp,
 } as const;
 
@@ -102,4 +104,4 @@ export async function ToolCard({
       {content}
     </Link>
   );
-}
+}
