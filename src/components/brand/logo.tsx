@@ -1,10 +1,11 @@
 import Image from "next/image";
 
-export function Logo({ className }: { className?: string }) {
+// alt="" quand le nom « FileoPDF » est déjà écrit à côté (évite la double annonce).
+export function Logo({ className, alt = "FileoPDF" }: { className?: string; alt?: string }) {
   return (
     <Image
       src="/logos/logo.png"
-      alt="FileoPDF"
+      alt={alt}
       width={36}
       height={36}
       className={className}

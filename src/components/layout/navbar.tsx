@@ -84,7 +84,7 @@ export function Navbar() {
           </button>
 
           <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2 md:mr-0">
-            <Logo />
+            <Logo alt="" />
             <span className="font-display text-lg font-bold tracking-tight text-primary">
               {siteConfig.name}
             </span>
