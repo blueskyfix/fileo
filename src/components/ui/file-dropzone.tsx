@@ -5,6 +5,7 @@ import { useDropzone, type Accept, type FileRejection } from "react-dropzone";
 import { AlertCircle, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/core/utils/cn";
+import { trackEvent } from "@/core/config/analytics";
 
 interface FileDropzoneProps {
   accept: Accept;
@@ -54,7 +55,13 @@ export function FileDropzone({
       } else {
         setRejectionMessage(null);
       }
-      if (acceptedFiles.length > 0) onFiles(acceptedFiles);
+      // L'outil se lit dans l'URL (/fr/pdf/merge-pdf -> merge-pdf) : une seule instrumentation pour tous les outils.
+      const tool = window.location.pathname.split("/").filter(Boolean).pop() ?? "";
+      if (rejections.length > 0) trackEvent("file_rejected", { tool });
+      if (acceptedFiles.length > 0) {
+        trackEvent("file_added", { tool, count: String(acceptedFiles.length) });
+        onFiles(acceptedFiles);
+      }
     },
     [onFiles, acceptedLabel, t],
   );
