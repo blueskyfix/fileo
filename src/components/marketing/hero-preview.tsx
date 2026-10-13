@@ -15,7 +15,7 @@ const heroSlugs = [
   "pdf-to-jpg",
   "split-pdf",
   "pdf-to-word",
-  "remove-pages",
+  "compress-pdf",
 ];
 
 export function HeroPreview() {
@@ -155,4 +155,4 @@ export function HeroPreview() {
       )}
     </>
   );
-}
+}

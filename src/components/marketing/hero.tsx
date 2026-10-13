@@ -31,7 +31,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
 
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/pdf/merge-pdf"
+            href="/pdf/compress-pdf"
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             {homeHero.ctaPrimaryLabel}
@@ -58,9 +58,11 @@ export async function Hero({ locale }: { locale: AppLocale }) {
             );
           })}
         </div>
+
+        <p className="max-w-xl text-sm text-foreground-muted">{homeHero.proof}</p>
       </div>
 
       <HeroPreview />
     </section>
   );
-}
+}
