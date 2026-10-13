@@ -36,7 +36,7 @@ export const toolLabelsFr: Record<string, ToolLabel> = {
   "compress-pdf": {
     name: "Compresser un PDF",
     description:
-      "Réduisez le poids d'un PDF en recompressant ses images, pour respecter la limite d'un portail ou d'un e-mail.",
+      "Réduisez le poids d'un PDF pour respecter la limite d'un portail ou d'un e-mail.",
   },
   "rotate-pdf": {
     name: "Faire pivoter un PDF",

@@ -29,7 +29,7 @@ export const toolLabelsEn: Record<string, ToolLabel> = {
   "compress-pdf": {
     name: "Compress PDF",
     description:
-      "Reduce the size of a PDF by recompressing its images, to meet a portal's or an email's size limit.",
+      "Reduce the size of a PDF to meet a portal's or an email's size limit.",
   },
   "rotate-pdf": {
     name: "Rotate PDF",

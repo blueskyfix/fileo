@@ -5,7 +5,6 @@ export interface CompressPdfResultInfo {
   url: string;
   filename: string;
   size: number;
-  imagesRecompressed: number;
   reachedTarget: boolean;
 }
 

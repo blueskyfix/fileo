@@ -6,7 +6,7 @@ export const compressPdfMeta = {
     "Réduisez le poids d'un PDF directement dans votre navigateur, pour respecter la limite d'un portail ou d'un e-mail. Le texte reste sélectionnable. Gratuit, sans inscription.",
   ogTitle: "Compresser un PDF sans l'envoyer en ligne",
   ogDescription:
-    "Allégez un PDF scanné ou plein de photos dans votre navigateur. Le fichier ne quitte pas votre appareil.",
+    "Allégez un PDF scanné ou volumineux dans votre navigateur. Le fichier ne quitte pas votre appareil.",
   canonicalSlug: "/pdf/compress-pdf",
 };
 
@@ -14,7 +14,7 @@ export const compressPdfHero = {
   eyebrow: "Outil PDF",
   title: "Compresser un PDF sans l'envoyer en ligne",
   subtitle:
-    "Réduisez le poids d'un PDF scanné ou rempli de photos pour passer sous la limite d'un portail ou d'un e-mail. Le texte reste net et sélectionnable : seules les images sont recompressées, dans votre navigateur.",
+    "Réduisez le poids d'un PDF scanné ou volumineux pour passer sous la limite d'un portail ou d'un e-mail, dans votre navigateur. Le texte reste net et sélectionnable.",
 };
 
 export const compressPdfTrustBlock: { title: string; intro: string; points: ContentItem[] } = {
@@ -25,7 +25,7 @@ export const compressPdfTrustBlock: { title: string; intro: string; points: Cont
     {
       title: "Traitement dans votre navigateur",
       description:
-        "Les images sont recompressées et le nouveau fichier reconstitué sur votre appareil, sans passer par nos serveurs.",
+        "La compression et la reconstitution du nouveau fichier se font sur votre appareil, sans passer par nos serveurs.",
     },
     {
       title: "Aucun stockage de votre PDF",
@@ -63,12 +63,12 @@ export const compressPdfHowItWorks: { title: string; intro: string; steps: Conte
 
 export const compressPdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
   title: "Ce que fait cet outil, et ce qu'il ne fait pas",
-  intro: "Une compression ciblée sur les images, là où se trouve presque tout le poids d'un PDF scanné.",
+  intro: "Une compression pensée pour les PDF scannés, ceux qui dépassent le plus souvent les limites des portails.",
   items: [
     {
       title: "Texte et vecteurs conservés",
       description:
-        "Seules les images sont recompressées. Le texte reste net, sélectionnable et recherchable, et les polices ne sont pas touchées.",
+        "Le texte reste net, sélectionnable et recherchable, et les polices ne sont pas touchées.",
     },
     {
       title: "Taille maximale visée",
@@ -78,7 +78,7 @@ export const compressPdfBenefits: { title: string; intro: string; items: Content
     {
       title: "Honnête sur les limites",
       description:
-        "Un PDF de texte pur, ou dont les images sont déjà optimisées, ne peut pas être beaucoup allégé. Une signature numérique éventuelle n'est plus valide après compression.",
+        "Un PDF de texte pur, ou déjà optimisé, ne peut pas être beaucoup allégé. Une signature numérique éventuelle n'est plus valide après compression.",
     },
     {
       title: "Aucune inscription",
@@ -119,17 +119,17 @@ export const compressPdfFaq: FaqItem[] = [
   {
     question: "Le texte reste-t-il sélectionnable après la compression ?",
     answer:
-      "Oui. L'outil ne recompresse que les images contenues dans le PDF. Le texte, les polices et les éléments vectoriels restent tels quels. En revanche, un PDF scanné contient une image de texte, pas du vrai texte : il ne devient pas sélectionnable pour autant.",
+      "Oui. Le texte, les polices et les éléments vectoriels restent tels quels. En revanche, un PDF scanné ne contient pas de vrai texte : il ne devient pas sélectionnable pour autant.",
   },
   {
     question: "De combien mon PDF sera-t-il allégé ?",
     answer:
-      "Cela dépend du contenu. Un PDF scanné ou plein de photos peut perdre la majorité de son poids. Un PDF de texte pur, ou dont les images sont déjà optimisées, sera peu ou pas allégé : l'outil vous l'indique.",
+      "Cela dépend du contenu. Un PDF scanné peut perdre la majorité de son poids. Un PDF de texte pur, ou déjà optimisé, sera peu ou pas allégé : l'outil vous l'indique.",
   },
   {
     question: "Quelle est la différence entre les niveaux Léger, Équilibré et Fort ?",
     answer:
-      "Plus le niveau est fort, plus les images sont réduites en résolution et en qualité. Léger conserve des images très proches de l'original, Fort donne le fichier le plus petit au prix d'images plus floues. Vérifiez que les petits caractères restent lisibles avant d'envoyer le document.",
+      "Plus le niveau est fort, plus la qualité visuelle du document diminue. Léger reste très proche de l'original, Fort donne le fichier le plus petit au prix d'un rendu plus flou. Vérifiez que les petits caractères restent lisibles avant d'envoyer le document.",
   },
   {
     question: "Comment respecter une limite précise, par exemple 2 Mo ?",
@@ -154,5 +154,5 @@ export const compressPdfFaq: FaqItem[] = [
 ];
 
 export const compressPdfSummary = {
-  text: "Compresser un PDF permet de réduire le poids d'un document scanné ou rempli de photos, directement dans votre navigateur, sans envoyer le fichier à un serveur. Le texte reste sélectionnable, seules les images sont recompressées. Un outil gratuit et sans compte, pour passer sous la limite d'un portail ou d'un e-mail.",
+  text: "Compresser un PDF permet de réduire le poids d'un document scanné ou volumineux, directement dans votre navigateur, sans envoyer le fichier à un serveur. Le texte reste sélectionnable. Un outil gratuit et sans compte, pour passer sous la limite d'un portail ou d'un e-mail.",
 };

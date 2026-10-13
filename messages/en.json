@@ -86,20 +86,21 @@
   "CompressPdf": {
     "levelLabel": "Compression level",
     "levels": {
-      "light": { "name": "Light", "description": "Image quality almost unchanged" },
+      "light": { "name": "Light", "description": "Quality almost unchanged" },
       "balanced": { "name": "Balanced", "description": "Good trade-off between size and readability" },
-      "strong": { "name": "Strong", "description": "Smallest size, blurrier images" }
+      "strong": { "name": "Strong", "description": "Smallest size, blurrier result" }
     },
     "targetLabel": "Maximum size to reach (optional)",
     "targetUnit": "MB",
     "targetHelp": "If the chosen level is not enough, stronger levels are tried automatically.",
-    "limitsNote": "Only images are recompressed: text stays sharp and selectable. Any digital signature will no longer be valid.",
+    "limitsNote": "Text stays sharp and selectable. Any digital signature will no longer be valid.",
+    "sampleHint": "No file at hand?",
+    "sampleButton": "Try with a sample",
     "compress": "Compress PDF",
     "compressing": "Compressing…",
     "saved": "{percent}% smaller",
-    "images": "{count, plural, one {# image recompressed} other {# images recompressed}}",
     "targetMissed": "The target size could not be reached, even at the strongest level. Here is the best result obtained.",
-    "noGain": "This PDF can't be made any smaller: it has few images, or they are already optimized."
+    "noGain": "This PDF can't be made any smaller: it is already optimized or mostly text."
   },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} selected",

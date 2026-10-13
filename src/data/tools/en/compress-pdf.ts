@@ -6,7 +6,7 @@ export const compressPdfMeta = {
     "Reduce the size of a PDF right in your browser, to meet a portal's or an email's size limit. Text stays selectable. Free, no sign-up.",
   ogTitle: "Compress a PDF without uploading it",
   ogDescription:
-    "Shrink a scanned or photo-heavy PDF in your browser. The file stays on your device.",
+    "Shrink a scanned or large PDF in your browser. The file stays on your device.",
   canonicalSlug: "/pdf/compress-pdf",
 };
 
@@ -14,7 +14,7 @@ export const compressPdfHero = {
   eyebrow: "PDF Tool",
   title: "Compress a PDF without uploading it",
   subtitle:
-    "Reduce the size of a scanned or photo-heavy PDF to get under a portal's or an email's limit. Text stays sharp and selectable: only the images are recompressed, in your browser.",
+    "Reduce the size of a scanned or large PDF to get under a portal's or an email's limit, in your browser. Text stays sharp and selectable.",
 };
 
 export const compressPdfTrustBlock: { title: string; intro: string; points: ContentItem[] } = {
@@ -25,7 +25,7 @@ export const compressPdfTrustBlock: { title: string; intro: string; points: Cont
     {
       title: "Processed in your browser",
       description:
-        "Images are recompressed and the new file is rebuilt on your device, without going through our servers.",
+        "Compression and the rebuilding of the new file happen on your device, without going through our servers.",
     },
     {
       title: "Your PDF is never stored",
@@ -63,12 +63,12 @@ export const compressPdfHowItWorks: { title: string; intro: string; steps: Conte
 
 export const compressPdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
   title: "What this tool does, and what it doesn't",
-  intro: "Compression focused on images, where almost all the weight of a scanned PDF sits.",
+  intro: "Compression designed for scanned PDFs, the ones that most often exceed portal limits.",
   items: [
     {
       title: "Text and vectors preserved",
       description:
-        "Only images are recompressed. Text stays sharp, selectable and searchable, and fonts are untouched.",
+        "Text stays sharp, selectable and searchable, and fonts are untouched.",
     },
     {
       title: "Target a maximum size",
@@ -78,7 +78,7 @@ export const compressPdfBenefits: { title: string; intro: string; items: Content
     {
       title: "Honest about its limits",
       description:
-        "A text-only PDF, or one whose images are already optimized, can't be reduced much. Any digital signature is no longer valid after compression.",
+        "A text-only PDF, or one that is already optimized, can't be reduced much. Any digital signature is no longer valid after compression.",
     },
     {
       title: "No sign-up",
@@ -119,17 +119,17 @@ export const compressPdfFaq: FaqItem[] = [
   {
     question: "Does the text stay selectable after compression?",
     answer:
-      "Yes. The tool only recompresses the images inside the PDF. Text, fonts and vector elements stay as they are. However, a scanned PDF contains an image of text, not real text: it does not become selectable.",
+      "Yes. Text, fonts and vector elements stay as they are. However, a scanned PDF does not contain real text: it does not become selectable.",
   },
   {
     question: "How much smaller will my PDF be?",
     answer:
-      "It depends on the content. A scanned or photo-heavy PDF can lose most of its weight. A text-only PDF, or one whose images are already optimized, will shrink little or not at all: the tool tells you.",
+      "It depends on the content. A scanned PDF can lose most of its weight. A text-only PDF, or one that is already optimized, will shrink little or not at all: the tool tells you.",
   },
   {
     question: "What is the difference between Light, Balanced and Strong?",
     answer:
-      "The stronger the level, the more images are reduced in resolution and quality. Light keeps images very close to the original, Strong gives the smallest file at the cost of blurrier images. Check that small print stays readable before sending the document.",
+      "The stronger the level, the more the visual quality of the document drops. Light stays very close to the original, Strong gives the smallest file at the cost of a blurrier result. Check that small print stays readable before sending the document.",
   },
   {
     question: "How do I meet a precise limit, such as 2 MB?",
@@ -154,5 +154,5 @@ export const compressPdfFaq: FaqItem[] = [
 ];
 
 export const compressPdfSummary = {
-  text: "Compress PDF reduces the size of a scanned or photo-heavy document right in your browser, without sending the file to a server. Text stays selectable, only the images are recompressed. A free tool with no account, to get under a portal's or an email's limit.",
+  text: "Compress PDF reduces the size of a scanned or large document right in your browser, without sending the file to a server. Text stays selectable. A free tool with no account, to get under a portal's or an email's limit.",
 };

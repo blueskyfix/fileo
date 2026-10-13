@@ -70,7 +70,6 @@ export function useCompressPdf() {
             fallback: "fileopdf-compressed",
           }),
           size: blob.size,
-          imagesRecompressed,
           reachedTarget,
         },
       });

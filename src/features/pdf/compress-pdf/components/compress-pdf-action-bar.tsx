@@ -62,7 +62,7 @@ export function CompressPdfActionBar({
           <span className="font-semibold">
             {formatFileSize(file.size)} → {formatFileSize(result.size)}
           </span>{" "}
-          ({t("saved", { percent })}) · {t("images", { count: result.imagesRecompressed })}
+          ({t("saved", { percent })})
         </p>
         {!result.reachedTarget && (
           <p className="flex items-start gap-2 text-sm text-foreground">

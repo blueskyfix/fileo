@@ -86,20 +86,21 @@
   "CompressPdf": {
     "levelLabel": "Niveau de compression",
     "levels": {
-      "light": { "name": "Léger", "description": "Qualité des images presque inchangée" },
+      "light": { "name": "Léger", "description": "Qualité presque inchangée" },
       "balanced": { "name": "Équilibré", "description": "Bon compromis poids et lisibilité" },
-      "strong": { "name": "Fort", "description": "Poids minimal, images plus floues" }
+      "strong": { "name": "Fort", "description": "Poids minimal, rendu plus flou" }
     },
     "targetLabel": "Taille maximale visée (facultatif)",
     "targetUnit": "Mo",
     "targetHelp": "Si le niveau choisi ne suffit pas, des niveaux plus forts sont essayés automatiquement.",
-    "limitsNote": "Seules les images sont recompressées : le texte reste net et sélectionnable. Une signature numérique éventuelle ne sera plus valide.",
+    "limitsNote": "Le texte reste net et sélectionnable. Une signature numérique éventuelle ne sera plus valide.",
+    "sampleHint": "Pas de fichier sous la main ?",
+    "sampleButton": "Essayer avec un exemple",
     "compress": "Compresser le PDF",
     "compressing": "Compression en cours…",
     "saved": "{percent} % plus léger",
-    "images": "{count, plural, one {# image recompressée} other {# images recompressées}}",
     "targetMissed": "La taille visée n'a pas pu être atteinte, même au niveau le plus fort. Voici le meilleur résultat obtenu.",
-    "noGain": "Ce PDF ne peut pas être allégé davantage : il contient peu d'images, ou elles sont déjà optimisées."
+    "noGain": "Ce PDF ne peut pas être allégé davantage : il est déjà optimisé ou contient surtout du texte."
   },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} {selected, plural, one {sélectionnée} other {sélectionnées}}",
