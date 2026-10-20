@@ -80,6 +80,31 @@
     "restart": "Recommencer",
     "retry": "Réessayer"
   },
+  "CompressPdf": {
+    "file": "Fichier :",
+    "download": "Télécharger",
+    "restart": "Recommencer",
+    "retry": "Réessayer",
+    "processing": "Compression en cours",
+    "ready": "Fichier prêt à télécharger",
+    "levelLabel": "Niveau de compression",
+    "levels": {
+      "light": { "name": "Léger", "description": "Qualité presque inchangée" },
+      "balanced": { "name": "Équilibré", "description": "Bon compromis poids et lisibilité" },
+      "strong": { "name": "Fort", "description": "Poids minimal, rendu plus flou" }
+    },
+    "targetLabel": "Taille maximale visée (facultatif)",
+    "targetUnit": "Mo",
+    "targetHelp": "Si le niveau choisi ne suffit pas, des niveaux plus forts sont essayés automatiquement.",
+    "limitsNote": "Le texte reste net et sélectionnable. Une signature numérique éventuelle ne sera plus valide.",
+    "sampleHint": "Pas de fichier sous la main ?",
+    "sampleButton": "Essayer avec un exemple",
+    "compress": "Compresser le PDF",
+    "compressing": "Compression en cours…",
+    "saved": "{percent} % plus léger",
+    "targetMissed": "La taille visée n'a pas pu être atteinte, même au niveau le plus fort. Voici le meilleur résultat obtenu.",
+    "noGain": "Ce PDF ne peut pas être allégé davantage : il est déjà optimisé ou contient surtout du texte."
+  },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} {selected, plural, one {sélectionnée} other {sélectionnées}}",
     "selectAll": "Tout sélectionner",

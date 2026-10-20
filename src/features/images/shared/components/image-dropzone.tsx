@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, type FileRejection } from "react-dropzone";
 import { useTranslations } from "next-intl";
 import { UploadCloud } from "lucide-react";
 import { cn } from "@/core/utils/cn";
+import { trackFileDrop } from "@/core/config/analytics";
 
 interface ImageDropzoneProps {
   onFilesAdded: (files: File[]) => void;
@@ -14,7 +15,8 @@ export function ImageDropzone({ onFilesAdded }: ImageDropzoneProps) {
   const t = useTranslations("ImageDropzone");
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    (acceptedFiles: File[], rejections: FileRejection[]) => {
+      trackFileDrop(acceptedFiles.length, rejections.length);
       if (acceptedFiles.length > 0) {
         onFilesAdded(acceptedFiles);
       }

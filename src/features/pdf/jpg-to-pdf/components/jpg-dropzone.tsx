@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, type FileRejection } from "react-dropzone";
 import { FileImage } from "lucide-react";
 import { cn } from "@/core/utils/cn";
+import { trackFileDrop } from "@/core/config/analytics";
 
 interface JpgDropzoneProps {
   onFilesAdded: (files: File[]) => void;
@@ -11,7 +12,8 @@ interface JpgDropzoneProps {
 
 export function JpgDropzone({ onFilesAdded }: JpgDropzoneProps) {
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    (acceptedFiles: File[], rejections: FileRejection[]) => {
+      trackFileDrop(acceptedFiles.length, rejections.length);
       if (acceptedFiles.length > 0) onFilesAdded(acceptedFiles);
     },
     [onFilesAdded],

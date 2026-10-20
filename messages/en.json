@@ -80,6 +80,31 @@
     "restart": "Start over",
     "retry": "Retry"
   },
+  "CompressPdf": {
+    "file": "File:",
+    "download": "Download",
+    "restart": "Start over",
+    "retry": "Try again",
+    "processing": "Compressing",
+    "ready": "File ready to download",
+    "levelLabel": "Compression level",
+    "levels": {
+      "light": { "name": "Light", "description": "Quality almost unchanged" },
+      "balanced": { "name": "Balanced", "description": "Good trade-off between size and readability" },
+      "strong": { "name": "Strong", "description": "Smallest size, blurrier result" }
+    },
+    "targetLabel": "Maximum size to reach (optional)",
+    "targetUnit": "MB",
+    "targetHelp": "If the chosen level is not enough, stronger levels are tried automatically.",
+    "limitsNote": "Text stays sharp and selectable. Any digital signature will no longer be valid.",
+    "sampleHint": "No file at hand?",
+    "sampleButton": "Try with a sample",
+    "compress": "Compress PDF",
+    "compressing": "Compressing…",
+    "saved": "{percent}% smaller",
+    "targetMissed": "The target size could not be reached, even at the strongest level. Here is the best result obtained.",
+    "noGain": "This PDF can't be made any smaller: it is already optimized or mostly text."
+  },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} selected",
     "selectAll": "Select all",

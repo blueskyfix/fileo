@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, type FileRejection } from "react-dropzone";
 import { useTranslations } from "next-intl";
 import { FileText, Upload } from "lucide-react";
 import { cn } from "@/core/utils/cn";
+import { trackFileDrop } from "@/core/config/analytics";
 
 interface WordDropzoneProps {
   onFileAdded: (file: File) => void;
@@ -14,7 +15,8 @@ export function WordDropzone({ onFileAdded }: WordDropzoneProps) {
   const t = useTranslations("WordDropzone");
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    (acceptedFiles: File[], rejections: FileRejection[]) => {
+      trackFileDrop(acceptedFiles.length, rejections.length);
       const [file] = acceptedFiles;
       if (file) onFileAdded(file);
     },

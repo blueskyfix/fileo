@@ -9,6 +9,7 @@ import {
   RotateCw,
   Minimize2,
   FileUp,
+  FileArchive,
   File as FileFallbackIcon,
 } from "lucide-react";
 import type { AppLocale } from "@/i18n/routing";
@@ -25,6 +26,7 @@ export type ToolIcon =
   | "rotate-pdf"
   | "pdf-to-word"
   | "compress-image"
+  | "compress-pdf"
   | "word-to-pdf";
 
 /** Format de fichier traité par l'outil — pilote le regroupement futur (hub /image, /word, nav). */
@@ -113,6 +115,15 @@ export const tools: Tool[] = [
     relatedSlugs: ["merge-pdf", "word-to-pdf", "pdf-to-jpg"],
   },
   {
+    slug: "compress-pdf",
+    href: "/pdf/compress-pdf",
+    status: "available",
+    icon: "compress-pdf",
+    category: "organize",
+    mediaType: "pdf",
+    relatedSlugs: ["merge-pdf", "split-pdf", "jpg-to-pdf"],
+  },
+  {
     slug: "remove-pages",
     href: "/pdf/remove-pages",
     status: "available",
@@ -172,6 +183,7 @@ const iconMap: Record<ToolIcon, LucideIcon> = {
   "pdf-to-word": FileType,
   "rotate-pdf": RotateCw,
   "compress-image": Minimize2,
+  "compress-pdf": FileArchive,
   "word-to-pdf": FileUp,
 };
 
@@ -254,4 +266,4 @@ export function getRelatedTools(currentSlug: string, locale: AppLocale, count = 
       icon: getToolIcon(tool.icon),
     };
   });
-}
+}
