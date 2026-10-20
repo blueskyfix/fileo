@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Sora } from "next/font/google";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -15,19 +15,6 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-});
-
-// Sora pour les titres, Inter pour l'interface, JetBrains Mono pour les mentions techniques.
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["500"],
 });
 
 const skipLinkLabel: Record<AppLocale, string> = {
@@ -115,8 +102,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      // Variables de police sur <html> : le theme Tailwind est resolu sur :root.
-      className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`}
+      className={inter.variable}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">

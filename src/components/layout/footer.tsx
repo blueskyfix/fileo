@@ -38,8 +38,8 @@ export function Footer() {
   return (
     <footer className="border-t border-border">
       <Container className="py-12">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-5">
-          <div className="col-span-2 flex flex-col gap-3 md:col-span-1">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-5">
+          <div className="flex flex-col gap-3 sm:col-span-2 md:col-span-1">
             <Logo />
             <p className="max-w-xs text-sm text-foreground-muted">
               {description}
@@ -51,7 +51,7 @@ export function Footer() {
           <FooterColumn title={labels.organize} tools={organizeTools} locale={locale} />
 
           <div>
-            <p className="mb-3 text-base font-bold text-foreground">{siteConfig.name}</p>
+            <p className="mb-3 text-base font-bold text-foreground">Fileo</p>
             <ul className="flex flex-col gap-2.5">
               {legalLinks.map((link) => (
                 <li key={link.href}>
