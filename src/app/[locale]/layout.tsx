@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import Script from "next/script";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -15,6 +15,13 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+// Police des titres : donne a FileoPDF une voix propre, Inter reste pour le texte.
+const displayFace = Bricolage_Grotesque({
+  variable: "--font-display-face",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
 });
 
 const skipLinkLabel: Record<AppLocale, string> = {
@@ -102,7 +109,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={inter.variable}
+      className={`${inter.variable} ${displayFace.variable}`}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
