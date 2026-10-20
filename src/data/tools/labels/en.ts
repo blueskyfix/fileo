@@ -26,11 +26,6 @@ export const toolLabelsEn: Record<string, ToolLabel> = {
     name: "Remove PDF Pages",
     description: "Remove specific pages from a PDF without reprocessing the whole file.",
   },
-  "compress-pdf": {
-    name: "Compress PDF",
-    description:
-      "Reduce the size of a PDF to meet a portal's or an email's size limit.",
-  },
   "rotate-pdf": {
     name: "Rotate PDF",
     description: "Rotate the pages of your PDF by 90°, 180°, or 270°.",
@@ -45,4 +40,4 @@ export const toolLabelsEn: Record<string, ToolLabel> = {
     description:
       "Convert your Word document (.docx) to PDF, directly in your browser.",
   },
-};
+};

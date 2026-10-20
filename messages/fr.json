@@ -52,17 +52,14 @@
     "reorder": "Réordonner",
     "remove": "Supprimer",
     "validating": "Validation en cours...",
-    "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}",
-    "reorderNamed": "Réordonner {name}",
-    "removeNamed": "Supprimer {name}"
+    "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}"
   },
   "MergeActionBar": {
     "filenameLabel": "Nom du fichier",
     "resultReady": "Votre PDF fusionné est prêt :",
     "download": "Télécharger",
     "restart": "Recommencer",
-    "merge": "Fusionner les PDF",
-    "defaultName": "fusion"
+    "merge": "Fusionner les PDF"
   },
   "SplitModeToggle": {
     "extract": "Extraire en un seul PDF",
@@ -83,25 +80,6 @@
     "restart": "Recommencer",
     "retry": "Réessayer"
   },
-  "CompressPdf": {
-    "levelLabel": "Niveau de compression",
-    "levels": {
-      "light": { "name": "Léger", "description": "Qualité presque inchangée" },
-      "balanced": { "name": "Équilibré", "description": "Bon compromis poids et lisibilité" },
-      "strong": { "name": "Fort", "description": "Poids minimal, rendu plus flou" }
-    },
-    "targetLabel": "Taille maximale visée (facultatif)",
-    "targetUnit": "Mo",
-    "targetHelp": "Si le niveau choisi ne suffit pas, des niveaux plus forts sont essayés automatiquement.",
-    "limitsNote": "Le texte reste net et sélectionnable. Une signature numérique éventuelle ne sera plus valide.",
-    "sampleHint": "Pas de fichier sous la main ?",
-    "sampleButton": "Essayer avec un exemple",
-    "compress": "Compresser le PDF",
-    "compressing": "Compression en cours…",
-    "saved": "{percent} % plus léger",
-    "targetMissed": "La taille visée n'a pas pu être atteinte, même au niveau le plus fort. Voici le meilleur résultat obtenu.",
-    "noGain": "Ce PDF ne peut pas être allégé davantage : il est déjà optimisé ou contient surtout du texte."
-  },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} {selected, plural, one {sélectionnée} other {sélectionnées}}",
     "selectAll": "Tout sélectionner",
@@ -109,59 +87,5 @@
   },
   "PageThumbnailItem": {
     "pageLabel": "Page {number}"
-  },
-  "FileDropzone": {
-    "rejected": "{count, plural, one {{names} n'est pas accepté} other {{names} ne sont pas acceptés}}. Formats acceptés : {accepted}.",
-    "tooMany": "Un seul fichier à la fois : déposez un fichier unique.",
-    "localNote": "Le fichier ne quitte pas votre appareil."
-  },
-  "JpgDropzone": {
-    "title": "Déposez vos images JPG ou PNG ici",
-    "subtitle": "ou cliquez pour les sélectionner depuis votre appareil"
-  },
-  "SortableList": {
-    "instructions": "Pour réordonner, appuyez sur Espace pour saisir le fichier, utilisez les flèches haut et bas pour le déplacer, puis Espace pour le déposer. Échap annule.",
-    "picked": "{name} saisi.",
-    "over": "{name} déplacé au-dessus de {target}.",
-    "dropped": "{name} déposé à la place de {target}.",
-    "cancelled": "Déplacement annulé, {name} reste à sa place."
-  },
-  "ToolStatus": {
-    "processing": "Traitement en cours…",
-    "ready": "Votre fichier est prêt. Le bouton Télécharger est sélectionné.",
-    "loadingFile": "Lecture du fichier…",
-    "download": "Télécharger",
-    "restart": "Recommencer",
-    "retry": "Réessayer",
-    "converting": "Conversion en cours…",
-    "convertingRemote": "Conversion en cours, cela ne prend que quelques secondes…",
-    "convertToPdf": "Convertir en PDF",
-    "convertToJpg": "Convertir en JPG",
-    "convertToWord": "Convertir en Word",
-    "file": "Fichier :"
-  },
-  "RotateActionBar": {
-    "allPages": "Toutes les pages",
-    "selectPages": "Sélectionner des pages",
-    "rotating": "Rotation en cours…",
-    "apply": "Appliquer la rotation",
-    "selectedCount": "{count, plural, =0 {Aucune page sélectionnée} one {# page sélectionnée} other {# pages sélectionnées}}",
-    "selectAll": "Tout sélectionner",
-    "clear": "Effacer",
-    "allLeft": "Tout à gauche",
-    "selectionLeft": "Sélection à gauche",
-    "allRight": "Tout à droite",
-    "selectionRight": "Sélection à droite",
-    "reset": "Réinitialiser"
-  },
-  "CompressFileList": {
-    "alreadyOptimized": "Déjà optimisée",
-    "remove": "Retirer {name}"
-  },
-  "CompressActionBar": {
-    "compressing": "Compression en cours…",
-    "compress": "{count, plural, one {Compresser # image} other {Compresser # images}}",
-    "downloadZip": "Télécharger le ZIP",
-    "progress": "{done}/{total} images compressées"
   }
 }

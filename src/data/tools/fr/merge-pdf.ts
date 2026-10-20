@@ -64,7 +64,7 @@ export const mergePdfHowItWorks: { title: string; intro: string; steps: ContentI
 };
 
 export const mergePdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi fusionner vos PDF avec FileoPDF",
+  title: "Pourquoi utiliser l'outil Merge PDF de FileoPDF",
   intro: "Fusionner des PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
   items: [
     {
@@ -95,7 +95,7 @@ export const mergePdfBenefits: { title: string; intro: string; items: ContentIte
 };
 
 export const mergePdfUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Dans quels cas fusionner des PDF",
+  title: "Dans quels cas utiliser Merge PDF",
   intro: "Quelques situations concrètes où fusionner plusieurs PDF en un seul fichier simplifie les choses.",
   cases: [
     {
@@ -127,7 +127,7 @@ export const mergePdfFaq: FaqItem[] = [
     answer: "Non. La fusion s'exécute directement dans votre navigateur : vos fichiers PDF ne sont pas envoyés sur un serveur pour être assemblés. Le document final est généré localement, sur votre appareil.",
   },
   {
-    question: "L'outil de fusion de FileoPDF est-il vraiment gratuit ?",
+    question: "L'outil Merge PDF de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La fusion de PDF est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
   {

@@ -33,13 +33,8 @@ export const toolLabelsFr: Record<string, ToolLabel> = {
     description:
       "Supprimez des pages spécifiques d'un PDF sans le retraiter entièrement.",
   },
-  "compress-pdf": {
-    name: "Compresser un PDF",
-    description:
-      "Réduisez le poids d'un PDF pour respecter la limite d'un portail ou d'un e-mail.",
-  },
   "rotate-pdf": {
-    name: "Faire pivoter un PDF",
+    name: "Rotate PDF",
     description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
   },
   "compress-image": {
@@ -52,4 +47,4 @@ export const toolLabelsFr: Record<string, ToolLabel> = {
     description:
       "Convertissez votre document Word (.docx) en PDF, directement dans votre navigateur.",
   },
-};
+};

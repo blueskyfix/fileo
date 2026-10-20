@@ -64,7 +64,7 @@ export const jpgToPdfHowItWorks: { title: string; intro: string; steps: ContentI
 };
 
 export const jpgToPdfBenefits: { title: string; intro: string; items: ContentItem[] } = {
-  title: "Pourquoi convertir vos images en PDF avec FileoPDF",
+  title: "Pourquoi utiliser l'outil JPG to PDF de FileoPDF",
   intro: "Convertir des images en PDF ne devrait pas nécessiter un logiciel dédié ni un compte à créer.",
   items: [
     {
@@ -95,7 +95,7 @@ export const jpgToPdfBenefits: { title: string; intro: string; items: ContentIte
 };
 
 export const jpgToPdfUseCases: { title: string; intro: string; cases: ContentItem[] } = {
-  title: "Dans quels cas convertir des JPG en PDF",
+  title: "Dans quels cas utiliser JPG to PDF",
   intro: "Quelques situations concrètes où convertir des images en PDF simplifie les choses.",
   cases: [
     {
@@ -127,7 +127,7 @@ export const jpgToPdfFaq: FaqItem[] = [
     answer: "Non. La conversion s'exécute directement dans votre navigateur : vos images ne sont pas envoyées sur un serveur. Le PDF final est généré localement, sur votre appareil.",
   },
   {
-    question: "L'outil JPG vers PDF de FileoPDF est-il vraiment gratuit ?",
+    question: "L'outil JPG to PDF de FileoPDF est-il vraiment gratuit ?",
     answer: "Oui. La conversion d'images en PDF est gratuite et ne nécessite aucune inscription ni aucune information personnelle.",
   },
   {

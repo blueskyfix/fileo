@@ -1,12 +1,18 @@
 "use client";
 
-import { DndContext, closestCenter, type DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
   arrayMove,
 } from "@dnd-kit/sortable";
-import { useSortableList } from "@/components/ui/use-sortable-list";
 import { JpgFileItem } from "./jpg-file-item";
 import type { JpgToPdfImage } from "../lib/types";
 
@@ -17,9 +23,7 @@ interface JpgFileListProps {
 }
 
 export function JpgFileList({ images, onReorder, onRemove }: JpgFileListProps) {
-  const { sensors, accessibility } = useSortableList(
-    (id) => images.find((img) => img.id === id)?.name ?? "",
-  );
+  const sensors = useSensors(useSensor(PointerSensor));
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -30,7 +34,7 @@ export function JpgFileList({ images, onReorder, onRemove }: JpgFileListProps) {
   };
 
   return (
-    <DndContext sensors={sensors} accessibility={accessibility} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={images.map((img) => img.id)} strategy={verticalListSortingStrategy}>
         <div className="flex flex-col gap-2">
           {images.map((image, index) => (

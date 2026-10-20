@@ -118,7 +118,7 @@ export default async function AboutPage({
             <p className="mt-4 text-lg text-foreground-muted">{c.heroLede}</p>
             <a
               href={`/${locale}/pdf/merge-pdf`}
-              className="mt-6 inline-block rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground hover:shadow-md"
+              className="mt-6 inline-block rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground/90 shadow-sm transition-all hover:bg-primary-hover hover:text-primary-foreground hover:shadow-md"
             >
               {c.ctaLabel}
             </a>

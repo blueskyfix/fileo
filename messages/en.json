@@ -52,17 +52,14 @@
     "reorder": "Reorder",
     "remove": "Remove",
     "validating": "Validating...",
-    "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}",
-    "reorderNamed": "Reorder {name}",
-    "removeNamed": "Remove {name}"
+    "fileMeta": "{size} · {count, plural, =0 {0 page} one {# page} other {# pages}}"
   },
   "MergeActionBar": {
     "filenameLabel": "File name",
     "resultReady": "Your merged PDF is ready:",
     "download": "Download",
     "restart": "Start over",
-    "merge": "Merge PDFs",
-    "defaultName": "merged"
+    "merge": "Merge PDFs"
   },
   "SplitModeToggle": {
     "extract": "Extract into a single PDF",
@@ -83,25 +80,6 @@
     "restart": "Start over",
     "retry": "Retry"
   },
-  "CompressPdf": {
-    "levelLabel": "Compression level",
-    "levels": {
-      "light": { "name": "Light", "description": "Quality almost unchanged" },
-      "balanced": { "name": "Balanced", "description": "Good trade-off between size and readability" },
-      "strong": { "name": "Strong", "description": "Smallest size, blurrier result" }
-    },
-    "targetLabel": "Maximum size to reach (optional)",
-    "targetUnit": "MB",
-    "targetHelp": "If the chosen level is not enough, stronger levels are tried automatically.",
-    "limitsNote": "Text stays sharp and selectable. Any digital signature will no longer be valid.",
-    "sampleHint": "No file at hand?",
-    "sampleButton": "Try with a sample",
-    "compress": "Compress PDF",
-    "compressing": "Compressing…",
-    "saved": "{percent}% smaller",
-    "targetMissed": "The target size could not be reached, even at the strongest level. Here is the best result obtained.",
-    "noGain": "This PDF can't be made any smaller: it is already optimized or mostly text."
-  },
   "PageGallery": {
     "selectionSummary": "{selected} / {total} {total, plural, one {page} other {pages}} selected",
     "selectAll": "Select all",
@@ -109,59 +87,5 @@
   },
   "PageThumbnailItem": {
     "pageLabel": "Page {number}"
-  },
-  "FileDropzone": {
-    "rejected": "{count, plural, one {{names} is not accepted} other {{names} are not accepted}}. Accepted formats: {accepted}.",
-    "tooMany": "One file at a time: please drop a single file.",
-    "localNote": "The file never leaves your device."
-  },
-  "JpgDropzone": {
-    "title": "Drop your JPG or PNG images here",
-    "subtitle": "or click to select them from your device"
-  },
-  "SortableList": {
-    "instructions": "To reorder, press Space to pick up the file, use the up and down arrows to move it, then press Space to drop it. Press Escape to cancel.",
-    "picked": "Picked up {name}.",
-    "over": "{name} moved over {target}.",
-    "dropped": "{name} dropped in place of {target}.",
-    "cancelled": "Move cancelled, {name} stays in place."
-  },
-  "ToolStatus": {
-    "processing": "Processing…",
-    "ready": "Your file is ready. The Download button is focused.",
-    "loadingFile": "Reading the file…",
-    "download": "Download",
-    "restart": "Start over",
-    "retry": "Try again",
-    "converting": "Converting…",
-    "convertingRemote": "Converting, this only takes a few seconds…",
-    "convertToPdf": "Convert to PDF",
-    "convertToJpg": "Convert to JPG",
-    "convertToWord": "Convert to Word",
-    "file": "File:"
-  },
-  "RotateActionBar": {
-    "allPages": "All pages",
-    "selectPages": "Select pages",
-    "rotating": "Rotating…",
-    "apply": "Apply rotation",
-    "selectedCount": "{count, plural, =0 {No page selected} one {# page selected} other {# pages selected}}",
-    "selectAll": "Select all",
-    "clear": "Clear",
-    "allLeft": "All left",
-    "selectionLeft": "Selection left",
-    "allRight": "All right",
-    "selectionRight": "Selection right",
-    "reset": "Reset"
-  },
-  "CompressFileList": {
-    "alreadyOptimized": "Already optimized",
-    "remove": "Remove {name}"
-  },
-  "CompressActionBar": {
-    "compressing": "Compressing…",
-    "compress": "{count, plural, one {Compress # image} other {Compress # images}}",
-    "downloadZip": "Download ZIP",
-    "progress": "{done}/{total} images compressed"
   }
 }

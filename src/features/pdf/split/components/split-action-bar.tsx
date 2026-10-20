@@ -1,8 +1,7 @@
 "use client";
 
-import { AlertTriangle, Download, RotateCcw } from "lucide-react";
+import { Download, RotateCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 import type { SplitStatus } from "../lib/types";
 
@@ -24,33 +23,23 @@ export function SplitActionBar({
   onReset,
 }: SplitActionBarProps) {
   const t = useTranslations("SplitActionBar");
-  const tStatus = useTranslations("ToolStatus");
   const isBusy = status === "splitting" || status === "loading";
-  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
 
   if (status === "idle") return null;
 
-  const announcement =
-    status === "splitting" ? tStatus("processing") : status === "done" ? tStatus("ready") : "";
-
   return (
     <div className="flex flex-col gap-3">
-      <StatusAnnouncer message={announcement} />
       {error && (
-        <p role="alert" className="flex items-start gap-2 rounded-lg border border-border border-l-4 border-l-danger bg-elevated p-3 text-sm text-foreground">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
-          {error}
-        </p>
+        <p className="rounded-lg border border-border p-3 text-sm text-foreground">{error}</p>
       )}
 
       <div className="flex items-center gap-3">
         {status === "done" ? (
           <>
             <button
-              ref={downloadRef}
               type="button"
               onClick={onDownload}
-              className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+              className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
             >
               <Download className="h-4 w-4" />
               {t("download")}
@@ -69,7 +58,7 @@ export function SplitActionBar({
             type="button"
             onClick={onSplit}
             disabled={isBusy || selectedCount === 0}
-            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "loading" && t("loadingPdf")}
             {status === "splitting" && t("processing")}

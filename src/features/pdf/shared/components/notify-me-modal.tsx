@@ -95,7 +95,7 @@ export function NotifyMeModal({ toolSlug, toolName, onClose }: NotifyMeModalProp
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full shrink-0 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
+              className="w-full shrink-0 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
             >
               {status === "loading" ? "..." : "OK"}
             </button>

@@ -62,7 +62,6 @@ export default async function PdfHubPage({
     },
   };
   const trust = trustLabels[locale as AppLocale];
-  const chooseTool = locale === "en" ? "Choose a tool" : "Choisissez un outil";
 
   return (
     <Container className="py-16">
@@ -89,8 +88,7 @@ export default async function PdfHubPage({
         </div>
       </div>
 
-      <h2 className="mt-12 text-xl font-bold text-foreground">{chooseTool}</h2>
-      <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
         {availableTools.map((tool) => (
           <ToolCard key={tool.slug} tool={tool} locale={locale as AppLocale} />
         ))}

@@ -11,7 +11,7 @@ export function PdfToWordWidget() {
 
   return (
     <div>
-      {status === "idle" && <PdfDropzone onFileAdded={setFile} localNote={false} />}
+      {status === "idle" && <PdfDropzone onFileAdded={setFile} />}
 
       <PdfToWordActionBar
         status={status}

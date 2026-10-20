@@ -5,7 +5,6 @@ import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight, File, FileText, Image as ImageIcon, Lock } from "lucide-react";
 import { pdfTools, getToolIcon, getToolLabel, type Tool } from "@/data/tools/tools";
-import { formatTint, getToolFormat } from "@/data/tools/formats";
 import { NotifyMeModal } from "@/features/pdf/shared/components/notify-me-modal";
 import type { AppLocale } from "@/i18n/routing";
 
@@ -15,7 +14,7 @@ const heroSlugs = [
   "pdf-to-jpg",
   "split-pdf",
   "pdf-to-word",
-  "compress-pdf",
+  "remove-pages",
 ];
 
 export function HeroPreview() {
@@ -34,17 +33,17 @@ export function HeroPreview() {
               const Icon = getToolIcon(tool.icon);
               const isAvailable = tool.status === "available";
               const { name } = getToolLabel(tool.slug, locale);
-              const { color } = getToolFormat(tool.slug);
 
               const content = (
                 <>
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] ${
-                      isAvailable ? "" : "bg-unelevated text-foreground-muted"
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                      isAvailable
+                        ? "bg-primary/10 text-primary"
+                        : "bg-unelevated text-foreground-muted"
                     }`}
-                    style={isAvailable ? { backgroundColor: formatTint(color), color } : undefined}
                   >
-                    <Icon className="h-5 w-5" aria-hidden="true" />
+                    <Icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
                     <span
@@ -55,7 +54,7 @@ export function HeroPreview() {
                       {name}
                     </span>
                     {!isAvailable && (
-                      <span className="mt-1 inline-block rounded-full border border-border px-2 py-0.5 text-xs font-medium text-foreground-muted">
+                      <span className="mt-1 inline-block rounded-full border border-border px-2 py-0.5 text-[10px] font-medium text-foreground-muted">
                         {t("comingSoon")}
                       </span>
                     )}
@@ -126,7 +125,7 @@ export function HeroPreview() {
           </div>
 
           <div className="relative z-10 flex h-40 w-40 flex-col items-center justify-center gap-1.5 rounded-2xl border border-border bg-elevated shadow-lg transition-transform duration-300 hover:-translate-y-1">
-            <File className="h-[4.5rem] w-[4.5rem] text-brand" strokeWidth={1.5} />
+            <File className="h-[4.5rem] w-[4.5rem] text-primary" strokeWidth={1.5} />
             <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold tracking-wide text-primary">
               PDF
             </span>
@@ -141,7 +140,7 @@ export function HeroPreview() {
         </div>
 
         {/* Badge confidentialité — ancré sur le coin du cadre */}
-        <div className="absolute bottom-4 right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full border-4 border-surface bg-safe text-primary-foreground shadow-md">
+        <div className="absolute bottom-4 right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full border-4 border-surface bg-primary text-primary-foreground shadow-md">
           <Lock className="h-7 w-7" />
         </div>
       </div>
@@ -155,4 +154,4 @@ export function HeroPreview() {
       )}
     </>
   );
-}
+}

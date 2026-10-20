@@ -75,7 +75,7 @@ export function NotifyMeForm({ toolSlug, toolName }: NotifyMeFormProps) {
         <button
           type="submit"
           disabled={mode === "loading"}
-          className="shrink-0 rounded-full bg-primary px-2 py-1 text-[11px] font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
+          className="shrink-0 rounded-full bg-primary px-2 py-1 text-[11px] font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-60"
         >
           {mode === "loading" ? "..." : "OK"}
         </button>

@@ -19,11 +19,11 @@ export function ProgressBar({ value = 0, mode = "indeterminate", className = "" 
     >
       {mode === "determinate" ? (
         <div
-          className="h-full rounded-full bg-secondary transition-[width] duration-200 ease-out"
+          className="h-full rounded-full bg-primary transition-[width] duration-300 ease-out"
           style={{ width: `${clampedValue}%` }}
         />
       ) : (
-        <div className="h-full w-1/3 rounded-full bg-secondary animate-progress-indeterminate" />
+        <div className="h-full w-1/3 rounded-full bg-primary animate-progress-indeterminate" />
       )}
     </div>
   );

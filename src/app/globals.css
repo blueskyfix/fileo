@@ -8,106 +8,34 @@
   --color-primary: var(--fileo-primary);
   --color-primary-hover: var(--fileo-primary-hover);
   --color-primary-foreground: var(--fileo-primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--text);
-  --color-success: var(--success);
-  --color-danger: var(--error);
+  --color-accent: var(--fileo-primary);
+  --color-accent-foreground: var(--fileo-primary-foreground);
   --color-foreground: var(--fileo-foreground);
   --color-foreground-muted: var(--fileo-foreground-muted);
-  /* Alias historiques : brand = mise en avant du titre, safe = signaux « local ». */
-  --color-brand: var(--primary-hover);
-  --color-safe: var(--secondary);
-
-  --color-fmt-pdf: var(--fmt-pdf);
-  --color-fmt-word: var(--fmt-word);
-  --color-fmt-excel: var(--fmt-excel);
-  --color-fmt-ppt: var(--fmt-ppt);
-  --color-fmt-image: var(--fmt-image);
-  --color-fmt-other: var(--fmt-other);
 
   --radius-lg: 12px;
 
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-sora), var(--font-inter), sans-serif;
-  --font-mono: var(--font-jetbrains), monospace;
+  --font-sans: var(--font-inter), sans-serif;
 }
 
 :root {
-  /* Identité visuelle FileoPDF v2.0 (validée) — valeurs à ne pas modifier.
-     Secondary, accent, success et error sont trop clairs pour du texte
-     (< 4.5:1) : ils servent aux icônes, bordures et barres, toujours
-     accompagnés d'un texte en --text. */
+  --fileo-surface: #f8fafc;
+  --fileo-unelevated: #f1f5f9;
+  --fileo-elevated: #ffffff;
+  --fileo-border: #e2e8f0;
 
-  /* Brand — structure */
-  --primary: #1b3a6b; /* Deep Cobalt */
-  --primary-hover: #2a5298; /* Cobalt Clair */
-  --secondary: #00b4d8; /* Electric Teal */
-  --accent: #f4a261; /* Signal Amber */
-  --success: #2a9d8f; /* Validation Green */
-  --error: #e76f51; /* Alert Coral */
-
-  /* Neutres */
-  --bg: #f8f9fa; /* Off-White */
-  --card: #ffffff; /* Pure White */
-  --text: #1a1a2e; /* Charcoal */
-  --text-muted: #6b747c; /* Slate Gray, assombri d'un cran : #6c757d donnait 4.45:1 sur --bg, sous le seuil AA de 4.5:1 */
-  --border: #e9ecef; /* Soft Gray */
-
-  /* Accents de format : identifiants secondaires, jamais sur les boutons,
-     la navigation, les fonds de section ni le texte long. */
-  --fmt-pdf: #1b3a6b;
-  --fmt-word: #4f5cc5;
-  --fmt-excel: #1f8a6e;
-  --fmt-ppt: #d97340;
-  --fmt-image: #8b6dd9;
-  --fmt-other: #6c757d;
-
-  /* Correspondance avec les jetons utilisés par les composants. */
-  --fileo-surface: var(--bg);
-  --fileo-unelevated: var(--bg);
-  --fileo-elevated: var(--card);
-  --fileo-border: var(--border);
-  --fileo-primary: var(--primary);
-  --fileo-primary-hover: var(--primary-hover);
+  --fileo-primary: #2666eb;
+  --fileo-primary-hover: #1d54c7;
   --fileo-primary-foreground: #ffffff;
-  --fileo-foreground: var(--text);
-  --fileo-foreground-muted: var(--text-muted);
+
+  --fileo-foreground: #0f172a;
+  --fileo-foreground-muted: #64748b;
 }
 
 @import "../styles/utilities.css";
 
 body {
   @apply bg-surface text-foreground font-sans antialiased;
-}
-
-h1,
-h2 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-}
-
-h3 {
-  font-family: var(--font-sans);
-  font-weight: 600;
-}
-
-/* Anneau de focus visible et contraste (WCAG 2.4.7), clavier uniquement. */
-:where(a, button, input, select, textarea, summary, [role="button"], [tabindex]):focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
 
 ::selection {

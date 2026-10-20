@@ -1,7 +1,6 @@
 "use client";
 
 import { X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { formatFileSize } from "@/features/pdf/shared/utils/format-file-size";
 import type { ImageFileInfo } from "@/features/images/shared/types";
 
@@ -11,7 +10,6 @@ interface CompressFileListProps {
 }
 
 export function CompressFileList({ files, onRemove }: CompressFileListProps) {
-  const t = useTranslations("CompressFileList");
   if (files.length === 0) return null;
 
   return (
@@ -33,21 +31,21 @@ export function CompressFileList({ files, onRemove }: CompressFileListProps) {
                 {reduction !== null && reduction > 0 && f.compressedSize && (
                   <> → {formatFileSize(f.compressedSize)} (-{reduction}%)</>
                 )}
-                {reduction !== null && reduction <= 0 && <> · {t("alreadyOptimized")}</>}
+                {reduction !== null && reduction <= 0 && <> · Déjà optimisée</>}
               </p>
             </div>
 
             {f.status === "compressing" && <Loader2 className="h-5 w-5 shrink-0 animate-spin text-primary" />}
             {f.status === "done" && <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />}
-            {f.status === "error" && <AlertCircle className="h-5 w-5 shrink-0 text-danger" />}
+            {f.status === "error" && <AlertCircle className="h-5 w-5 shrink-0 text-red-500" />}
 
             <button
               type="button"
               onClick={() => onRemove(f.id)}
-              className="-mr-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-foreground-muted transition-colors hover:bg-unelevated hover:text-danger"
-              aria-label={t("remove", { name: f.file.name })}
+              className="shrink-0 rounded-md p-1 text-foreground-muted transition-colors hover:bg-unelevated hover:text-foreground"
+              aria-label={`Retirer ${f.file.name}`}
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </li>
         );

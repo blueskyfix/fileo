@@ -9,7 +9,6 @@ FileoPDF is built for people who want to handle sensitive documents (contracts, 
 - [Merge PDF](https://www.fileopdf.com/en/pdf/merge-pdf): combine several PDF files into a single document.
 - [Split PDF](https://www.fileopdf.com/en/pdf/split-pdf): extract pages or split a PDF into several files.
 - [Rotate PDF](https://www.fileopdf.com/en/pdf/rotate-pdf): rotate one or all pages of a PDF.
-- [Compress PDF](https://www.fileopdf.com/en/pdf/compress-pdf): reduce the size of a PDF, for example to meet an upload limit; text stays selectable.
 - [Remove pages from a PDF](https://www.fileopdf.com/en/pdf/remove-pages): delete unwanted pages from a PDF.
 - [JPG to PDF](https://www.fileopdf.com/en/pdf/jpg-to-pdf): turn one or more images into a PDF.
 - [PDF to JPG](https://www.fileopdf.com/en/pdf/pdf-to-jpg): export PDF pages as JPG images.

@@ -1,37 +1,48 @@
 "use client";
 
 import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 import { useTranslations } from "next-intl";
 import { FileText } from "lucide-react";
-import { FileDropzone } from "@/components/ui/file-dropzone";
+import { cn } from "@/core/utils/cn";
 
 interface PdfDropzoneProps {
   onFileAdded: (file: File) => void;
-  /** Faux pour les outils qui envoient le fichier à un service (PDF vers Word). */
-  localNote?: boolean;
 }
 
-export function PdfDropzone({ onFileAdded, localNote = true }: PdfDropzoneProps) {
+export function PdfDropzone({ onFileAdded }: PdfDropzoneProps) {
   const t = useTranslations("PdfDropzone");
 
-  const onFiles = useCallback(
-    (files: File[]) => {
-      const [firstFile] = files;
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const [firstFile] = acceptedFiles;
       if (firstFile) onFileAdded(firstFile);
     },
     [onFileAdded],
   );
 
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "application/pdf": [".pdf"] },
+    multiple: false,
+  });
+
   return (
-    <FileDropzone
-      accept={{ "application/pdf": [".pdf"] }}
-      multiple={false}
-      localNote={localNote}
-      onFiles={onFiles}
-      acceptedLabel=".pdf"
-      title={t("title")}
-      subtitle={t("subtitle")}
-      icon={<FileText className="h-6 w-6" strokeWidth={1.75} />}
-    />
+    <div
+      {...getRootProps()}
+      className={cn(
+        "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed bg-elevated p-8 text-center shadow-sm transition-colors sm:p-10",
+        isDragActive
+          ? "border-primary bg-primary/5"
+          : "border-border hover:border-primary/60 hover:shadow-md",
+      )}
+    >
+      <input {...getInputProps()} />
+      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <FileText className="h-6 w-6" strokeWidth={1.75} />
+      </div>
+      <p className="font-medium text-foreground">{t("title")}</p>
+      <p className="text-sm text-foreground-muted">{t("subtitle")}</p>
+    </div>
   );
 }

@@ -1,8 +1,4 @@
-"use client";
-
-import { AlertTriangle } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 import type { RemovePagesStatus } from "../lib/types";
 
@@ -24,8 +20,6 @@ export function RemovePagesActionBar({
   onReset,
 }: RemovePagesActionBarProps) {
   const t = useTranslations("RemovePagesActionBar");
-  const tStatus = useTranslations("ToolStatus");
-  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
 
   if (status === "ready") {
     return (
@@ -33,7 +27,7 @@ export function RemovePagesActionBar({
         type="button"
         onClick={onRemove}
         disabled={selectedCount === 0}
-        className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
       >
         {selectedCount > 0 ? t("removeCount", { count: selectedCount }) : t("selectPrompt")}
       </button>
@@ -43,7 +37,6 @@ export function RemovePagesActionBar({
   if (status === "removing") {
     return (
       <div className="flex flex-col gap-2">
-        <StatusAnnouncer message={tStatus("processing")} />
         <p className="text-sm text-foreground-muted">{t("removing")}</p>
         <ProgressBar mode="indeterminate" />
       </div>
@@ -53,12 +46,10 @@ export function RemovePagesActionBar({
   if (status === "done") {
     return (
       <div className="flex items-center gap-3">
-        <StatusAnnouncer message={tStatus("ready")} />
         <button
-          ref={downloadRef}
           type="button"
           onClick={onDownload}
-          className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-hover"
+          className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-hover"
         >
           {t("download")}
         </button>
@@ -76,10 +67,7 @@ export function RemovePagesActionBar({
   if (status === "error") {
     return (
       <div className="flex items-center gap-3">
-        <p role="alert" className="flex items-start gap-2 text-sm text-foreground">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
-          {error}
-        </p>
+        <p className="text-sm text-red-600">{error}</p>
         <button
           type="button"
           onClick={onReset}

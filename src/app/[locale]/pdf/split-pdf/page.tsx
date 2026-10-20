@@ -73,7 +73,7 @@ export default async function SplitPdfPage({
         <SplitWidget />
       </ToolHeroSplit>
 
-      <section className="mt-16 space-y-4 pb-16">
+      <section className="mt-16 space-y-4">
         <h2 className="text-2xl font-bold text-foreground">{splitPdfTrustBlock.title}</h2>
         <p className="max-w-2xl text-foreground-muted">{splitPdfTrustBlock.intro}</p>
         <InlineTrustStrip

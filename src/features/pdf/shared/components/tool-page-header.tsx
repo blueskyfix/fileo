@@ -12,7 +12,7 @@ export function ToolPageHeader({
   return (
     <div className="flex flex-col items-center gap-3 py-12 text-center md:py-16">
       {eyebrow && (
-        <span className="font-mono text-xs font-medium uppercase tracking-wide text-primary">
+        <span className="text-xs font-medium uppercase tracking-wide text-accent">
           {eyebrow}
         </span>
       )}

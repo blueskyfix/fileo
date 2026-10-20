@@ -1,5 +1,4 @@
 import { AlertCircle } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 interface WordToPdfErrorBannerProps {
   message: string;
@@ -10,18 +9,17 @@ export function WordToPdfErrorBanner({
   message,
   onDismiss,
 }: WordToPdfErrorBannerProps) {
-  const t = useTranslations("ToolStatus");
   return (
-    <div role="alert" className="flex items-center justify-between gap-3 rounded-xl border border-border border-l-4 border-l-danger bg-elevated px-4 py-3">
+    <div className="flex items-center justify-between gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3">
       <div className="flex items-center gap-2">
-        <AlertCircle className="h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
-        <span className="text-sm text-foreground">{message}</span>
+        <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+        <span className="text-sm text-red-700">{message}</span>
       </div>
       <button
         onClick={onDismiss}
-        className="min-h-11 shrink-0 text-sm font-semibold text-primary underline hover:no-underline"
+        className="shrink-0 text-sm font-medium text-red-700 underline hover:no-underline"
       >
-        {t("retry")}
+        Réessayer
       </button>
     </div>
   );

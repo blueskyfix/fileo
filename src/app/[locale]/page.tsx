@@ -5,7 +5,7 @@ import { Container } from "@/components/layout/container";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Hero } from "@/components/marketing/hero";
 import { ToolCard } from "@/components/marketing/tool-card";
-import { tools } from "@/data/tools/tools";
+import { pdfTools } from "@/data/tools/tools";
 import { siteConfig } from "@/core/config/site";
 import { buildPageMetadata } from "@/core/seo/metadata";
 import type { AppLocale } from "@/i18n/routing";
@@ -46,7 +46,7 @@ export default async function HomePage({
   const { homeToolsSection, homeWhyPoints } = await loadContent(
     locale as AppLocale,
   );
-  const availableTools = tools.filter((tool) => tool.status === "available");
+  const availableTools = pdfTools.filter((tool) => tool.status === "available");
 
   const siteJsonLd = {
     "@context": "https://schema.org",
@@ -125,4 +125,4 @@ export default async function HomePage({
       </Container>
     </>
   );
-}
+}
