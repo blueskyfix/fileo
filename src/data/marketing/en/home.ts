@@ -14,8 +14,6 @@ export const homeHero = {
     "0 account",
     "0 ads",
   ],
-  proof:
-    "Verifiable: open your browser's Network tab during processing, no file is sent (except for PDF to Word and Word to PDF).",
 };
 
 export const homeToolsSection = {

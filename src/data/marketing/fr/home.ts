@@ -14,8 +14,6 @@ export const homeHero = {
     "0 compte",
     "0 publicité",
   ],
-  proof:
-    "Vérifiable : ouvrez l'onglet Réseau de votre navigateur pendant un traitement, aucun fichier n'est envoyé (sauf pour PDF vers Word et Word vers PDF).",
 };
 
 export const homeToolsSection = {

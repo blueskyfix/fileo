@@ -58,8 +58,6 @@ export async function Hero({ locale }: { locale: AppLocale }) {
             );
           })}
         </div>
-
-        <p className="max-w-xl text-sm text-foreground-muted">{homeHero.proof}</p>
       </div>
 
       <HeroPreview />
