@@ -14,7 +14,7 @@ const heroSlugs = [
   "pdf-to-jpg",
   "split-pdf",
   "pdf-to-word",
-  "remove-pages",
+  "compress-pdf",
 ];
 
 export function HeroPreview() {
@@ -54,7 +54,7 @@ export function HeroPreview() {
                       {name}
                     </span>
                     {!isAvailable && (
-                      <span className="mt-1 inline-block rounded-full border border-border px-2 py-0.5 text-[10px] font-medium text-foreground-muted">
+                      <span className="mt-1 inline-block rounded-full border border-border px-2 py-0.5 text-xs font-medium text-foreground-muted">
                         {t("comingSoon")}
                       </span>
                     )}

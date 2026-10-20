@@ -7,13 +7,15 @@ export const homeHero = {
   titleHighlight: "simply.",
   subtitle:
     "Merge, split, and convert your PDFs in your browser, fully private and with no sign-up.",
-  ctaPrimaryLabel: "Merge a PDF",
+  ctaPrimaryLabel: "Compress a PDF",
   ctaSecondaryLabel: "View all tools",
   reassurance: [
-    "Simple and direct",
     "PDFs processed locally",
-    "No sign-up",
+    "0 account",
+    "0 ads",
   ],
+  proof:
+    "Verifiable: open your browser's Network tab during processing, no file is sent (except for PDF to Word and Word to PDF).",
 };
 
 export const homeToolsSection = {
@@ -38,4 +40,4 @@ export const homeWhyPoints = {
       description: "No hidden paywall for core features.",
     },
   ],
-};
+};

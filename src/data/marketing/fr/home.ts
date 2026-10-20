@@ -3,17 +3,19 @@ export const homeMeta = {
 };
 
 export const homeHero = {
-  titleLead: "Traitez vos PDFs,",
+  titleLead: "Traitez vos PDF,",
   titleHighlight: "simplement.",
   subtitle:
     "Fusionnez, découpez et convertissez vos PDF dans votre navigateur en toute confidentialité et sans inscription.",
-  ctaPrimaryLabel: "Fusionner un PDF",
+  ctaPrimaryLabel: "Compresser un PDF",
   ctaSecondaryLabel: "Voir tous les outils",
   reassurance: [
-    "Simple et direct",
-    "PDF traités localement",
-    "Sans inscription",
+    "PDF traités en local",
+    "0 compte",
+    "0 publicité",
   ],
+  proof:
+    "Vérifiable : ouvrez l'onglet Réseau de votre navigateur pendant un traitement, aucun fichier n'est envoyé (sauf pour PDF vers Word et Word vers PDF).",
 };
 
 export const homeToolsSection = {
@@ -39,4 +41,4 @@ export const homeWhyPoints = {
       description: "Aucun palier payant caché pour des fonctionnalités de base.",
     },
   ],
-};
+};

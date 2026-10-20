@@ -1,12 +1,9 @@
 // src/features/word/word-to-pdf/components/word-to-pdf-action-bar.tsx
-//
-// ⚠️ Composant NEUF, pas copié d'un fichier pdf-to-word-action-bar.tsx
-// existant (non fourni). Respecte la charte v2 : bouton primaire #2666EB,
-// radius 12px, pas de couleur codée en dur (tokens Tailwind uniquement).
-
 "use client";
 
 import { Loader2, Download, RotateCcw, AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import type { WordToPdfStatus } from "../store/word-to-pdf-store";
 
 interface WordToPdfActionBarProps {
@@ -26,60 +23,72 @@ export function WordToPdfActionBar({
   onDownload,
   onReset,
 }: WordToPdfActionBarProps) {
+  const t = useTranslations("ToolStatus");
+  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
+
   if (status === "idle") return null;
+
+  const announcement =
+    status === "converting" ? t("processing") : status === "done" ? t("ready") : "";
 
   return (
     <div className="mt-4 flex flex-col gap-3 rounded-xl border border-border bg-elevated p-4">
+      <StatusAnnouncer message={announcement} />
       {fileName && (
         <p className="truncate text-sm font-medium text-foreground">{fileName}</p>
       )}
 
       {status === "ready" && (
         <button
+          type="button"
           onClick={onConvert}
-          className="rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+          className="rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
         >
-          Convertir en PDF
+          {t("convertToPdf")}
         </button>
       )}
 
       {status === "converting" && (
         <div className="flex items-center gap-2 text-sm text-foreground-muted">
-          <Loader2 className="h-4 w-4 animate-spin" />
-          Conversion en cours...
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          {t("converting")}
         </div>
       )}
 
       {status === "done" && (
         <div className="flex flex-wrap gap-2">
           <button
+            ref={downloadRef}
+            type="button"
             onClick={onDownload}
-            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
-            <Download className="h-4 w-4" />
-            Télécharger
+            <Download className="h-4 w-4" aria-hidden="true" />
+            {t("download")}
           </button>
           <button
+            type="button"
             onClick={onReset}
-            className="flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
+            className="flex items-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
           >
-            <RotateCcw className="h-4 w-4" />
-            Recommencer
+            <RotateCcw className="h-4 w-4" aria-hidden="true" />
+            {t("restart")}
           </button>
         </div>
       )}
 
       {status === "error" && (
         <div className="flex flex-col gap-2">
-          <div className="flex items-start gap-2 text-sm text-red-600">
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <div role="alert" className="flex items-start gap-2 text-sm text-danger">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
             <span>{errorMessage}</span>
           </div>
           <button
+            type="button"
             onClick={onReset}
-            className="self-start rounded-xl border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
+            className="self-start rounded-xl border border-border px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
           >
-            Réessayer
+            {t("retry")}
           </button>
         </div>
       )}

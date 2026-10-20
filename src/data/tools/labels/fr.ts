@@ -39,7 +39,7 @@ export const toolLabelsFr: Record<string, ToolLabel> = {
       "Réduisez le poids d'un PDF pour respecter la limite d'un portail ou d'un e-mail.",
   },
   "rotate-pdf": {
-    name: "Rotate PDF",
+    name: "Faire pivoter un PDF",
     description: "Faites pivoter les pages de votre PDF, à 90°, 180° ou 270°.",
   },
   "compress-image": {

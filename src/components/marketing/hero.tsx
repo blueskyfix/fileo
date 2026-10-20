@@ -31,8 +31,8 @@ export async function Hero({ locale }: { locale: AppLocale }) {
 
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/pdf/merge-pdf"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-[filter] hover:brightness-110"
+            href="/pdf/compress-pdf"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
             {homeHero.ctaPrimaryLabel}
             <ArrowRight className="h-4 w-4" />
@@ -40,7 +40,7 @@ export async function Hero({ locale }: { locale: AppLocale }) {
 
           <Link
             href="/pdf"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-elevated px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated"
           >
             {homeHero.ctaSecondaryLabel}
           </Link>
@@ -52,12 +52,14 @@ export async function Hero({ locale }: { locale: AppLocale }) {
             if (!Icon) return null;
             return (
               <div key={label} className="flex items-center gap-2">
-                <Icon className="h-4 w-4 shrink-0 text-primary" />
+                <Icon className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                 <span className="text-sm text-foreground-muted">{label}</span>
               </div>
             );
           })}
         </div>
+
+        <p className="max-w-xl text-sm text-foreground-muted">{homeHero.proof}</p>
       </div>
 
       <HeroPreview />

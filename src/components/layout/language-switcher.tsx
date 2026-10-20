@@ -9,6 +9,11 @@ const labels: Record<AppLocale, string> = {
   en: "EN",
 };
 
+const names: Record<AppLocale, string> = {
+  fr: "Français",
+  en: "English",
+};
+
 export function LanguageSwitcher() {
   const locale = useLocale() as AppLocale;
   const pathname = usePathname(); // ex: /fr/pdf/merge-pdf
@@ -30,17 +35,19 @@ export function LanguageSwitcher() {
   return (
     <div className="flex items-center gap-1 text-sm font-medium text-foreground-muted">
       {routing.locales.map((loc, index) => (
-        <div key={loc} className="flex items-center gap-1">
+        <div key={loc} className="flex items-center">
           {index > 0 && <span aria-hidden="true">/</span>}
           <button
             type="button"
             onClick={() => switchTo(loc)}
             aria-current={loc === locale ? "true" : undefined}
-            className={
+            aria-label={names[loc]}
+            lang={loc}
+            className={`inline-flex h-11 min-w-11 items-center justify-center rounded-lg px-2 ${
               loc === locale
                 ? "text-foreground"
-                : "transition-colors hover:text-foreground"
-            }
+                : "transition-colors hover:bg-unelevated hover:text-foreground"
+            }`}
           >
             {labels[loc]}
           </button>

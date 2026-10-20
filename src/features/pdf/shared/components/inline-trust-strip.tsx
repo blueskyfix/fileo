@@ -17,7 +17,7 @@ export function InlineTrustStrip({ points }: InlineTrustStripProps) {
           key={label}
           className="flex items-center gap-1.5 text-sm font-medium text-foreground-muted"
         >
-          <Icon className="h-4 w-4 text-primary" strokeWidth={2} />
+          <Icon className="h-4 w-4 text-primary" strokeWidth={2} aria-hidden="true" />
           {label}
         </div>
       ))}

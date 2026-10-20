@@ -2,6 +2,7 @@
 
 import { AlertTriangle, Info } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 import { formatFileSize } from "@/features/pdf/shared/utils/format-file-size";
 import type { CompressPdfState } from "../store";
@@ -25,7 +26,9 @@ export function CompressPdfActionBar({
   onReset,
 }: CompressPdfActionBarProps) {
   const t = useTranslations("CompressPdf");
+  const tStatus = useTranslations("ToolStatus");
   const { status, file, result } = state;
+  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
 
   if (status === "ready") {
     return (
@@ -34,7 +37,7 @@ export function CompressPdfActionBar({
           {t("compress")}
         </button>
         <button type="button" onClick={onReset} className={secondaryButton}>
-          {t("restart")}
+          {tStatus("restart")}
         </button>
       </div>
     );
@@ -43,7 +46,7 @@ export function CompressPdfActionBar({
   if (status === "compressing") {
     return (
       <div className="flex flex-col gap-2">
-        <span role="status" className="sr-only">{t("processing")}</span>
+        <StatusAnnouncer message={tStatus("processing")} />
         <p className="text-sm text-foreground-muted">{t("compressing")}</p>
         <ProgressBar mode="determinate" value={state.progress} />
       </div>
@@ -54,7 +57,7 @@ export function CompressPdfActionBar({
     const percent = Math.round((1 - result.size / file.size) * 100);
     return (
       <div className="flex flex-col gap-3">
-        <span role="status" className="sr-only">{t("ready")}</span>
+        <StatusAnnouncer message={tStatus("ready")} />
         <p className="text-sm text-foreground">
           <span className="font-semibold">
             {formatFileSize(file.size)} → {formatFileSize(result.size)}
@@ -63,16 +66,16 @@ export function CompressPdfActionBar({
         </p>
         {!result.reachedTarget && (
           <p className="flex items-start gap-2 text-sm text-foreground">
-            <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
             {t("targetMissed")}
           </p>
         )}
         <div className="flex items-center gap-3">
-          <button type="button" onClick={onDownload} className={primaryButton}>
-            {t("download")}
+          <button ref={downloadRef} type="button" onClick={onDownload} className={primaryButton}>
+            {tStatus("download")}
           </button>
           <button type="button" onClick={onReset} className={secondaryButton}>
-            {t("restart")}
+            {tStatus("restart")}
           </button>
         </div>
       </div>
@@ -83,12 +86,12 @@ export function CompressPdfActionBar({
     return (
       <div className="flex flex-col gap-3">
         <p role="status" className="flex items-start gap-2 text-sm text-foreground">
-          <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-secondary" aria-hidden="true" />
           {t("noGain")}
         </p>
         <div>
           <button type="button" onClick={onReset} className={secondaryButton}>
-            {t("restart")}
+            {tStatus("restart")}
           </button>
         </div>
       </div>
@@ -99,11 +102,11 @@ export function CompressPdfActionBar({
     return (
       <div className="flex items-center gap-3">
         <p role="alert" className="flex items-start gap-2 text-sm text-foreground">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" aria-hidden="true" />
+          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
           {state.error}
         </p>
         <button type="button" onClick={onReset} className={secondaryButton}>
-          {t("retry")}
+          {tStatus("retry")}
         </button>
       </div>
     );

@@ -8,6 +8,8 @@ import {
   CheckCheck,
   X,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import type { RotateStatus, RotateMode } from "../store/rotate-store";
 
 interface RotatePdfActionBarProps {
@@ -41,23 +43,32 @@ export function RotatePdfActionBar({
   onDownload,
   onNewFile,
 }: RotatePdfActionBarProps) {
+  const t = useTranslations("RotateActionBar");
+  const tStatus = useTranslations("ToolStatus");
+  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
+
+  const announcement =
+    status === "rotating" ? tStatus("processing") : status === "done" ? tStatus("ready") : "";
+
   if (status === "done") {
     return (
       <div className="flex flex-wrap gap-3">
+        <StatusAnnouncer message={announcement} />
         <button
+          ref={downloadRef}
           type="button"
           onClick={onDownload}
-          className="flex items-center gap-2 rounded-xl bg-(--color-primary) px-5 py-3 font-medium text-white hover:bg-(--color-primary-hover)"
+          className="flex items-center gap-2 rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary-hover"
         >
-          <Download className="h-4 w-4" />
-          Télécharger
+          <Download className="h-4 w-4" aria-hidden="true" />
+          {tStatus("download")}
         </button>
         <button
           type="button"
           onClick={onNewFile}
-          className="rounded-xl border border-(--color-border) px-5 py-3 font-medium text-(--color-foreground) hover:bg-(--color-unelevated)"
+          className="rounded-xl border border-border px-5 py-3 font-medium text-foreground hover:bg-unelevated"
         >
-          Recommencer
+          {tStatus("restart")}
         </button>
       </div>
     );
@@ -66,66 +77,59 @@ export function RotatePdfActionBar({
   const rotateDisabled =
     status === "rotating" || (mode === "selection" && selectedCount === 0);
 
+  const modeButton = (value: RotateMode, label: string) => (
+    <button
+      type="button"
+      onClick={() => onSetMode(value)}
+      aria-pressed={mode === value}
+      className={`min-h-11 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+        mode === value
+          ? "bg-primary text-primary-foreground"
+          : "text-foreground-muted hover:text-foreground"
+      }`}
+    >
+      {label}
+    </button>
+  );
+
   return (
     <div className="flex flex-col gap-4">
+      <StatusAnnouncer message={announcement} />
       {/* Sélecteur de mode + bouton principal, même rangée */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2 rounded-xl border border-(--color-border) p-1 w-fit">
-          <button
-            type="button"
-            onClick={() => onSetMode("all")}
-            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              mode === "all"
-                ? "bg-(--color-primary) text-white"
-                : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
-            }`}
-          >
-            Toutes les pages
-          </button>
-          <button
-            type="button"
-            onClick={() => onSetMode("selection")}
-            className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-              mode === "selection"
-                ? "bg-(--color-primary) text-white"
-                : "text-(--color-foreground-muted) hover:text-(--color-foreground)"
-            }`}
-          >
-            Sélectionner des pages
-          </button>
+        <div className="flex w-fit items-center gap-2 rounded-xl border border-border p-1">
+          {modeButton("all", t("allPages"))}
+          {modeButton("selection", t("selectPages"))}
         </div>
 
         <button
           type="button"
           onClick={onApply}
           disabled={!hasChanges || status === "rotating"}
-          className="rounded-xl bg-(--color-primary) px-5 py-3 font-medium text-white hover:bg-(--color-primary-hover) disabled:opacity-50"
+          className="rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary-hover disabled:opacity-50"
         >
-          {status === "rotating" ? "Rotation en cours…" : "Appliquer la rotation"}
+          {status === "rotating" ? t("rotating") : t("apply")}
         </button>
       </div>
 
       {mode === "selection" && (
-        <div className="flex items-center gap-3 text-sm">
-          <span className="text-(--color-foreground-muted)">
-            {selectedCount} page{selectedCount > 1 ? "s" : ""} sélectionnée
-            {selectedCount > 1 ? "s" : ""}
-          </span>
+        <div className="flex flex-wrap items-center gap-3 text-sm">
+          <span className="text-foreground-muted">{t("selectedCount", { count: selectedCount })}</span>
           <button
             type="button"
             onClick={onSelectAll}
-            className="flex items-center gap-1 text-(--color-primary) hover:underline"
+            className="flex min-h-11 items-center gap-1 px-1 text-primary hover:underline"
           >
-            <CheckCheck className="h-3.5 w-3.5" />
-            Tout sélectionner
+            <CheckCheck className="h-4 w-4" aria-hidden="true" />
+            {t("selectAll")}
           </button>
           <button
             type="button"
             onClick={onDeselectAll}
-            className="flex items-center gap-1 text-(--color-foreground-muted) hover:underline"
+            className="flex min-h-11 items-center gap-1 px-1 text-foreground-muted hover:underline"
           >
-            <X className="h-3.5 w-3.5" />
-            Effacer
+            <X className="h-4 w-4" aria-hidden="true" />
+            {t("clear")}
           </button>
         </div>
       )}
@@ -136,28 +140,28 @@ export function RotatePdfActionBar({
           type="button"
           onClick={onRotateTargetLeft}
           disabled={rotateDisabled}
-          className="flex items-center gap-2 rounded-xl border border-(--color-border) px-4 py-2.5 text-sm font-medium hover:bg-(--color-unelevated) disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium hover:bg-unelevated disabled:opacity-50"
         >
-          <RotateCcw className="h-4 w-4" />
-          {mode === "all" ? "Tout à gauche" : "Sélection à gauche"}
+          <RotateCcw className="h-4 w-4" aria-hidden="true" />
+          {mode === "all" ? t("allLeft") : t("selectionLeft")}
         </button>
         <button
           type="button"
           onClick={onRotateTargetRight}
           disabled={rotateDisabled}
-          className="flex items-center gap-2 rounded-xl border border-(--color-border) px-4 py-2.5 text-sm font-medium hover:bg-(--color-unelevated) disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl border border-border px-4 py-3 text-sm font-medium hover:bg-unelevated disabled:opacity-50"
         >
-          <RotateCw className="h-4 w-4" />
-          {mode === "all" ? "Tout à droite" : "Sélection à droite"}
+          <RotateCw className="h-4 w-4" aria-hidden="true" />
+          {mode === "all" ? t("allRight") : t("selectionRight")}
         </button>
         {hasChanges && (
           <button
             type="button"
             onClick={onResetRotations}
-            className="flex items-center gap-2 text-sm text-(--color-foreground-muted) hover:text-(--color-foreground)"
+            className="flex min-h-11 items-center gap-2 px-1 text-sm text-foreground-muted hover:text-foreground"
           >
-            <RefreshCw className="h-3.5 w-3.5" />
-            Réinitialiser
+            <RefreshCw className="h-4 w-4" aria-hidden="true" />
+            {t("reset")}
           </button>
         )}
       </div>

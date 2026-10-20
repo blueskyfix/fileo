@@ -1,11 +1,8 @@
 "use client";
 
-import { useCallback } from "react";
-import { useDropzone, type FileRejection } from "react-dropzone";
 import { useTranslations } from "next-intl";
 import { UploadCloud } from "lucide-react";
-import { cn } from "@/core/utils/cn";
-import { trackFileDrop } from "@/core/config/analytics";
+import { FileDropzone } from "@/components/ui/file-dropzone";
 
 interface ImageDropzoneProps {
   onFilesAdded: (files: File[]) => void;
@@ -14,38 +11,19 @@ interface ImageDropzoneProps {
 export function ImageDropzone({ onFilesAdded }: ImageDropzoneProps) {
   const t = useTranslations("ImageDropzone");
 
-  const onDrop = useCallback(
-    (acceptedFiles: File[], rejections: FileRejection[]) => {
-      trackFileDrop(acceptedFiles.length, rejections.length);
-      if (acceptedFiles.length > 0) {
-        onFilesAdded(acceptedFiles);
-      }
-    },
-    [onFilesAdded]
-  );
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    multiple: true,
-    accept: {
-      "image/jpeg": [".jpg", ".jpeg"],
-      "image/png": [".png"],
-      "image/webp": [".webp"],
-    },
-  });
-
   return (
-    <div
-      {...getRootProps()}
-      className={cn(
-        "flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed bg-unelevated px-6 py-12 text-center transition-colors",
-        isDragActive ? "border-primary bg-primary/5" : "border-border hover:border-primary"
-      )}
-    >
-      <input {...getInputProps()} />
-      <UploadCloud className="h-8 w-8 text-primary" strokeWidth={1.5} />
-      <p className="text-sm font-medium text-foreground">{t("title")}</p>
-      <p className="text-xs text-foreground-muted">{t("subtitle")}</p>
-    </div>
+    <FileDropzone
+      accept={{
+        "image/jpeg": [".jpg", ".jpeg"],
+        "image/png": [".png"],
+        "image/webp": [".webp"],
+      }}
+      multiple
+      onFiles={onFilesAdded}
+      acceptedLabel="JPEG, PNG, WebP"
+      title={t("title")}
+      subtitle={t("subtitle")}
+      icon={<UploadCloud className="h-6 w-6" strokeWidth={1.75} />}
+    />
   );
 }

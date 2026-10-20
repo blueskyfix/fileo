@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import { ProgressBar } from "@/features/pdf/shared/components/progress-bar";
 
 interface CompressActionBarProps {
@@ -19,32 +21,43 @@ export function CompressActionBar({
   onDownloadZip,
   onReset,
 }: CompressActionBarProps) {
+  const t = useTranslations("CompressActionBar");
+  const tStatus = useTranslations("ToolStatus");
+  const allDone = fileCount > 0 && doneCount === fileCount;
+  const downloadRef = useFocusWhen<HTMLButtonElement>(allDone);
+
   if (fileCount === 0) return null;
 
-  const allDone = doneCount === fileCount;
   const progress = fileCount > 0 ? (doneCount / fileCount) * 100 : 0;
+  const announcement = isCompressing
+    ? tStatus("processing")
+    : allDone
+      ? tStatus("ready")
+      : "";
 
   return (
     <div className="flex flex-col gap-3">
+      <StatusAnnouncer message={announcement} />
       <div className="flex flex-wrap items-center gap-3">
         {!allDone && (
           <button
             type="button"
             onClick={onCompress}
             disabled={isCompressing}
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isCompressing ? "Compression en cours..." : `Compresser ${fileCount} image${fileCount > 1 ? "s" : ""}`}
+            {isCompressing ? t("compressing") : t("compress", { count: fileCount })}
           </button>
         )}
 
         {allDone && (
           <button
+            ref={downloadRef}
             type="button"
             onClick={onDownloadZip}
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-hover"
           >
-            Télécharger le ZIP
+            {t("downloadZip")}
           </button>
         )}
 
@@ -52,17 +65,17 @@ export function CompressActionBar({
           type="button"
           onClick={onReset}
           disabled={isCompressing}
-          className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-unelevated disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-xl border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-unelevated disabled:cursor-not-allowed disabled:opacity-60"
         >
-          Recommencer
+          {tStatus("restart")}
         </button>
       </div>
 
       {isCompressing && (
         <div className="flex flex-col gap-1.5">
           <ProgressBar mode="determinate" value={progress} />
-          <p className="text-xs text-foreground-muted">
-            {doneCount}/{fileCount} images compressées
+          <p className="text-sm text-foreground-muted">
+            {t("progress", { done: doneCount, total: fileCount })}
           </p>
         </div>
       )}

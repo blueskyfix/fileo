@@ -28,7 +28,7 @@ export function CompressPdfOptions({
             return (
               <label
                 key={option}
-                className={`flex cursor-pointer flex-col gap-1 rounded-xl border px-4 py-3 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-primary ${
+                className={`flex cursor-pointer flex-col gap-1 rounded-xl border px-4 py-3 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-secondary ${
                   isActive
                     ? "border-primary bg-primary/10"
                     : "border-border bg-elevated hover:border-primary/40"

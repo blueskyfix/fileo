@@ -1,6 +1,9 @@
 // src/features/pdf/pdf-to-word/components/pdf-to-word-action-bar.tsx
 "use client";
 
+import { AlertCircle, Download, Loader2, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { StatusAnnouncer, useFocusWhen } from "@/components/ui/status-announcer";
 import type { PdfToWordStatus } from "../store/pdf-to-word-store";
 
 interface PdfToWordActionBarProps {
@@ -20,13 +23,20 @@ export function PdfToWordActionBar({
   onDownload,
   onReset,
 }: PdfToWordActionBarProps) {
+  const t = useTranslations("ToolStatus");
+  const downloadRef = useFocusWhen<HTMLButtonElement>(status === "done");
+
   if (status === "idle") return null;
 
+  const announcement =
+    status === "converting" ? t("processing") : status === "done" ? t("ready") : "";
+
   return (
-    <div className="mt-4 flex flex-col gap-3 rounded-lg border border-border bg-elevated p-4">
+    <div className="mt-4 flex flex-col gap-3 rounded-xl border border-border bg-elevated p-4">
+      <StatusAnnouncer message={announcement} />
       {fileName && (
         <p className="truncate text-sm text-foreground-muted">
-          Fichier : <span className="text-foreground">{fileName}</span>
+          {t("file")} <span className="text-foreground">{fileName}</span>
         </p>
       )}
 
@@ -34,46 +44,53 @@ export function PdfToWordActionBar({
         <button
           type="button"
           onClick={onConvert}
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
+          className="rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
         >
-          Convertir en Word
+          {t("convertToWord")}
         </button>
       )}
 
       {status === "converting" && (
-        <p className="text-sm text-foreground-muted">
-          Conversion en cours, cela ne prend que quelques secondes...
+        <p className="flex items-center gap-2 text-sm text-foreground-muted">
+          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+          {t("convertingRemote")}
         </p>
       )}
 
       {status === "done" && (
         <div className="flex flex-wrap gap-3">
           <button
+            ref={downloadRef}
             type="button"
             onClick={onDownload}
-            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
+            className="flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
           >
-            Télécharger
+            <Download className="h-4 w-4" aria-hidden="true" />
+            {t("download")}
           </button>
           <button
             type="button"
             onClick={onReset}
-            className="rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition hover:bg-unelevated"
+            className="flex items-center gap-2 rounded-xl border border-border bg-transparent px-4 py-3 text-sm font-medium text-foreground transition hover:bg-unelevated"
           >
-            Recommencer
+            <RotateCcw className="h-4 w-4" aria-hidden="true" />
+            {t("restart")}
           </button>
         </div>
       )}
 
       {status === "error" && (
         <div className="flex flex-col gap-3">
-          <p className="text-sm text-red-600">{errorMessage}</p>
+          <p role="alert" className="flex items-start gap-2 text-sm text-danger">
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            {errorMessage}
+          </p>
           <button
             type="button"
             onClick={onReset}
-            className="self-start rounded-lg border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition hover:bg-unelevated"
+            className="self-start rounded-xl border border-border bg-transparent px-4 py-3 text-sm font-medium text-foreground transition hover:bg-unelevated"
           >
-            Réessayer
+            {t("retry")}
           </button>
         </div>
       )}
